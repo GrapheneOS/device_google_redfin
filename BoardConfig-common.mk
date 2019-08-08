@@ -68,8 +68,7 @@ AB_OTA_PARTITIONS += \
     system \
     vbmeta \
     dtbo \
-    product \
-    vbmeta_system
+    product
 
 # Partitions (listed in the file) to be wiped under recovery.
 TARGET_RECOVERY_WIPE := device/google/redfin/recovery.wipe
