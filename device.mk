@@ -18,6 +18,10 @@ LOCAL_PATH := device/google/redfin
 
 PRODUCT_VENDOR_MOVE_ENABLED := true
 
+# Enable keymaster 4.0
+KMGK_USE_QTI_SERVICE := true
+ENABLE_KM_4_0 := true
+
 PRODUCT_SOONG_NAMESPACES += \
     hardware/google/av \
     hardware/google/interfaces \
