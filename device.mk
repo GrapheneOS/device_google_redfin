@@ -386,9 +386,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.usb@1.2-service.redfin
 
-PRODUCT_PACKAGES += \
-    android.hardware.health@2.0-service.redfin
-
 # Storage health HAL
 PRODUCT_PACKAGES += \
     android.hardware.health.storage@1.0-service
