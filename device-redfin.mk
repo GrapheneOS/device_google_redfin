@@ -103,3 +103,6 @@ PRODUCT_COPY_FILES += \
 # Audio effects
 PRODUCT_PACKAGES += \
     libqcomvoiceprocessingdescriptors
+
+# Fingerprint HIDL
+include device/google/redfin/fingerprint.mk
