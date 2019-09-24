@@ -155,6 +155,22 @@
     <ctl name="MultiMedia19 Mixer PRI_TDM_TX_0" value="0" />
     <ctl name="MultiMedia28 Mixer PRI_TDM_TX_0" value="0" />
     <ctl name="MultiMedia29 Mixer PRI_TDM_TX_0" value="0" />
+
+    <ctl name="QUIN_TDM_RX_0 Audio Mixer MultiMedia1" value="0"/>
+    <ctl name="QUIN_TDM_RX_0 Audio Mixer MultiMedia2" value="0"/>
+    <ctl name="QUIN_TDM_RX_0 Audio Mixer MultiMedia3" value="0"/>
+    <ctl name="QUIN_TDM_RX_0 Audio Mixer MultiMedia4" value="0"/>
+    <ctl name="QUIN_TDM_RX_0 Audio Mixer MultiMedia5" value="0"/>
+    <ctl name="QUIN_TDM_RX_0 Audio Mixer MultiMedia7" value="0"/>
+    <ctl name="QUIN_TDM_RX_0 Audio Mixer MultiMedia8" value="0"/>
+    <ctl name="QUIN_TDM_RX_0 Audio Mixer MultiMedia10" value="0"/>
+    <ctl name="QUIN_TDM_RX_0 Audio Mixer MultiMedia11" value="0"/>
+    <ctl name="QUIN_TDM_RX_0 Audio Mixer MultiMedia12" value="0"/>
+    <ctl name="QUIN_TDM_RX_0 Audio Mixer MultiMedia13" value="0"/>
+    <ctl name="QUIN_TDM_RX_0 Audio Mixer MultiMedia14" value="0"/>
+    <ctl name="QUIN_TDM_RX_0 Audio Mixer MultiMedia15" value="0"/>
+    <ctl name="QUIN_TDM_RX_0 Audio Mixer MultiMedia16" value="0"/>
+
     <!-- HFP start -->
     <ctl name="HFP_SLIM7_UL_HL Switch" value="0" />
     <ctl name="WSA_CDC_DMA_RX_0 Port Mixer SLIM_7_TX" value="0" />
@@ -1466,6 +1482,18 @@
         <ctl name="MultiMedia1 Mixer PRI_TDM_TX_0" value="1" />
     </path>
 
+    <path name="audio-record headset-mic">
+        <ctl name="MultiMedia1 Mixer TX_CDC_DMA_TX_3" value="1" />
+    </path>
+
+    <path name="audio-record handset-mic">
+        <ctl name="MultiMedia1 Mixer PRI_TDM_TX_0" value="1" />
+    </path>
+
+    <path name="audio-record speaker-mic">
+        <ctl name="MultiMedia1 Mixer PRI_TDM_TX_0" value="1" />
+    </path>
+
     <path name="audio-record usb-headset-mic">
         <ctl name="MultiMedia1 Mixer USB_AUDIO_TX" value="1" />
     </path>
@@ -1488,8 +1516,21 @@
     </path>
 
     <path name="audio-record-compress">
+        <ctl name="MultiMedia8 Mixer PRI_TDM_TX_0" value="1" />
+    </path>
+
+    <path name="audio-record-compress headset-mic">
         <ctl name="MultiMedia8 Mixer TX_CDC_DMA_TX_3" value="1" />
     </path>
+
+    <path name="audio-record-compress handset-mic">
+        <ctl name="MultiMedia8 Mixer PRI_TDM_TX_0" value="1" />
+    </path>
+
+    <path name="audio-record-compress speaker-mic">
+        <ctl name="MultiMedia8 Mixer PRI_TDM_TX_0" value="1" />
+    </path>
+
 
     <path name="audio-record-compress bt-sco">
         <ctl name="MultiMedia8 Mixer SLIM_7_TX" value="1" />
@@ -1509,7 +1550,19 @@
     </path>
 
     <path name="low-latency-record">
-      <ctl name="MultiMedia8 Mixer TX_CDC_DMA_TX_3" value="1" />
+        <ctl name="MultiMedia8 Mixer PRI_TDM_TX_0" value="1" />
+    </path>
+
+    <path name="low-latency-record headset-mic">
+        <ctl name="MultiMedia8 Mixer TX_CDC_DMA_TX_3" value="1" />
+    </path>
+
+    <path name="low-latency-record handset-mic">
+        <ctl name="MultiMedia8 Mixer PRI_TDM_TX_0" value="1" />
+    </path>
+
+    <path name="low-latency-record speaker-mic">
+        <ctl name="MultiMedia8 Mixer PRI_TDM_TX_0" value="1" />
     </path>
 
     <path name="low-latency-record bt-sco">
@@ -1933,7 +1986,19 @@
 
     <!-- VoIP Tx settings -->
     <path name="audio-record-voip">
+        <ctl name="MultiMedia10 Mixer PRI_TDM_TX_0" value="1" />
+    </path>
+
+    <path name="audio-record-voip headset-mic">
         <ctl name="MultiMedia10 Mixer TX_CDC_DMA_TX_3" value="1" />
+    </path>
+
+    <path name="audio-record-voip handset-mic">
+        <ctl name="MultiMedia10 Mixer PRI_TDM_TX_0" value="1" />
+    </path>
+
+    <path name="audio-record-voip speaker-mic">
+        <ctl name="MultiMedia10 Mixer PRI_TDM_TX_0" value="1" />
     </path>
 
     <path name="audio-record-voip usb-headset-mic">
@@ -2139,7 +2204,10 @@
     </path>
 
     <path name="handset-mic">
+        <ctl name="ADC1 Capture Volume" value="43"/>
+        <ctl name="PRI_TDM_TX_0 Channels" value="One"/>
         <ctl name="Sto1 ADC MIXL DMIC Switch" value="1" />
+        <ctl name="Stereo1 DMIC Mux" value="DMIC1" />
     </path>
 
     <path name="1st-mic-only">
@@ -2310,7 +2378,16 @@
     </path>
 
     <path name="camcorder-mic">
-        <path name="handset-mic" />
+        <ctl name="ADC1 Capture Volume" value="23"/>
+        <ctl name="ADC2 Capture Volume" value="23"/>
+        <ctl name="PRI TDM TX Channel Offset" id="0" value="8" />
+        <ctl name="PRI TDM TX Channel Offset" id="1" value="0" />
+        <ctl name="PRI_TDM_TX_0 Channels" value="Two"/>
+        <ctl name="PRI_TDM_TX_0 Format" value="S24_LE" />
+        <ctl name="Sto1 ADC MIXL DMIC Switch" value="1" />
+        <ctl name="Sto2 ADC MIXL DMIC Switch" value="1" />
+        <ctl name="Stereo1 DMIC Mux" value="DMIC1" />
+        <ctl name="Stereo2 DMIC Mux" value="DMIC2" />
     </path>
 
     <path name="bt-sco-headset">
@@ -2339,24 +2416,31 @@
 
     <!-- Dual MIC devices -->
     <path name="handset-dmic-endfire">
-        <ctl name="TX_CDC_DMA_TX_3 Channels" value="Two" />
-        <ctl name="TX_AIF1_CAP Mixer DEC0" value="1" />
-        <ctl name="TX DMIC MUX0" value="DMIC1" />
-        <ctl name="TX_AIF1_CAP Mixer DEC1" value="1" />
-        <ctl name="TX DMIC MUX1" value="DMIC3" />
+        <ctl name="ADC1 Capture Volume" value="45"/>
+        <ctl name="ADC2 Capture Volume" value="45"/>
+        <ctl name="PRI_TDM_TX_0 Channels" value="Two"/>
+        <ctl name="Sto1 ADC MIXL DMIC Switch" value="1" />
+        <ctl name="Sto2 ADC MIXL DMIC Switch" value="1" />
     </path>
 
     <path name="speaker-dmic-endfire">
-        <ctl name="TX_CDC_DMA_TX_3 Channels" value="Two" />
-        <ctl name="TX_AIF1_CAP Mixer DEC0" value="1" />
-        <ctl name="TX DMIC MUX0" value="DMIC4" />
-        <ctl name="TX_AIF1_CAP Mixer DEC1" value="1" />
-        <ctl name="TX DMIC MUX1" value="DMIC1" />
+        <ctl name="ADC1 Capture Volume" value="45"/>
+        <ctl name="ADC2 Capture Volume" value="45"/>
+        <ctl name="PRI TDM TX Channel Offset" id="0" value="8" />
+        <ctl name="PRI TDM TX Channel Offset" id="1" value="0" />
+        <ctl name="PRI TDM TX Channel Offset" id="2" value="12" />
+        <ctl name="PRI_TDM_TX_0 Channels" value="Two"/>
+        <ctl name="Sto1 ADC MIXL DMIC Switch" value="1" />
+        <ctl name="Sto2 ADC MIXL DMIC Switch" value="1" />
+        <ctl name="Sto2 ADC MIXR DMIC Switch" value="0" />
     </path>
 
     <path name="dmic-endfire">
-        <path name="handset-dmic-endfire" />
-        <ctl name="IIR0 INP0 MUX" value="DEC0" />
+        <ctl name="ADC1 Capture Volume" value="45"/>
+        <ctl name="ADC2 Capture Volume" value="45"/>
+        <ctl name="PRI_TDM_TX_0 Channels" value="Two"/>
+        <ctl name="Sto1 ADC MIXL DMIC Switch" value="1" />
+        <ctl name="Sto2 ADC MIXL DMIC Switch" value="1" />
     </path>
 
     <path name="dmic-endfire-liquid">
@@ -2434,13 +2518,10 @@
 
     <!-- Tri MIC devices -->
     <path name="three-mic">
-        <ctl name="TX_CDC_DMA_TX_3 Channels" value="Three" />
-        <ctl name="TX_AIF1_CAP Mixer DEC0" value="1" />
-        <ctl name="TX DMIC MUX0" value="DMIC3" />
-        <ctl name="TX_AIF1_CAP Mixer DEC1" value="1" />
-        <ctl name="TX DMIC MUX1" value="DMIC0" />
-        <ctl name="TX_AIF1_CAP Mixer DEC2" value="1" />
-        <ctl name="TX DMIC MUX2" value="DMIC2" />
+        <ctl name="PRI_TDM_TX_0 Channels" value="Three"/>
+        <ctl name="Sto1 ADC MIXL DMIC Switch" value="1" />
+        <ctl name="Sto2 ADC MIXL DMIC Switch" value="1" />
+        <ctl name="Sto2 ADC MIXR DMIC Switch" value="1" />
     </path>
 
     <path name="speaker-tmic">
@@ -2780,7 +2861,19 @@
     </path>
 
     <path name="mmap-record">
-      <ctl name="MultiMedia16 Mixer TX_CDC_DMA_TX_3" value="1" />
+        <ctl name="MultiMedia16 Mixer PRI_TDM_TX_0" value="1" />
+    </path>
+
+    <path name="mmap-record headset-mic">
+        <ctl name="MultiMedia16 Mixer TX_CDC_DMA_TX_3" value="1" />
+    </path>
+
+    <path name="mmap-record handset-mic">
+        <ctl name="MultiMedia16 Mixer PRI_TDM_TX_0" value="1" />
+    </path>
+
+    <path name="mmap-record speaker-mic">
+        <ctl name="MultiMedia16 Mixer PRI_TDM_TX_0" value="1" />
     </path>
 
     <path name="mmap-record bt-sco">
@@ -2821,7 +2914,19 @@
     </path>
 
     <path name="hifi-record">
+        <ctl name="MultiMedia2 Mixer PRI_TDM_TX_0" value="1" />
+    </path>
+
+    <path name="hifi-record headset-mic">
         <ctl name="MultiMedia2 Mixer TX_CDC_DMA_TX_3" value="1" />
+    </path>
+
+    <path name="hifi-record handset-mic">
+        <ctl name="MultiMedia2 Mixer PRI_TDM_TX_0" value="1" />
+    </path>
+
+    <path name="hifi-record speaker-mic">
+        <ctl name="MultiMedia2 Mixer PRI_TDM_TX_0" value="1" />
     </path>
 
     <path name="hifi-record usb-headset-mic">
