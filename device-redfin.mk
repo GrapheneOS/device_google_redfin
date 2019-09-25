@@ -74,6 +74,10 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/cs35l41/cs35l41-dsp1-spk-prot.wmfw:$(TARGET_COPY_OUT_VENDOR)/firmware/cs35l41-dsp1-spk-prot.wmfw \
     $(LOCAL_PATH)/audio/cs35l41/R-cs35l41-dsp1-spk-prot.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/R-cs35l41-dsp1-spk-prot.bin
 
+# Audio CS35L41 speaker calibration tool
+PRODUCT_PACKAGES += \
+    crus_sp_cal
+
 ifeq ($(wildcard vendor/google_devices/redfin/proprietary/device-vendor-redfin.mk),)
     BUILD_WITHOUT_VENDOR := true
 endif
