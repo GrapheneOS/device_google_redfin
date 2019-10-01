@@ -495,6 +495,38 @@
     <ctl name="R DSP1 Preload Switch" value="1" />
     <ctl name="Main AMP Enable Switch" value="1" />
     <ctl name="R Main AMP Enable Switch" value="1" />
+    <!-- CS35L41 RX slot -->
+    <ctl name="ASPRX1 Slot Position" value="0" />
+    <ctl name="R ASPRX1 Slot Position" value="1" />
+    <ctl name="ASPRX2 Slot Position" value="0" />
+    <ctl name="R ASPRX2 Slot Position" value="1" />
+    <!-- CS35L41 RX slot end-->
+    <!-- CS35L41 TX source -->
+    <ctl name="ASP TX1 Source" value="DSPTX1" />
+    <ctl name="R ASP TX1 Source" value="DSPTX1" />
+    <ctl name="ASP TX2 Source" value="Zero" />
+    <ctl name="R ASP TX2 Source" value="Zero" />
+    <ctl name="ASP TX3 Source" value="Zero" />
+    <ctl name="R ASP TX3 Source" value="Zero" />
+    <ctl name="ASP TX4 Source" value="Zero" />
+    <ctl name="R ASP TX4 Source" value="Zero" />
+    <!-- CS35L41 TX source end -->
+    <!-- CS35L41 TX slot(to QCT ADSP) -->
+    <ctl name="ASPTX1 Slot Position" value="0" />
+    <ctl name="R ASPTX1 Slot Position" value="1" />
+    <ctl name="ASPTX2 Slot Position" value="4" />
+    <ctl name="R ASPTX2 Slot Position" value="5" />
+    <ctl name="ASPTX3 Slot Position" value="2" />
+    <ctl name="R ASPTX3 Slot Position" value="6" />
+    <ctl name="ASPTX4 Slot Position" value="3" />
+    <ctl name="R ASPTX4 Slot Position" value="7" />
+    <!-- CS35L41 TX slot(to QCT ADSP) end-->
+    <!-- CS35L41 dsp(firmware) source -->
+    <ctl name="DSP RX1 Source" value="ASPRX1" />
+    <ctl name="R DSP RX1 Source" value="ASPRX1" />
+    <ctl name="DSP RX2 Source" value="ASPRX1" />
+    <ctl name="R DSP RX2 Source" value="ASPRX1" />
+    <!-- CS35L41 dsp(firmware) source end-->
     <!-- CS35L41 config end-->
 
     <!-- These are audio route (FE to BE) specific mixer settings -->
