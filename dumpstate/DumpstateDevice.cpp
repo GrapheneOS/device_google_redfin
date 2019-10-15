@@ -331,9 +331,7 @@ static void DumpF2FS(int fd) {
 }
 
 static void DumpUFS(int fd) {
-    DumpFileToFd(fd, "UFS model", "/sys/block/sda/device/model");
-    DumpFileToFd(fd, "UFS rev", "/sys/block/sda/device/rev");
-    DumpFileToFd(fd, "UFS size", "/sys/block/sda/size");
+    DumpFileToFd(fd, "UFS vendor info", "/proc/scsi/scsi");
     DumpFileToFd(fd, "UFS show_hba", "/sys/kernel/debug/ufshcd0/show_hba");
     DumpFileToFd(fd, "UFS err_stats", "/sys/kernel/debug/ufshcd0/stats/err_stats");
     DumpFileToFd(fd, "UFS io_stats", "/sys/kernel/debug/ufshcd0/stats/io_stats");
