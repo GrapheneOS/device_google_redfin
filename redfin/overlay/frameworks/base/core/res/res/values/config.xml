@@ -36,6 +36,13 @@
         <item>"softap.*"</item>
     </string-array>
 
+    <!-- List of regexpressions describing the interface (if any) that represent tetherable
+         Wifi P2P interfaces.  If the device doesn't want to support tethering over Wifi P2p this
+         should be empty.  An example would be "p2p-p2p.*" -->
+    <string-array translatable="false" name="config_tether_wifi_p2p_regexs">
+        <item>"p2p-p2p\\d-.*"</item>
+    </string-array>
+
     <!-- Enable doze mode
          ComponentName of a dream to show whenever the system would otherwise have gone to sleep. -->
     <string translatable="false" name="config_dozeComponent">com.android.systemui/com.android.systemui.doze.DozeService</string>
