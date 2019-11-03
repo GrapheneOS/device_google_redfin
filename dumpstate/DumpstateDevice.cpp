@@ -519,6 +519,11 @@ static void DumpUFS(int fd) {
         DumpFileToFd(fd, "UFS Slow IO Unmap", "/sys/devices/platform/soc/" + bootdev + "/slowio_unmap_cnt");
         DumpFileToFd(fd, "UFS Slow IO Sync", "/sys/devices/platform/soc/" + bootdev + "/slowio_sync_cnt");
 
+        RunCommandToFd(fd, "UFS err_stats", {"/vendor/bin/sh", "-c",
+                           "path=\"/sys/devices/platform/soc/" + bootdev + "/err_stats\"; "
+                           "for node in `ls $path/err_*`; do "
+                           "printf \"%s:%d\\n\" $(basename $node) $(cat $node); done;"});
+
         RunCommandToFd(fd, "UFS io_stats", {"/vendor/bin/sh", "-c",
                            "path=\"/sys/devices/platform/soc/" + bootdev + "/io_stats\"; "
                            "printf \"\\t\\t%-10s %-10s %-10s %-10s %-10s %-10s\\n\" "
