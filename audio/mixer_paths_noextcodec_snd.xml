@@ -476,25 +476,32 @@
     <!-- ALC5513 config end-->
 
     <!-- CS35L41 config -->
+    <!-- QCT QUIN TDM settings -->
     <ctl name="QUIN_TDM_RX_0 Channels" value="Four" />
     <ctl name="QUIN_TDM_TX_0 Channels" value="Four" />
     <ctl name="QUIN_TDM_RX_0 Format" value="S32_LE" />
+    <ctl name="QUIN_TDM_TX_0 Format" value="S32_LE" />
+    <ctl name="QUIN_TDM_RX_0 SampleRate" value="KHZ_48" />
+    <ctl name="QUIN_TDM_TX_0 SampleRate" value="KHZ_48" />
+    <!-- QCT QUIN TDM settings end-->
+    <!-- CS35L41 gain -->
     <ctl name="AMP PCM Gain" value="17" />
     <ctl name="R AMP PCM Gain" value="17" />
+    <ctl name="Digital PCM Volume" value="817" />
+    <ctl name="R Digital PCM Volume" value="817" />
+    <!-- CS35L41 gain end-->
+    <!-- CS35L41 enable to control gain function -->
     <ctl name="DRE DRE Switch" value="1" />
     <ctl name="R DRE DRE Switch" value="1" />
     <ctl name="VBSTMON Output Switch" value="1" />
     <ctl name="R VBSTMON Output Switch" value="1" />
+    <!-- CS35L41 enable to control gain function end-->
     <ctl name="PCM Source" value="DSP" />
     <ctl name="R PCM Source" value="DSP" />
-    <ctl name="DSP Booted" value="0" />
-    <ctl name="R DSP Booted" value="0" />
     <ctl name="DSP1 Firmware" value="Protection" />
     <ctl name="R DSP1 Firmware" value="Protection" />
-    <ctl name="DSP1 Preload Switch" value="1" />
-    <ctl name="R DSP1 Preload Switch" value="1" />
-    <ctl name="Main AMP Enable Switch" value="1" />
-    <ctl name="R Main AMP Enable Switch" value="1" />
+    <ctl name="Main AMP Enable Switch" value="0" />
+    <ctl name="R Main AMP Enable Switch" value="0" />
     <!-- CS35L41 RX slot -->
     <ctl name="ASPRX1 Slot Position" value="0" />
     <ctl name="R ASPRX1 Slot Position" value="1" />
@@ -2051,7 +2058,7 @@
     </path>
 
     <path name="spkr-rx-calib">
-        <ctl name="WSA_CDC_DMA_RX_0_DL_HL Switch"  value="1" />
+        <ctl name="QUIN_TDM_RX_DL_HL Switch" value="1" />
     </path>
 
     <path name="spkr-vi-record">
@@ -2119,14 +2126,8 @@
     </path>
 
     <path name="speaker-mono-2">
-        <ctl name="WSA_CDC_DMA_RX_0 Channels" value="One" />
-        <ctl name="WSA RX1 MUX" value="AIF1_PB" />
-        <ctl name="WSA_RX1 INP0" value="RX1" />
-        <ctl name="WSA_COMP2 Switch" value="1" />
-        <ctl name="SpkrRight COMP Switch" value="1" />
-        <ctl name="SpkrRight BOOST Switch" value="1" />
-        <ctl name="SpkrRight VISENSE Switch" value="1" />
-        <ctl name="SpkrRight SWR DAC_Port Switch" value="1" />
+        <ctl name="Main AMP Enable Switch" value="0"/>
+        <ctl name="R Main AMP Enable Switch" value="1"/>
     </path>
 
     <path name="speaker-safe">
@@ -2185,29 +2186,15 @@
     </path>
 
     <path name="speaker-protected">
-        <ctl name="WSA_AIF_VI Mixer WSA_SPKR_VI_1" value="1" />
-        <ctl name="WSA_AIF_VI Mixer WSA_SPKR_VI_2" value="1" />
-        <ctl name="WSA_CDC_DMA_0 TX Format" value="PACKED_16B" />
         <path name="speaker" />
-        <ctl name="VI_FEED_TX Channels" value="Two" />
-        <ctl name="WSA_RX_0_VI_FB_LCH_MUX" value="WSA_CDC_DMA_TX_0" />
-        <ctl name="WSA_RX_0_VI_FB_RCH_MUX" value="WSA_CDC_DMA_TX_0" />
     </path>
 
     <path name="voice-speaker-protected">
-        <ctl name="WSA_AIF_VI Mixer WSA_SPKR_VI_1" value="1" />
-        <ctl name="WSA_CDC_DMA_0 TX Format" value="PACKED_16B" />
         <path name="speaker-mono" />
-        <ctl name="VI_FEED_TX Channels" value="One" />
-        <ctl name="WSA_RX_0_VI_FB_LCH_MUX" value="WSA_CDC_DMA_TX_0" />
     </path>
 
     <path name="voice-speaker-2-protected">
-        <ctl name="WSA_AIF_VI Mixer WSA_SPKR_VI_2" value="1" />
-        <ctl name="WSA_CDC_DMA_0 TX Format" value="PACKED_16B" />
         <path name="speaker-mono-2" />
-        <ctl name="VI_FEED_TX Channels" value="One" />
-        <ctl name="WSA_RX_0_VI_FB_RCH_MUX" value="WSA_CDC_DMA_TX_0" />
     </path>
 
     <path name="voice-speaker-stereo-protected">
@@ -3043,4 +3030,22 @@
     <path name="incall_music_uplink afe-proxy">
         <path name="incall_music_uplink" />
     </path>
+
+    <!-- cs35l41 specific path to load firmware in cs35l41-playback.c -->
+    <path name="cs35l41-load-protection-firmware-start">
+        <ctl name="CCM Reset" value="1" />
+        <ctl name="R CCM Reset" value="1" />
+        <ctl name="DSP Booted" value="0" />
+        <ctl name="R DSP Booted" value="0" />
+        <ctl name="DSP1 Preload Switch" value="0" />
+        <ctl name="R DSP1 Preload Switch" value="0" />
+    </path>
+
+    <path name="cs35l41-load-protection-firmware-end">
+        <ctl name="DSP1 Preload Switch" value="1" />
+        <ctl name="R DSP1 Preload Switch" value="1" />
+        <ctl name="DSP Booted" value="1" />
+        <ctl name="R DSP Booted" value="1" />
+    </path>
+    <!-- cs35l41 specific path to load firmware in cs35l41-playback.c end-->
 </mixer>
