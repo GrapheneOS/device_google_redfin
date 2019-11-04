@@ -206,7 +206,9 @@
     <!-- Multimode Voice1 -->
     <ctl name="WSA_CDC_DMA_RX_0_Voice Mixer VoiceMMode1" value="0" />
     <ctl name="RX_CDC_DMA_RX_0_Voice Mixer VoiceMMode1" value="0" />
+    <ctl name="QUIN_TDM_RX_0_Voice Mixer VoiceMMode1" value="0" />
     <ctl name="VoiceMMode1_Tx Mixer TX_CDC_DMA_TX_3_MMode1" value="0" />
+    <ctl name="VoiceMMode1_Tx Mixer PRI_TDM_TX_0_MMode1" value="0" />
     <!-- Multimode Voice1 BTSCO -->
     <ctl name="SLIM_7_RX_Voice Mixer VoiceMMode1" value="0" />
     <ctl name="VoiceMMode1_Tx Mixer SLIM_7_TX_MMode1" value="0" />
@@ -222,7 +224,9 @@
     <!-- Multimode Voice2 -->
     <ctl name="WSA_CDC_DMA_RX_0_Voice Mixer VoiceMMode2" value="0" />
     <ctl name="RX_CDC_DMA_RX_0_Voice Mixer VoiceMMode2" value="0" />
-    <ctl name="VoiceMMode1_Tx Mixer TX_CDC_DMA_TX_3_MMode2" value="0" />
+    <ctl name="QUIN_TDM_RX_0_Voice Mixer VoiceMMode2" value="0" />
+    <ctl name="VoiceMMode2_Tx Mixer TX_CDC_DMA_TX_3_MMode2" value="0" />
+    <ctl name="VoiceMMode2_Tx Mixer PRI_TDM_TX_0_MMode2" value="0" />
     <!-- Multimode Voice2 BTSCO -->
     <ctl name="SLIM_7_RX_Voice Mixer VoiceMMode2" value="0" />
     <ctl name="VoiceMMode2_Tx Mixer SLIM_7_TX_MMode2" value="0" />
@@ -340,7 +344,7 @@
     <ctl name="TX_CDC_DMA_TX_3 Channels" value="One" />
     <ctl name="MultiMedia1 Mixer TX_CDC_DMA_TX_3" value="0" />
     <ctl name="ADC2_MIXER Switch" value="0" />
-    <ctl name="ADC2 MUX" value="ZERO" />
+    <ctl name="ADC2 MUX" value="INP2" />
     <ctl name="TX_AIF1_CAP Mixer DEC0" value="0" />
     <ctl name="TX_AIF1_CAP Mixer DEC1" value="0" />
     <ctl name="TX_AIF1_CAP Mixer DEC2" value="0" />
@@ -466,13 +470,17 @@
     <ctl name="Sto2 ADC MIXR DMIC Switch" value="0" />
     <ctl name="Stereo1 DMIC Mux" value="DMIC1" />
     <ctl name="Stereo2 DMIC Mux" value="DMIC2" />
-    <ctl name="ADC1 Capture Volume" value="23"/>
-    <ctl name="ADC2 Capture Volume" value="23"/>
-    <ctl name="PRI_TDM_TX_0 Channels" value="Four"/>
+    <ctl name="ADC1 Capture Volume" id="0" value="23"/>
+    <ctl name="ADC1 Capture Volume" id="1" value="23"/>
+    <ctl name="ADC2 Capture Volume" id="0" value="23"/>
+    <ctl name="ADC2 Capture Volume" id="1" value="23"/>
+    <ctl name="PRI_TDM_TX_0 Channels" value="One"/>
     <ctl name="PRI_TDM_TX_0 Format" value="S16_LE" />
     <ctl name="PRI TDM TX Channel Offset" id="0" value="0" />
     <ctl name="PRI TDM TX Channel Offset" id="1" value="8" />
     <ctl name="PRI TDM TX Channel Offset" id="2" value="12" />
+    <ctl name="MIC Boost Volume" id="0" value="0" />
+    <ctl name="MIC Boost Volume" id="1" value="0" />
     <!-- ALC5513 config end-->
 
     <!-- CS35L41 config -->
@@ -1847,23 +1855,23 @@
     </path>
 
     <path name="voicemmode1-call">
-        <ctl name="QUIN_TDM_RX_0 Voice Mixer VoiceMMode1" value="1" />
-        <ctl name="VoiceMMode1_Tx Mixer TX_CDC_DMA_TX_3_MMode1" value="1" />
+        <ctl name="QUIN_TDM_RX_0_Voice Mixer VoiceMMode1" value="1" />
+        <ctl name="VoiceMMode1_Tx Mixer PRI_TDM_TX_0_MMode1" value="1" />
     </path>
 
     <path name="voicemmode1-call handset">
-        <ctl name="QUIN_TDM_RX_0 Voice Mixer VoiceMMode1" value="1"/>
-        <ctl name="VoiceMMode1_Tx Mixer TX_CDC_DMA_TX_3_MMode1" value="1"/>
+        <ctl name="QUIN_TDM_RX_0_Voice Mixer VoiceMMode1" value="1"/>
+        <ctl name="VoiceMMode1_Tx Mixer PRI_TDM_TX_0_MMode1" value="1"/>
     </path>
 
     <path name="voicemmode1-call speaker">
-        <ctl name="QUIN_TDM_RX_0 Voice Mixer VoiceMMode1" value="1"/>
-        <ctl name="VoiceMMode1_Tx Mixer TX_CDC_DMA_TX_3_MMode1" value="1"/>
+        <ctl name="QUIN_TDM_RX_0_Voice Mixer VoiceMMode1" value="1"/>
+        <ctl name="VoiceMMode1_Tx Mixer PRI_TDM_TX_0_MMode1" value="1"/>
     </path>
 
     <path name="voicemmode1-call headphones">
         <ctl name="RX_CDC_DMA_RX_0_Voice Mixer VoiceMMode1" value="1" />
-        <ctl name="VoiceMMode1_Tx Mixer TX_CDC_DMA_TX_3_MMode1" value="1" />
+        <ctl name="VoiceMMode1_Tx Mixer PRI_TDM_TX_0_MMode1" value="1" />
     </path>
 
     <path name="voicemmode1-call bt-sco">
@@ -1906,23 +1914,23 @@
     </path>
 
     <path name="voicemmode2-call">
-        <ctl name="QUIN_TDM_RX_0 Voice Mixer VoiceMMode2" value="1" />
-        <ctl name="VoiceMMode2_Tx Mixer TX_CDC_DMA_TX_3_MMode2" value="1" />
+        <ctl name="QUIN_TDM_RX_0_Voice Mixer VoiceMMode2" value="1" />
+        <ctl name="VoiceMMode2_Tx Mixer PRI_TDM_TX_0_MMode2" value="1" />
     </path>
 
     <path name="voicemmode2-call handset">
-        <ctl name="QUIN_TDM_RX_0 Voice Mixer VoiceMMode2" value="1" />
-        <ctl name="VoiceMMode2_Tx Mixer TX_CDC_DMA_TX_3_MMode2" value="1" />
+        <ctl name="QUIN_TDM_RX_0_Voice Mixer VoiceMMode2" value="1" />
+        <ctl name="VoiceMMode2_Tx Mixer PRI_TDM_TX_0_MMode2" value="1" />
     </path>
 
     <path name="voicemmode2-call speaker">
-        <ctl name="QUIN_TDM_RX_0 Voice Mixer VoiceMMode2" value="1" />
-        <ctl name="VoiceMMode2_Tx Mixer TX_CDC_DMA_TX_3_MMode2" value="1" />
+        <ctl name="QUIN_TDM_RX_0_Voice Mixer VoiceMMode2" value="1" />
+        <ctl name="VoiceMMode2_Tx Mixer PRI_TDM_TX_0_MMode2" value="1" />
     </path>
 
     <path name="voicemmode2-call headphones">
         <ctl name="RX_CDC_DMA_RX_0_Voice Mixer VoiceMMode2" value="1" />
-        <ctl name="VoiceMMode2_Tx Mixer TX_CDC_DMA_TX_3_MMode2" value="1" />
+        <ctl name="VoiceMMode2_Tx Mixer PRI_TDM_TX_0_MMode2" value="1" />
     </path>
 
     <path name="voicemmode2-call bt-sco">
@@ -2110,6 +2118,14 @@
         <ctl name="TX DMIC MUX0" value="DMIC5" />
     </path>
 
+    <path name="dmic-endfire">
+        <ctl name="ADC1 Capture Volume" id="0" value="45"/>
+        <ctl name="ADC2 Capture Volume" id="0" value="45"/>
+        <ctl name="PRI_TDM_TX_0 Channels" value="Two"/>
+        <ctl name="Sto1 ADC MIXL DMIC Switch" value="1" />
+        <ctl name="Sto2 ADC MIXL DMIC Switch" value="1" />
+    </path>
+
     <path name="handset">
         <ctl name="Main AMP Enable Switch" value="1"/>
         <ctl name="R Main AMP Enable Switch" value="0"/>
@@ -2175,7 +2191,7 @@
     </path>
 
     <path name="speaker-mic">
-        <path name="dmic5" />
+        <path name="dmic-endfire" />
     </path>
 
     <path name="speaker-mic-liquid">
@@ -2210,20 +2226,8 @@
     <path name="vi-feedback-mono-2">
     </path>
 
-    <path name="handset">
-        <ctl name="WSA_CDC_DMA_RX_0 Channels" value="One" />
-        <ctl name="WSA RX0 MUX" value="AIF1_PB" />
-        <ctl name="WSA_RX0 INP0" value="RX0" />
-        <ctl name="WSA_COMP1 Switch" value="1" />
-        <ctl name="SpkrLeft COMP Switch" value="1" />
-        <ctl name="SpkrLeft BOOST Switch" value="1" />
-        <ctl name="SpkrLeft VISENSE Switch" value="1" />
-        <ctl name="SpkrLeft SWR DAC_Port Switch" value="1" />
-        <ctl name="EAR SPKR PA Gain" value="G_6_DB" />
-    </path>
-
     <path name="handset-mic">
-        <ctl name="ADC1 Capture Volume" value="43"/>
+        <ctl name="ADC1 Capture Volume" id="0" value="43"/>
         <ctl name="PRI_TDM_TX_0 Channels" value="One"/>
         <ctl name="Sto1 ADC MIXL DMIC Switch" value="1" />
         <ctl name="Stereo1 DMIC Mux" value="DMIC1" />
@@ -2231,21 +2235,21 @@
 
     <path name="1st-mic-only">
         <ctl name="PRI TDM TX Channel Offset" id="0" value="0" />
-        <ctl name="ADC1 Capture Volume" value="60"/>
+        <ctl name="ADC1 Capture Volume" id="0" value="60"/>
         <ctl name="Sto1 ADC MIXL DMIC Switch" value="1" />
         <ctl name="MultiMedia1 Mixer PRI_TDM_TX_0" value="1" />
     </path>
 
     <path name="2nd-mic-only">
         <ctl name="PRI TDM TX Channel Offset" id="0" value="8" />
-        <ctl name="ADC2 Capture Volume" value="60"/>
+        <ctl name="ADC2 Capture Volume" id="0" value="60"/>
         <ctl name="Sto2 ADC MIXL DMIC Switch" value="1" />
         <ctl name="MultiMedia1 Mixer PRI_TDM_TX_0" value="1" />
     </path>
 
     <path name="3rd-mic-only">
         <ctl name="PRI TDM TX Channel Offset" id="0" value="12" />
-        <ctl name="ADC2 Capture Volume" value="60"/>
+        <ctl name="ADC2 Capture Volume" id="1" value="60"/>
         <ctl name="Sto2 ADC MIXL DMIC Switch" value="1" />
         <ctl name="MultiMedia1 Mixer PRI_TDM_TX_0" value="1" />
     </path>
@@ -2309,7 +2313,7 @@
         <path name="handset" />
     </path>
     <path name="voice-speaker">
-        <path name="speaker-mono" />
+        <path name="speaker" />
     </path>
 
     <path name="voice-speaker-stereo">
@@ -2397,14 +2401,17 @@
     </path>
 
     <path name="camcorder-mic">
-        <ctl name="ADC1 Capture Volume" value="23"/>
-        <ctl name="ADC2 Capture Volume" value="23"/>
-        <ctl name="PRI TDM TX Channel Offset" id="0" value="8" />
-        <ctl name="PRI TDM TX Channel Offset" id="1" value="0" />
-        <ctl name="PRI_TDM_TX_0 Channels" value="Two"/>
+        <ctl name="ADC1 Capture Volume" id="0" value="23"/>
+        <ctl name="ADC2 Capture Volume" id="0" value="23"/>
+        <ctl name="ADC2 Capture Volume" id="1" value="23"/>
+        <ctl name="PRI TDM TX Channel Offset" id="0" value="12" />
+        <ctl name="PRI TDM TX Channel Offset" id="1" value="8" />
+        <ctl name="PRI TDM TX Channel Offset" id="2" value="0" />
+        <ctl name="PRI_TDM_TX_0 Channels" value="Three"/>
         <ctl name="PRI_TDM_TX_0 Format" value="S24_LE" />
         <ctl name="Sto1 ADC MIXL DMIC Switch" value="1" />
         <ctl name="Sto2 ADC MIXL DMIC Switch" value="1" />
+        <ctl name="Sto2 ADC MIXR DMIC Switch" value="1" />
         <ctl name="Stereo1 DMIC Mux" value="DMIC1" />
         <ctl name="Stereo2 DMIC Mux" value="DMIC2" />
     </path>
@@ -2435,31 +2442,24 @@
 
     <!-- Dual MIC devices -->
     <path name="handset-dmic-endfire">
-        <ctl name="ADC1 Capture Volume" value="45"/>
-        <ctl name="ADC2 Capture Volume" value="45"/>
+        <ctl name="ADC1 Capture Volume" id="0" value="45"/>
+        <ctl name="ADC2 Capture Volume" id="0" value="45"/>
         <ctl name="PRI_TDM_TX_0 Channels" value="Two"/>
         <ctl name="Sto1 ADC MIXL DMIC Switch" value="1" />
         <ctl name="Sto2 ADC MIXL DMIC Switch" value="1" />
     </path>
 
     <path name="speaker-dmic-endfire">
-        <ctl name="ADC1 Capture Volume" value="45"/>
-        <ctl name="ADC2 Capture Volume" value="45"/>
-        <ctl name="PRI TDM TX Channel Offset" id="0" value="8" />
+        <ctl name="ADC1 Capture Volume" id="0" value="45"/>
+        <ctl name="ADC2 Capture Volume" id="0" value="45"/>
+        <ctl name="ADC2 Capture Volume" id="1" value="45"/>
+        <ctl name="PRI TDM TX Channel Offset" id="0" value="12" />
         <ctl name="PRI TDM TX Channel Offset" id="1" value="0" />
-        <ctl name="PRI TDM TX Channel Offset" id="2" value="12" />
-        <ctl name="PRI_TDM_TX_0 Channels" value="Two"/>
+        <ctl name="PRI TDM TX Channel Offset" id="2" value="8" />
+        <ctl name="PRI_TDM_TX_0 Channels" value="Three"/>
         <ctl name="Sto1 ADC MIXL DMIC Switch" value="1" />
         <ctl name="Sto2 ADC MIXL DMIC Switch" value="1" />
-        <ctl name="Sto2 ADC MIXR DMIC Switch" value="0" />
-    </path>
-
-    <path name="dmic-endfire">
-        <ctl name="ADC1 Capture Volume" value="45"/>
-        <ctl name="ADC2 Capture Volume" value="45"/>
-        <ctl name="PRI_TDM_TX_0 Channels" value="Two"/>
-        <ctl name="Sto1 ADC MIXL DMIC Switch" value="1" />
-        <ctl name="Sto2 ADC MIXL DMIC Switch" value="1" />
+        <ctl name="Sto2 ADC MIXR DMIC Switch" value="1" />
     </path>
 
     <path name="dmic-endfire-liquid">
