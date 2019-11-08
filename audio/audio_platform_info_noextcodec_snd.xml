@@ -93,10 +93,10 @@
         <usecase name="USECASE_VOWLAN_CALL" type="out" id="-1"/>
         <usecase name="USECASE_AUDIO_PLAYBACK_FM" type="out" id="30"/>
         <usecase name="USECASE_AUDIO_PLAYBACK_FM" type="in" id="38"/>
-        <!-- The pcm device for QUIN TDM hostless playback is 98 -->
-        <usecase name="USECASE_AUDIO_SPKR_CALIB_RX" type="out" id="98"/>
-        <!-- The pcm device for QUIN TDM hostless capture is 99 -->
-        <usecase name="USECASE_AUDIO_SPKR_CALIB_TX" type="in" id="99"/>
+        <!-- The pcm device for QUIN TDM hostless playback is 88 -->
+        <usecase name="USECASE_AUDIO_SPKR_CALIB_RX" type="out" id="88"/>
+        <!-- The pcm device for QUIN TDM hostless capture is 89 -->
+        <usecase name="USECASE_AUDIO_SPKR_CALIB_TX" type="in" id="89"/>
         <usecase name="USECASE_AUDIO_PLAYBACK_AFE_PROXY" type="out" id="5"/>
         <usecase name="USECASE_AUDIO_RECORD_AFE_PROXY" type="in" id="6"/>
         <usecase name="USECASE_AUDIO_RECORD_LOW_LATENCY" type="in" id="13" />
