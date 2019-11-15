@@ -347,10 +347,36 @@ static void DumpF2FS(int fd) {
 
 static void DumpUFS(int fd) {
     DumpFileToFd(fd, "UFS vendor info", "/proc/scsi/scsi");
-    DumpFileToFd(fd, "UFS show_hba", "/sys/kernel/debug/ufshcd0/show_hba");
-    DumpFileToFd(fd, "UFS err_stats", "/sys/kernel/debug/ufshcd0/stats/err_stats");
-    DumpFileToFd(fd, "UFS io_stats", "/sys/kernel/debug/ufshcd0/stats/io_stats");
-    DumpFileToFd(fd, "UFS req_stats", "/sys/kernel/debug/ufshcd0/stats/req_stats");
+    RunCommandToFd(fd, "UFS io_stats", {"/vendor/bin/sh", "-c",
+                       "path=\"/sys/devices/platform/soc/*ufshc*/io_stats\"; "
+                       "printf \"\\t\\t%-10s %-10s %-10s %-10s %-10s %-10s\\n\" "
+                       "ReadCnt ReadBytes WriteCnt WriteBytes RWCnt RWBytes; "
+                       "str=$(cat $path/*_start); arr=($str); "
+                       "printf \"Started: \\t%-10s %-10s %-10s %-10s %-10s %-10s\\n\" "
+                       "${arr[1]} ${arr[0]} ${arr[5]} ${arr[4]} ${arr[3]} ${arr[2]}; "
+                       "str=$(cat $path/*_complete); arr=($str); "
+                       "printf \"Completed: \\t%-10s %-10s %-10s %-10s %-10s %-10s\\n\" "
+                       "${arr[1]} ${arr[0]} ${arr[5]} ${arr[4]} ${arr[3]} ${arr[2]}; "
+                       "str=$(cat $path/*_maxdiff); arr=($str); "
+                       "printf \"MaxDiff: \\t%-10s %-10s %-10s %-10s %-10s %-10s\\n\\n\" "
+                       "${arr[1]} ${arr[0]} ${arr[5]} ${arr[4]} ${arr[3]} ${arr[2]}; "});
+
+    RunCommandToFd(fd, "UFS req_stats", {"/vendor/bin/sh", "-c",
+                       "path=\"/sys/devices/platform/soc/*ufshc*/req_stats\"; "
+                       "printf \"\\t%-10s %-10s %-10s %-10s %-10s %-10s %-10s\\n\" "
+                       "All Write Read Read\\(urg\\) Write\\(urg\\) Flush Discard; "
+                       "str=$(cat $path/*_min); arr=($str); "
+                       "printf \"Min:\\t%-10s %-10s %-10s %-10s %-10s %-10s %-10s\\n\" "
+                       "${arr[0]} ${arr[3]} ${arr[6]} ${arr[4]} ${arr[5]} ${arr[2]} ${arr[1]}; "
+                       "str=$(cat $path/*_max); arr=($str); "
+                       "printf \"Max:\\t%-10s %-10s %-10s %-10s %-10s %-10s %-10s\\n\" "
+                       "${arr[0]} ${arr[3]} ${arr[6]} ${arr[4]} ${arr[5]} ${arr[2]} ${arr[1]}; "
+                       "str=$(cat $path/*_avg); arr=($str); "
+                       "printf \"Avg.:\\t%-10s %-10s %-10s %-10s %-10s %-10s %-10s\\n\" "
+                       "${arr[0]} ${arr[3]} ${arr[6]} ${arr[4]} ${arr[5]} ${arr[2]} ${arr[1]}; "
+                       "str=$(cat $path/*_sum); arr=($str); "
+                       "printf \"Count:\\t%-10s %-10s %-10s %-10s %-10s %-10s %-10s\\n\\n\" "
+                       "${arr[0]} ${arr[3]} ${arr[6]} ${arr[4]} ${arr[5]} ${arr[2]} ${arr[1]};"});
 
     std::string bootdev = android::base::GetProperty(UFS_BOOTDEVICE, "");
     if (!bootdev.empty()) {
