@@ -258,71 +258,68 @@ void DumpstateDevice::dumpModem(int fd, int fdModem)
 }
 
 static void DumpTouch(int fd) {
-    const char touch_spi_path[] = "/sys/class/spi_master/spi1/spi1.0";
+    const char touch_spi_path[] = "/sys/devices/virtual/sec/tsp";
     char cmd[256];
 
-    snprintf(cmd, sizeof(cmd), "%s/appid", touch_spi_path);
-    if (!access(cmd, R_OK)) {
-        // Touch firmware version
-        DumpFileToFd(fd, "STM touch firmware version", cmd);
-
-        // Touch controller status
-        snprintf(cmd, sizeof(cmd), "%s/status", touch_spi_path);
-        DumpFileToFd(fd, "STM touch status", cmd);
-
-        // Mutual raw data
+    if (!access(touch_spi_path, R_OK)) {
+        //Enable: force touch active
         snprintf(cmd, sizeof(cmd),
-                 "echo 13 00 > %s/stm_fts_cmd && cat %s/stm_fts_cmd",
+                 "echo %s > %s/cmd && cat %s/cmd_result",
+                 "force_touch_active,1",
                  touch_spi_path, touch_spi_path);
-        RunCommandToFd(fd, "Mutual Raw", {"/vendor/bin/sh", "-c", cmd});
+        RunCommandToFd(fd, "Force Touch Active", {"/vendor/bin/sh", "-c", cmd});
 
-        // Mutual strength data
+        //Firmware info
+        snprintf(cmd, sizeof(cmd), "%s/fw_version", touch_spi_path);
+        DumpFileToFd(fd, "LSI firmware version", cmd);
+
+        //Touch status
+        snprintf(cmd, sizeof(cmd), "%s/status", touch_spi_path);
+        DumpFileToFd(fd, "LSI touch status", cmd);
+
+        //Raw data
         snprintf(cmd, sizeof(cmd),
-                 "echo 17 > %s/stm_fts_cmd && cat %s/stm_fts_cmd",
+                 "echo %s > %s/cmd && cat %s/cmd_result",
+                 "run_rawdata_read_all",
+                 touch_spi_path, touch_spi_path);
+        RunCommandToFd(fd, "Mutual Raw Data", {"/vendor/bin/sh", "-c", cmd});
+
+        //Raw cap
+        snprintf(cmd, sizeof(cmd),
+                 "echo %s > %s/cmd && cat %s/cmd_result",
+                 "run_rawcap_read_all",
+                 touch_spi_path, touch_spi_path);
+        RunCommandToFd(fd, "Mutual Raw Cap", {"/vendor/bin/sh", "-c", cmd});
+
+        //Mutual strength
+        snprintf(cmd, sizeof(cmd),
+                 "echo %s > %s/cmd && cat %s/cmd_result",
+                 "run_delta_read_all",
                  touch_spi_path, touch_spi_path);
         RunCommandToFd(fd, "Mutual Strength", {"/vendor/bin/sh", "-c", cmd});
 
-        // Self raw data
+        //Self raw
         snprintf(cmd, sizeof(cmd),
-                 "echo 15 00 > %s/stm_fts_cmd && cat %s/stm_fts_cmd",
+                 "echo %s > %s/cmd && cat %s/cmd_result",
+                 "run_self_rawcap_read_all",
                  touch_spi_path, touch_spi_path);
         RunCommandToFd(fd, "Self Raw", {"/vendor/bin/sh", "-c", cmd});
+
+        //Self strength
+        snprintf(cmd, sizeof(cmd),
+                 "echo %s > %s/cmd && cat %s/cmd_result",
+                 "run_self_delta_read_all",
+                 touch_spi_path, touch_spi_path);
+        RunCommandToFd(fd, "Self Strength", {"/vendor/bin/sh", "-c", cmd});
+
+        //Disable: force touch active
+        snprintf(cmd, sizeof(cmd),
+                 "echo %s > %s/cmd && cat %s/cmd_result",
+                 "force_touch_active,0",
+                 touch_spi_path, touch_spi_path);
+        RunCommandToFd(fd, "Force Touch Active", {"/vendor/bin/sh", "-c", cmd});
     }
 
-    if (!access("/proc/fts/driver_test", R_OK)) {
-        RunCommandToFd(fd, "Mutual Raw Data",
-                       {"/vendor/bin/sh", "-c",
-                        "echo 23 00 > /proc/fts/driver_test && "
-                        "cat /proc/fts/driver_test"});
-        RunCommandToFd(fd, "Mutual Baseline Data",
-                       {"/vendor/bin/sh", "-c",
-                        "echo 23 03 > /proc/fts/driver_test && "
-                        "cat /proc/fts/driver_test"});
-        RunCommandToFd(fd, "Mutual Strength Data",
-                       {"/vendor/bin/sh", "-c",
-                        "echo 23 02 > /proc/fts/driver_test && "
-                        "cat /proc/fts/driver_test"});
-        RunCommandToFd(fd, "Self Raw Data",
-                       {"/vendor/bin/sh", "-c",
-                        "echo 24 00 > /proc/fts/driver_test && "
-                        "cat /proc/fts/driver_test"});
-        RunCommandToFd(fd, "Self Baseline Data",
-                       {"/vendor/bin/sh", "-c",
-                        "echo 24 03 > /proc/fts/driver_test && "
-                        "cat /proc/fts/driver_test"});
-        RunCommandToFd(fd, "Self Strength Data",
-                       {"/vendor/bin/sh", "-c",
-                        "echo 24 02 > /proc/fts/driver_test && "
-                        "cat /proc/fts/driver_test"});
-        RunCommandToFd(fd, "Mutual Compensation",
-                       {"/vendor/bin/sh", "-c",
-                        "echo 32 10 > /proc/fts/driver_test && "
-                        "cat /proc/fts/driver_test"});
-        RunCommandToFd(fd, "Self Compensation",
-                       {"/vendor/bin/sh", "-c",
-                        "echo 33 12 > /proc/fts/driver_test && "
-                        "cat /proc/fts/driver_test"});
-    }
 }
 
 static void DumpSensorLog(int fd) {
