@@ -1,5 +1,3 @@
-include vendor/google_devices/redfin/proprietary/FingerprintConfig.mk
-
 # Fingerprint
 PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint@2.1-service.fpc \
