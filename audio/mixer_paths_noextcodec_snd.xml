@@ -485,7 +485,7 @@
 
     <!-- CS35L41 config -->
     <!-- QCT QUIN TDM settings -->
-    <ctl name="QUIN_TDM_RX_0 Channels" value="Four" />
+    <ctl name="QUIN_TDM_RX_0 Channels" value="Two" />
     <ctl name="QUIN_TDM_TX_0 Channels" value="Four" />
     <ctl name="QUIN_TDM_RX_0 Format" value="S32_LE" />
     <ctl name="QUIN_TDM_TX_0 Format" value="S32_LE" />
