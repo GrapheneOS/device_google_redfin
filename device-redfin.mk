@@ -65,7 +65,7 @@ PRODUCT_COPY_FILES += \
      $(LOCAL_PATH)/audio/acdbdata/workspaceFile.qwsp:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/workspaceFile.qwsp
 endif
 
-# CS35L41 SPEAKER AMP
+# CS35L41 B0 SPEAKER AMP
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/cs35l41/cs35l41-dsp1-spk-cali.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/cs35l41-dsp1-spk-cali.bin \
     $(LOCAL_PATH)/audio/cs35l41/cs35l41-dsp1-spk-cali.wmfw:$(TARGET_COPY_OUT_VENDOR)/firmware/cs35l41-dsp1-spk-cali.wmfw \
@@ -73,6 +73,24 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/cs35l41/cs35l41-dsp1-spk-prot.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/cs35l41-dsp1-spk-prot.bin \
     $(LOCAL_PATH)/audio/cs35l41/cs35l41-dsp1-spk-prot.wmfw:$(TARGET_COPY_OUT_VENDOR)/firmware/cs35l41-dsp1-spk-prot.wmfw \
     $(LOCAL_PATH)/audio/cs35l41/R-cs35l41-dsp1-spk-prot.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/R-cs35l41-dsp1-spk-prot.bin
+
+# CS35L41 B0 SPEAKER AMP
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/audio/cs35l41/B0/cs35l41-revB0-dsp1-spk-cali.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/cs35l41-revB0-dsp1-spk-cali.bin \
+    $(LOCAL_PATH)/audio/cs35l41/B0/cs35l41-revB0-dsp1-spk-cali.wmfw:$(TARGET_COPY_OUT_VENDOR)/firmware/cs35l41-revB0-dsp1-spk-cali.wmfw \
+    $(LOCAL_PATH)/audio/cs35l41/B0/R-cs35l41-revB0-dsp1-spk-cali.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/R-cs35l41-revB0-dsp1-spk-cali.bin \
+    $(LOCAL_PATH)/audio/cs35l41/B0/cs35l41-revB0-dsp1-spk-prot.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/cs35l41-revB0-dsp1-spk-prot.bin \
+    $(LOCAL_PATH)/audio/cs35l41/B0/cs35l41-revB0-dsp1-spk-prot.wmfw:$(TARGET_COPY_OUT_VENDOR)/firmware/cs35l41-revB0-dsp1-spk-prot.wmfw \
+    $(LOCAL_PATH)/audio/cs35l41/B0/R-cs35l41-revB0-dsp1-spk-prot.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/R-cs35l41-revB0-dsp1-spk-prot.bin
+
+# CS35L41 B2 SPEAKER AMP
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/audio/cs35l41/B2/cs35l41-revB2-dsp1-spk-cali.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/cs35l41-revB2-dsp1-spk-cali.bin \
+    $(LOCAL_PATH)/audio/cs35l41/B2/cs35l41-revB2-dsp1-spk-cali.wmfw:$(TARGET_COPY_OUT_VENDOR)/firmware/cs35l41-revB2-dsp1-spk-cali.wmfw \
+    $(LOCAL_PATH)/audio/cs35l41/B2/R-cs35l41-revB2-dsp1-spk-cali.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/R-cs35l41-revB2-dsp1-spk-cali.bin \
+    $(LOCAL_PATH)/audio/cs35l41/B2/cs35l41-revB2-dsp1-spk-prot.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/cs35l41-revB2-dsp1-spk-prot.bin \
+    $(LOCAL_PATH)/audio/cs35l41/B2/cs35l41-revB2-dsp1-spk-prot.wmfw:$(TARGET_COPY_OUT_VENDOR)/firmware/cs35l41-revB2-dsp1-spk-prot.wmfw \
+    $(LOCAL_PATH)/audio/cs35l41/B2/R-cs35l41-revB2-dsp1-spk-prot.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/R-cs35l41-revB2-dsp1-spk-prot.bin
 
 # Audio CS35L41 speaker calibration tool
 PRODUCT_PACKAGES += \
