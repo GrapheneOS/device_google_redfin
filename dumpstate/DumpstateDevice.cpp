@@ -471,6 +471,11 @@ Return<void> DumpstateDevice::dumpstateBoard(const hidl_handle& handle) {
         {"/vendor/bin/sh", "-c",
          "for f in /sys/bus/platform/drivers/msm_lmh_dcvs/*qcom,limits-dcvs@*/lmh_freq_limit; do "
          "state=`cat $f` ; echo \"$f: $state\" ; done"});
+    RunCommandToFd(
+        fd, "CPU MAX FREQ info",
+        {"/vendor/bin/sh", "-c",
+         "for f in /sys/devices/system/cpu/cpufreq/policy*/scaling_max_freq; do "
+         "max_freq=`cat $f` ; echo \"$f: $max_freq\" ; done"});
     RunCommandToFd(fd, "CPU time-in-state", {"/vendor/bin/sh", "-c", "for cpu in /sys/devices/system/cpu/cpu*; do f=$cpu/cpufreq/stats/time_in_state; if [ ! -f $f ]; then continue; fi; echo $f:; cat $f; done"});
     RunCommandToFd(fd, "CPU cpuidle", {"/vendor/bin/sh", "-c", "for cpu in /sys/devices/system/cpu/cpu*; do for d in $cpu/cpuidle/state*; do if [ ! -d $d ]; then continue; fi; echo \"$d: `cat $d/name` `cat $d/desc` `cat $d/time` `cat $d/usage`\"; done; done"});
     RunCommandToFd(fd, "Airbrush debug info", {"/vendor/bin/sh", "-c", "for f in `ls /sys/devices/platform/soc/c84000.i2c/i2c-4/4-0066/@(*curr|temperature|vbat|total_power)`; do echo \"$f: `cat $f`\" ; done; file=/d/airbrush/airbrush_sm/chip_state; echo \"$file: `cat $file`\""});
