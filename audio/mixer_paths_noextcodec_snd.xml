@@ -1762,8 +1762,10 @@
     </path>
 
     <path name="dmic-endfire">
-        <ctl name="ADC1 Capture Volume" id="0" value="45"/>
-        <ctl name="ADC2 Capture Volume" id="0" value="45"/>
+        <ctl name="ADC1 Capture Volume" id="0" value="40"/>
+        <ctl name="ADC2 Capture Volume" id="1" value="40"/>
+        <ctl name="PRI TDM TX Channel Offset" id="0" value="0" />
+        <ctl name="PRI TDM TX Channel Offset" id="1" value="12"/>
         <ctl name="PRI_TDM_TX_0 Channels" value="Two"/>
     </path>
 
@@ -1832,7 +1834,7 @@
     </path>
 
     <path name="speaker-mic">
-        <path name="dmic-endfire" />
+        <path name="speaker-dmic-endfire" />
     </path>
 
     <path name="speaker-mic-liquid">
@@ -1950,7 +1952,7 @@
         <path name="handset" />
     </path>
     <path name="voice-speaker">
-        <path name="speaker" />
+        <path name="speaker-mono" />
     </path>
 
     <path name="voice-speaker-stereo">
@@ -2082,10 +2084,10 @@
     </path>
 
     <path name="speaker-dmic-endfire">
-        <ctl name="ADC1 Capture Volume" id="0" value="45"/>
-        <ctl name="ADC2 Capture Volume" id="0" value="45"/>
-        <ctl name="ADC2 Capture Volume" id="1" value="45"/>
-        <ctl name="PRI TDM TX Channel Offset" id="0" value="12" />
+        <ctl name="ADC1 Capture Volume" id="0" value="40"/>
+        <ctl name="ADC2 Capture Volume" id="0" value="40"/>
+        <ctl name="ADC2 Capture Volume" id="1" value="40"/>
+        <ctl name="PRI TDM TX Channel Offset" id="0" value="12"/>
         <ctl name="PRI TDM TX Channel Offset" id="1" value="0" />
         <ctl name="PRI TDM TX Channel Offset" id="2" value="8" />
         <ctl name="PRI_TDM_TX_0 Channels" value="Three"/>
