@@ -546,6 +546,8 @@
     <!-- CS35L41 dsp(firmware) source end-->
     <!-- CS35L41 config end-->
 
+    <ctl name="HAC AMP EN" value="0" />
+
     <!-- These are audio route (FE to BE) specific mixer settings -->
     <path name="gsm-mode">
         <ctl name="GSM mode Enable" value="ON" />
@@ -1936,8 +1938,15 @@
     <path name="headset-mic-liquid">
         <path name="amic2" />
     </path>
+
     <path name="voice-handset">
         <path name="handset" />
+    </path>
+
+    <path name="voice-hac-handset">
+        <ctl name="HAC AMP EN" value="1" />
+        <ctl name="Main AMP Enable Switch" value="1"/>
+        <ctl name="R Main AMP Enable Switch" value="0"/>
     </path>
 
     <path name="voice-handset-tmus">
@@ -2247,7 +2256,6 @@
         <ctl name="TTY Mode" value="HCO" />
         <path name="voice-speaker"/>
     </path>
-
 
     <path name="voice-tty-hco-handset-hdk">
         <ctl name="TTY Mode" value="HCO" />
