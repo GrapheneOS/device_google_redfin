@@ -103,6 +103,9 @@ endif
 PRODUCT_PACKAGES += \
     android.hardware.usb@1.2-service.redfin
 
+PRODUCT_PACKAGES += \
+    android.hardware.health@2.0-service.redfin
+
 # Vibrator HAL
 PRODUCT_PACKAGES += \
     android.hardware.vibrator@1.3-service.redfin
