@@ -55,6 +55,9 @@ constexpr char kUfsHealthEol[]{UFS_DIR "/health_descriptor/eol_info"};
 constexpr char kUfsHealthLifetimeA[]{UFS_DIR "/health_descriptor/life_time_estimation_a"};
 constexpr char kUfsHealthLifetimeB[]{UFS_DIR "/health_descriptor/life_time_estimation_b"};
 
+constexpr char kDiskStatsFile[]{"/sys/block/sda/stat"};
+constexpr char kUFSName[]{"UFS0"};
+
 constexpr char kTCPMPSYName[]{"tcpm-source-psy-usbpd0"};
 
 std::ifstream assert_open(const std::string &path) {
