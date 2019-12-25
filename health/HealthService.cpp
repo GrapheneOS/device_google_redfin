@@ -51,12 +51,9 @@ static LowBatteryShutdownMetrics shutdownMetrics(kVoltageAvg);
 static DeviceHealth deviceHealth;
 
 #define UFS_DIR "/sys/devices/platform/soc/1d84000.ufshc"
-constexpr char kUfsHealthEol[]{UFS_DIR "/health/eol"};
-constexpr char kUfsHealthLifetimeA[]{UFS_DIR "/health/lifetimeA"};
-constexpr char kUfsHealthLifetimeB[]{UFS_DIR "/health/lifetimeB"};
-constexpr char kUfsVersion[]{UFS_DIR "/version"};
-constexpr char kDiskStatsFile[]{"/sys/block/sda/stat"};
-constexpr char kUFSName[]{"UFS0"};
+constexpr char kUfsHealthEol[]{UFS_DIR "/health_descriptor/eol_info"};
+constexpr char kUfsHealthLifetimeA[]{UFS_DIR "/health_descriptor/life_time_estimation_a"};
+constexpr char kUfsHealthLifetimeB[]{UFS_DIR "/health_descriptor/life_time_estimation_b"};
 
 constexpr char kTCPMPSYName[]{"tcpm-source-psy-usbpd0"};
 
@@ -73,14 +70,6 @@ void read_value_from_file(const std::string &path, T *field) {
   auto stream = assert_open(path);
   stream.unsetf(std::ios_base::basefield);
   stream >> *field;
-}
-
-void read_ufs_version(StorageInfo *info) {
-  uint64_t value;
-  read_value_from_file(kUfsVersion, &value);
-  std::stringstream ss;
-  ss << "ufs " << std::hex << value;
-  info->version = ss.str();
 }
 
 void fill_ufs_storage_attribute(StorageAttribute *attr) {
@@ -107,7 +96,6 @@ void get_storage_info(std::vector<StorageInfo> &vec_storage_info) {
   StorageInfo *storage_info = &vec_storage_info[0];
   fill_ufs_storage_attribute(&storage_info->attr);
 
-  read_ufs_version(storage_info);
   read_value_from_file(kUfsHealthEol, &storage_info->eol);
   read_value_from_file(kUfsHealthLifetimeA, &storage_info->lifetimeA);
   read_value_from_file(kUfsHealthLifetimeB, &storage_info->lifetimeB);
