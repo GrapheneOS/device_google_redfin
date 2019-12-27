@@ -140,3 +140,20 @@ PRODUCT_PACKAGES += \
 
 # Fingerprint HIDL
 include device/google/redfin/fingerprint.mk
+
+# SurfaceFlinger configurations
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.set_idle_timer_ms=80
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.set_touch_timer_ms=200
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.set_display_power_timer_ms=1000
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.use_smart_90_for_video=true
+
+# High fps sf early and early gl phase offset
+# The default sf phase offset is set to 6ms, to avoid it be included into next
+# vsync threshold, set high fps early sf and next vsync threshold phase offset
+# to 6.1ms, which is bigger than all sf phase offsets in normal frame rate.
+PRODUCT_PROPERTY_OVERRIDES += \
+    debug.sf.high_fps_early_phase_offset_ns=6100000
+PRODUCT_PROPERTY_OVERRIDES += \
+    debug.sf.high_fps_early_gl_phase_offset_ns=9000000
+PRODUCT_PROPERTY_OVERRIDES += \
+    debug.sf.phase_offset_threshold_for_next_vsync_ns=6100000
