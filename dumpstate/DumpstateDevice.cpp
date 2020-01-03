@@ -274,12 +274,19 @@ static void DumpTouch(int fd) {
         snprintf(cmd, sizeof(cmd), "%s/status", touch_spi_path);
         DumpFileToFd(fd, "LSI touch status", cmd);
 
-        //Raw data
+       //Mutual strength
         snprintf(cmd, sizeof(cmd),
                  "echo %s > %s/cmd && cat %s/cmd_result",
-                 "run_rawdata_read_all",
+                 "run_delta_read_all",
                  touch_spi_path, touch_spi_path);
-        RunCommandToFd(fd, "Mutual Raw Data", {"/vendor/bin/sh", "-c", cmd});
+        RunCommandToFd(fd, "Mutual Strength", {"/vendor/bin/sh", "-c", cmd});
+
+        //Self strength
+        snprintf(cmd, sizeof(cmd),
+                 "echo %s > %s/cmd && cat %s/cmd_result",
+                 "run_self_delta_read_all",
+                 touch_spi_path, touch_spi_path);
+        RunCommandToFd(fd, "Self Strength", {"/vendor/bin/sh", "-c", cmd});
 
         //Raw cap
         snprintf(cmd, sizeof(cmd),
@@ -288,26 +295,19 @@ static void DumpTouch(int fd) {
                  touch_spi_path, touch_spi_path);
         RunCommandToFd(fd, "Mutual Raw Cap", {"/vendor/bin/sh", "-c", cmd});
 
-        //Mutual strength
-        snprintf(cmd, sizeof(cmd),
-                 "echo %s > %s/cmd && cat %s/cmd_result",
-                 "run_delta_read_all",
-                 touch_spi_path, touch_spi_path);
-        RunCommandToFd(fd, "Mutual Strength", {"/vendor/bin/sh", "-c", cmd});
-
-        //Self raw
+        //Self raw cap
         snprintf(cmd, sizeof(cmd),
                  "echo %s > %s/cmd && cat %s/cmd_result",
                  "run_self_rawcap_read_all",
                  touch_spi_path, touch_spi_path);
         RunCommandToFd(fd, "Self Raw", {"/vendor/bin/sh", "-c", cmd});
 
-        //Self strength
+        //Raw data
         snprintf(cmd, sizeof(cmd),
                  "echo %s > %s/cmd && cat %s/cmd_result",
-                 "run_self_delta_read_all",
+                 "run_rawdata_read_all",
                  touch_spi_path, touch_spi_path);
-        RunCommandToFd(fd, "Self Strength", {"/vendor/bin/sh", "-c", cmd});
+        RunCommandToFd(fd, "Mutual Raw Data", {"/vendor/bin/sh", "-c", cmd});
 
         //Disable: force touch active
         snprintf(cmd, sizeof(cmd),
