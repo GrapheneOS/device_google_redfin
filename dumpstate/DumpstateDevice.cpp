@@ -277,7 +277,14 @@ static void DumpTouch(int fd) {
         snprintf(cmd, sizeof(cmd), "%s/status", touch_spi_path);
         DumpFileToFd(fd, "LSI touch status", cmd);
 
-       //Mutual strength
+        //Calibration info
+        snprintf(cmd, sizeof(cmd),
+                 "echo %s > %s/cmd && cat %s/cmd_result",
+                 "get_mis_cal_info",
+                 touch_spi_path, touch_spi_path);
+        RunCommandToFd(fd, "Calibration info", {"/vendor/bin/sh", "-c", cmd});
+
+        //Mutual strength
         snprintf(cmd, sizeof(cmd),
                  "echo %s > %s/cmd && cat %s/cmd_result",
                  "run_delta_read_all",
