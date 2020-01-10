@@ -31,13 +31,6 @@ TARGET_BOARD_COMMON_PATH := device/google/redfin/sm7250
 # DTBO partition definitions
 BOARD_PREBUILT_DTBOIMAGE := device/google/redfin-kernel/dtbo.img
 
-TARGET_RECOVERY_UI_LIB := \
-  librecovery_ui_redfin \
-  libnos_citadel_for_recovery \
-  libnos_for_recovery \
-  libbootloader_message \
-  libfstab
-
 TARGET_FS_CONFIG_GEN := device/google/redfin/config.fs
 
 # Kernel modules
