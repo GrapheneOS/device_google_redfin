@@ -307,14 +307,35 @@ static void DumpTouch(int fd) {
                  "echo %s > %s/cmd && cat %s/cmd_result",
                  "run_self_rawcap_read_all",
                  touch_spi_path, touch_spi_path);
-        RunCommandToFd(fd, "Self Raw", {"/vendor/bin/sh", "-c", cmd});
+        RunCommandToFd(fd, "Self Raw Cap", {"/vendor/bin/sh", "-c", cmd});
 
-        //Raw data
+        //TYPE_AMBIENT_DATA
         snprintf(cmd, sizeof(cmd),
                  "echo %s > %s/cmd && cat %s/cmd_result",
-                 "run_rawdata_read_all",
+                 "run_rawdata_read_type,3",
                  touch_spi_path, touch_spi_path);
-        RunCommandToFd(fd, "Mutual Raw Data", {"/vendor/bin/sh", "-c", cmd});
+        RunCommandToFd(fd, "TYPE_AMBIENT_DATA", {"/vendor/bin/sh", "-c", cmd});
+
+        //TYPE_DECODED_DATA
+        snprintf(cmd, sizeof(cmd),
+                 "echo %s > %s/cmd && cat %s/cmd_result",
+                 "run_rawdata_read_type,5",
+                 touch_spi_path, touch_spi_path);
+        RunCommandToFd(fd, "TYPE_DECODED_DATA", {"/vendor/bin/sh", "-c", cmd});
+
+        //TYPE_NOI_P2P_MIN
+        snprintf(cmd, sizeof(cmd),
+                 "echo %s > %s/cmd && cat %s/cmd_result",
+                 "run_rawdata_read_type,30",
+                 touch_spi_path, touch_spi_path);
+        RunCommandToFd(fd, "TYPE_NOI_P2P_MIN", {"/vendor/bin/sh", "-c", cmd});
+
+        //TYPE_NOI_P2P_MAX
+        snprintf(cmd, sizeof(cmd),
+                 "echo %s > %s/cmd && cat %s/cmd_result",
+                 "run_rawdata_read_type,31",
+                 touch_spi_path, touch_spi_path);
+        RunCommandToFd(fd, "TYPE_NOI_P2P_MAX", {"/vendor/bin/sh", "-c", cmd});
 
         //Disable: force touch active
         snprintf(cmd, sizeof(cmd),
