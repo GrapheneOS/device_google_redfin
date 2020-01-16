@@ -20,6 +20,7 @@ on property:vendor.all.modules.ready=1
     chown system system /sys/devices/virtual/sec/tsp/fw_version
     chown system system /sys/devices/virtual/sec/tsp/cmd
     chown system system /sys/devices/virtual/sec/tsp/cmd_result
+    chown system system /sys/devices/virtual/sec/tsp/status
 
 service vendor.mdm_helper /vendor/bin/mdm_helper
     class core
