@@ -507,8 +507,8 @@ Return<void> DumpstateDevice::dumpstateBoard(const hidl_handle& handle) {
     RunCommandToFd(fd, "CPU cpuidle", {"/vendor/bin/sh", "-c", "for cpu in /sys/devices/system/cpu/cpu*; do for d in $cpu/cpuidle/state*; do if [ ! -d $d ]; then continue; fi; echo \"$d: `cat $d/name` `cat $d/desc` `cat $d/time` `cat $d/usage`\"; done; done"});
     RunCommandToFd(fd, "Airbrush debug info", {"/vendor/bin/sh", "-c", "for f in `ls /sys/devices/platform/soc/c84000.i2c/i2c-4/4-0066/@(*curr|temperature|vbat|total_power)`; do echo \"$f: `cat $f`\" ; done; file=/d/airbrush/airbrush_sm/chip_state; echo \"$file: `cat $file`\""});
     DumpFileToFd(fd, "MDP xlogs", "/data/vendor/display/mdp_xlog");
-    DumpFileToFd(fd, "TCPM logs", "/d/tcpm/usbpd0");
-    DumpFileToFd(fd, "PD Engine", "/d/pd_engine/usbpd0");
+    DumpFileToFd(fd, "TCPM logs", "/d/usb/tcpm-usbpd0");
+    DumpFileToFd(fd, "PD Engine", "/d/logbuffer/usbpd");
     DumpFileToFd(fd, "PPS", "/d/logbuffer/pps");
     DumpFileToFd(fd, "BMS", "/d/logbuffer/ssoc");
     DumpFileToFd(fd, "smblib", "/d/logbuffer/smblib");
