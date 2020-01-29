@@ -63,6 +63,32 @@ namespace implementation {
 #define TCPDUMP_LOG_PREFIX "tcpdump"
 #define EXTENDED_LOG_PREFIX "extended_log_"
 
+static bool isModemLoggingEnabled() {
+    return android::base::GetBoolProperty(DIAG_MDLOG_PERSIST_PROPERTY, false);
+}
+
+static bool isModemLoggingRunning() {
+    return android::base::GetBoolProperty(DIAG_MDLOG_STATUS_PROPERTY, false);
+}
+
+static void stopModemLogging() {
+    if (PropertiesHelper::IsUserBuild()) {
+        return;
+    }
+
+    android::base::SetProperty(DIAG_MDLOG_PROPERTY, "false");
+    ALOGD("Stopping diag_mdlog...\n");
+}
+
+static void startModemLogging() {
+    if (PropertiesHelper::IsUserBuild()) {
+        return;
+    }
+
+    ALOGD("Starting diag_mdlog...\n");
+    android::base::SetProperty(DIAG_MDLOG_PROPERTY, "true");
+}
+
 void DumpstateDevice::dumpLogs(int fd, std::string srcDir, std::string destDir,
                                int maxFileNum, const char *logPrefix) {
     struct dirent **dirent_list = NULL;
@@ -163,34 +189,17 @@ void DumpstateDevice::dumpModem(int fd, int fdModem)
                 "/sys/kernel/debug/ipa/ipa_statistics_msg"
             };
 
-        bool smlogEnabled = android::base::GetBoolProperty(MODEM_LOGGING_SWITCH, false) && !access("/vendor/bin/smlog_dump", X_OK);
-        bool diagLogEnabled = android::base::GetBoolProperty(DIAG_MDLOG_PERSIST_PROPERTY, false);
-        bool tcpdumpEnabled = android::base::GetBoolProperty(TCPDUMP_PERSIST_PROPERTY, false);
-
-        if (smlogEnabled) {
-            RunCommandToFd(fd, "SMLOG DUMP", {"smlog_dump", "-d", "-o", modemLogAllDir.c_str()}, CommandOptions::WithTimeout(10).Build());
-        } else if (diagLogEnabled) {
-            bool diagLogStarted = android::base::GetBoolProperty( DIAG_MDLOG_STATUS_PROPERTY, false);
-
-            if (diagLogStarted) {
-                android::base::SetProperty(DIAG_MDLOG_PROPERTY, "false");
-                ALOGD("Stopping diag_mdlog...\n");
-                if (android::base::WaitForProperty(DIAG_MDLOG_STATUS_PROPERTY, "false", std::chrono::seconds(20))) {
-                    ALOGD("diag_mdlog exited");
-                } else {
-                    ALOGE("Waited mdlog timeout after 20 second");
-                }
+        if (isModemLoggingEnabled()) {
+            if (isModemLoggingRunning()) {
+                ALOGD("diag_mdlog is running");
             } else {
                 ALOGD("diag_mdlog is not running");
             }
 
             dumpLogs(fd, diagLogDir, modemLogAllDir, android::base::GetIntProperty(DIAG_MDLOG_NUMBER_BUGREPORT, 100), DIAG_LOG_PREFIX);
-
-            if (diagLogStarted) {
-                ALOGD("Restarting diag_mdlog...");
-                android::base::SetProperty(DIAG_MDLOG_PROPERTY, "true");
-            }
         }
+
+        bool tcpdumpEnabled = android::base::GetBoolProperty(TCPDUMP_PERSIST_PROPERTY, false);
 
         if (tcpdumpEnabled) {
             dumpLogs(fd, tcpdumpLogDir, modemLogAllDir, android::base::GetIntProperty(TCPDUMP_NUMBER_BUGREPORT, 5), TCPDUMP_LOG_PREFIX);
@@ -466,6 +475,12 @@ Return<void> DumpstateDevice::dumpstateBoard(const hidl_handle& handle) {
         return Void();
     }
 
+    bool modemLogging = isModemLoggingRunning();
+
+    if (isModemLoggingEnabled() && modemLogging) {
+        stopModemLogging();
+    }
+
     RunCommandToFd(fd, "Notify modem", {"/vendor/bin/modem_svc", "-s"}, CommandOptions::WithTimeout(1).Build());
     RunCommandToFd(fd, "VENDOR PROPERTIES", {"/vendor/bin/getprop"});
     DumpFileToFd(fd, "SoC serial number", "/sys/devices/soc0/serial_number");
@@ -540,6 +555,10 @@ Return<void> DumpstateDevice::dumpstateBoard(const hidl_handle& handle) {
     } else {
         int fdModem = handle->data[1];
         dumpModem(fd, fdModem);
+    }
+
+    if (isModemLoggingEnabled() && modemLogging) {
+        startModemLogging();
     }
 
     // Citadel info
