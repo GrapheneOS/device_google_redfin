@@ -162,3 +162,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     debug.sf.high_fps_early_gl_phase_offset_ns=9000000
 PRODUCT_PROPERTY_OVERRIDES += \
     debug.sf.phase_offset_threshold_for_next_vsync_ns=6100000
+
+# Keyboard height ratio
+PRODUCT_PRODUCT_PROPERTIES += ro.com.google.ime.height_ratio=1.2
