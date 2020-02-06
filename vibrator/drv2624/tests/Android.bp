@@ -13,19 +13,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-cc_defaults {
-    name: "PixelVibratorDefaultsRedfin",
-    defaults: ["hidl_defaults"],
-    relative_install_path: "hw",
+cc_test {
+    name: "VibratorHalDrv2624TestSuiteRedfin",
+    defaults: ["VibratorHalDrv2624TestDefaultsRedfin"],
+    srcs: [
+        "test-hwapi.cpp",
+        "test-hwcal.cpp",
+        "test-vibrator.cpp",
+    ],
     static_libs: [
-        "PixelVibratorCommonRedfin",
+        "libc++fs",
+        "libgmock",
     ],
     shared_libs: [
         "libbase",
-        "libhidlbase",
-        "libcutils",
-        "liblog",
-        "libutils",
-        "libhardware",
     ],
 }
