@@ -170,7 +170,7 @@ include device/google/redfin/fingerprint.mk
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.set_idle_timer_ms=80
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.set_touch_timer_ms=200
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.set_display_power_timer_ms=1000
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.use_smart_90_for_video=true
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.use_content_detection_for_refresh_rate=true
 
 # High fps sf early and early gl phase offset
 # The default sf phase offset is set to 6ms, to avoid it be included into next
