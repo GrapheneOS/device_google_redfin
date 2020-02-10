@@ -134,7 +134,7 @@ PRODUCT_PRODUCT_PROPERTIES +=\
 
 # Dumpstate HAL
 PRODUCT_PACKAGES += \
-    android.hardware.dumpstate@1.0-service.redfin
+    android.hardware.dumpstate@1.1-service.redfin
 
 #per device
 PRODUCT_COPY_FILES += \
