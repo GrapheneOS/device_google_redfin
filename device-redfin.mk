@@ -34,6 +34,9 @@ PRODUCT_SOONG_NAMESPACES += \
 
 DEVICE_PACKAGE_OVERLAYS += device/google/redfin/redfin/overlay
 
+PRODUCT_PACKAGES += \
+    TelephonyOverlay2020Redfin
+
 # Audio XMLs for redfin
 ifeq ($(wildcard vendor/google_fih/redfin/factory/prebuilt/ftm.mk),)
 PRODUCT_COPY_FILES += \
