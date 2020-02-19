@@ -97,6 +97,8 @@ class Vibrator : public IVibrator {
         virtual bool getEffectCoeffs(std::array<float, 4> *value) = 0;
         // Obtain the max steady G value
         virtual bool getSteadyAmpMax(float *value) = 0;
+        // Obtains the steady coeffs to calculate the target voltage
+        virtual bool getSteadyCoeffs(std::array<float, 4> *value) = 0;
         // Obtains threshold in ms, above which close-loop should be used.
         virtual bool getCloseLoopThreshold(uint32_t *value) = 0;
         // Obtains dynamic/static configuration choice.
@@ -119,6 +121,8 @@ class Vibrator : public IVibrator {
         virtual bool getEffectShape(uint32_t *value) = 0;
         // Obtains the wave shape for steady vibration
         virtual bool getSteadyShape(uint32_t *value) = 0;
+        // Obtains the trigger effect support
+        virtual bool getTriggerEffectSupport(uint32_t *value) = 0;
         // Emit diagnostic information to the given file.
         virtual void debug(int fd) = 0;
     };
@@ -189,7 +193,7 @@ class Vibrator : public IVibrator {
     uint32_t mDoubleClickDuration;
     uint32_t mHeavyClickDuration;
     std::array<uint32_t, 5> mEffectTargetOdClamp;
-    uint32_t mSteadyTargetOdClamp;
+    std::array<uint32_t, 3> mSteadyTargetOdClamp;
 };
 
 }  // namespace implementation
