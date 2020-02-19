@@ -95,6 +95,7 @@ class HwCal : public Vibrator::HwCal, private HwCalBase {
     static constexpr char LRA_PERIOD_CONFIG[] = "lra_period";
     static constexpr char EFFECT_COEFF_CONFIG[] = "haptic_coefficient";
     static constexpr char STEADY_AMP_MAX_CONFIG[] = "vibration_amp_max";
+    static constexpr char STEADY_COEFF_CONFIG[] = "vibration_coefficient";
 
     static constexpr uint32_t WAVEFORM_CLICK_EFFECT_MS = 6;
     static constexpr uint32_t WAVEFORM_TICK_EFFECT_MS = 2;
@@ -104,6 +105,7 @@ class HwCal : public Vibrator::HwCal, private HwCalBase {
     static constexpr uint32_t DEFAULT_LRA_PERIOD = 262;
     static constexpr uint32_t DEFAULT_FREQUENCY_SHIFT = 10;
     static constexpr uint32_t DEFAULT_VOLTAGE_MAX = 107;  // 2.15V;
+    static constexpr uint32_t DEFAULT_LP_TRIGGER_SUPPORT = 1;
 
   public:
     HwCal() {}
@@ -124,6 +126,12 @@ class HwCal : public Vibrator::HwCal, private HwCalBase {
     }
     bool getSteadyAmpMax(float *value) override {
         if (getPersist(STEADY_AMP_MAX_CONFIG, value)) {
+            return true;
+        }
+        return false;
+    }
+    bool getSteadyCoeffs(std::array<float, 4> *value) override {
+        if (getPersist(STEADY_COEFF_CONFIG, value)) {
             return true;
         }
         return false;
@@ -162,6 +170,9 @@ class HwCal : public Vibrator::HwCal, private HwCalBase {
     }
     bool getSteadyShape(uint32_t *value) override {
         return getProperty("steady.shape", value, UINT32_MAX);
+    }
+    bool getTriggerEffectSupport(uint32_t *value) override {
+        return getProperty("lptrigger", value, DEFAULT_LP_TRIGGER_SUPPORT);
     }
     void debug(int fd) override { HwCalBase::debug(fd); }
 };
