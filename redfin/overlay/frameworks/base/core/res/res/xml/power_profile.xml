@@ -203,5 +203,28 @@
     <item name="video">25</item>
     <!-- Additional power used when audio is playing -->
     <item name="audio">75</item>
+
+    <!-- Cellular modem related values.-->
+    <item name="modem.controller.sleep">0</item>
+    <item name="modem.controller.idle">156</item>
+    <item name="modem.controller.rx">145</item>
+    <array name="modem.controller.tx"> <!-- Strength 0 to 4 -->
+        <value>153</value>
+        <value>212</value>
+        <value>292</value>
+        <value>359</value>
+        <value>471</value>
+    </array>
+    <item name="modem.controller.voltage">3700</item>
+
+    <!-- GPS related values.-->
+    <array name="gps.signalqualitybased"> <!-- Strength 0 to 1 -->
+        <value>28</value>
+        <value>5</value>
+    </array>
+    <item name="gps.voltage">3700</item>
+
+    <!-- Idle Receive current for wifi radio in mA.-->
+    <!-- Wifi missing due to bug: (b/149748526) -->
 </device>
 
