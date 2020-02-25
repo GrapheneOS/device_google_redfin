@@ -175,10 +175,11 @@ using EffectStrength = ::android::hardware::vibrator::V1_0::EffectStrength;
 Vibrator::Vibrator(std::unique_ptr<HwApi> hwapi, std::unique_ptr<HwCal> hwcal)
     : mHwApi(std::move(hwapi)), mHwCal(std::move(hwcal)) {
     std::string autocal;
-    uint32_t lraPeriod = 0;
+    uint32_t lraPeriod = 0, lpTrigSupport = 0;
     bool dynamicConfig = false;
-    bool hasEffectCoeffs = false;
+    bool hasEffectCoeffs = false, hasSteadyCoeffs = false;
     std::array<float, 4> effectCoeffs = {0};
+    std::array<float, 4> steadyCoeffs = {0};
 
     if (!mHwApi->setState(true)) {
         ALOGE("Failed to set state (%d): %s", errno, strerror(errno));
@@ -224,7 +225,7 @@ Vibrator::Vibrator(std::unique_ptr<HwApi> hwapi, std::unique_ptr<HwCal> hwcal)
         }
         // Add a boundary protection for level 5 only, since
         // some devices might not be able to reach the maximum target G
-        if ((mEffectTargetOdClamp[4] <= 0) || (mEffectTargetOdClamp[4] > 161)) {
+        if ((mEffectTargetOdClamp[4] <= 0) || (mEffectTargetOdClamp[4] > shortVoltageMax)) {
             mEffectTargetOdClamp[4] = shortVoltageMax;
         }
 
@@ -235,13 +236,26 @@ Vibrator::Vibrator(std::unique_ptr<HwApi> hwapi, std::unique_ptr<HwCal> hwcal)
             .olLraPeriod = lraPeriod,
         }));
 
-        mSteadyTargetOdClamp = mHwCal->getSteadyAmpMax(&tempAmpMax)
-                                   ? round((STEADY_TARGET_G[0] / tempAmpMax) * longVoltageMax)
-                                   : longVoltageMax;
+        hasSteadyCoeffs = mHwCal->getSteadyCoeffs(&steadyCoeffs);
+        if (hasSteadyCoeffs) {
+            for (i = 0; i < 3; i++) {
+                // Use cubic approach to get the target voltage levels
+                tempVolLevel = targetGToVlevelsUnderCubicEquation(steadyCoeffs, STEADY_TARGET_G[i]);
+                mSteadyTargetOdClamp[i] = convertLevelsToOdClamp(tempVolLevel, lraPeriod);
+                if ((mSteadyTargetOdClamp[i] <= 0) || (mSteadyTargetOdClamp[i] > longVoltageMax)) {
+                    mSteadyTargetOdClamp[i] = longVoltageMax;
+                }
+            }
+        } else {
+            mSteadyTargetOdClamp[0] =
+                mHwCal->getSteadyAmpMax(&tempAmpMax)
+                    ? round((STEADY_TARGET_G[0] / tempAmpMax) * longVoltageMax)
+                    : longVoltageMax;
+        }
         mHwCal->getSteadyShape(&shape);
         mSteadyConfig.reset(new VibrationConfig({
             .shape = (shape == UINT32_MAX) ? WaveShape::SQUARE : static_cast<WaveShape>(shape),
-            .odClamp = &mSteadyTargetOdClamp,
+            .odClamp = &mSteadyTargetOdClamp[0],
             // 1. Change long lra period to frequency
             // 2. Get frequency': subtract the frequency shift from the frequency
             // 3. Get final long lra period after put the frequency' to formula
@@ -258,7 +272,10 @@ Vibrator::Vibrator(std::unique_ptr<HwApi> hwapi, std::unique_ptr<HwCal> hwcal)
 
     // This enables effect #1 from the waveform library to be triggered by SLPI
     // while the AP is in suspend mode
-    if (!mHwApi->setLpTriggerEffect(1)) {
+    // For default setting, we will enable this feature if that project did not
+    // set the lptrigger config
+    mHwCal->getTriggerEffectSupport(&lpTrigSupport);
+    if (!mHwApi->setLpTriggerEffect(lpTrigSupport)) {
         ALOGW("Failed to set LP trigger mode (%d): %s", errno, strerror(errno));
     }
 }
@@ -361,7 +378,8 @@ Return<void> Vibrator::debug(const hidl_handle &handle,
     dprintf(fd, "  Close Loop Thresh: %" PRIu32 "\n", mCloseLoopThreshold);
     if (mSteadyConfig) {
         dprintf(fd, "  Steady Shape: %" PRIu32 "\n", mSteadyConfig->shape);
-        dprintf(fd, "  Steady OD Clamp: %" PRIu32 "\n", mSteadyConfig->odClamp[0]);
+        dprintf(fd, "  Steady OD Clamp: %" PRIu32 " %" PRIu32 " %" PRIu32 "\n",
+                mSteadyConfig->odClamp[0], mSteadyConfig->odClamp[1], mSteadyConfig->odClamp[2]);
         dprintf(fd, "  Steady OL LRA Period: %" PRIu32 "\n", mSteadyConfig->olLraPeriod);
     }
     if (mEffectConfig) {
