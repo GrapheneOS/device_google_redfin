@@ -25,3 +25,9 @@ on property:vendor.all.modules.ready=1
 service vendor.mdm_helper /vendor/bin/mdm_helper
     class core
     group system wakelock
+
+on property:sys.retaildemo.enabled=1
+    write /sys/class/thermal/cdev-by-name/dc_icl/cur_state 2
+
+on property:sys.retaildemo.enabled=0
+    write /sys/class/thermal/cdev-by-name/dc_icl/cur_state 0
