@@ -69,6 +69,10 @@ constexpr char kUFSName[]{"UFS0"};
 
 constexpr char kTCPMPSYName[]{"tcpm-source-psy-usbpd0"};
 
+#define WLC_DIR "/sys/class/power_supply/wireless"
+static bool needs_wlc_updates = false;
+constexpr char kWlcCapacity[]{WLC_DIR "/capacity"};
+
 std::ifstream assert_open(const std::string &path) {
   std::ifstream stream(path);
   if (!stream.is_open()) {
@@ -98,14 +102,26 @@ void fill_ufs_storage_attribute(StorageAttribute *attr) {
   attr->name = kUFSName;
 }
 
+static bool FileExists(const std::string &filename) {
+  struct stat buffer;
+
+  return stat(filename.c_str(), &buffer) == 0;
+}
+
 void private_healthd_board_init(struct healthd_config *hc) {
   hc->ignorePowerSupplyNames.push_back(android::String8(kTCPMPSYName));
+  needs_wlc_updates = FileExists(kWlcCapacity);
 }
 
 int private_healthd_board_battery_update(struct android::BatteryProperties *props) {
   deviceHealth.update(props);
   battMetricsLogger.logBatteryProperties(props);
   shutdownMetrics.logShutdownVoltage(props);
+
+  if (needs_wlc_updates &&
+      !android::base::WriteStringToFile(std::to_string(props->batteryLevel), kWlcCapacity))
+      LOG(INFO) << "Unable to write battery level to wireless capacity";
+
   return 0;
 }
 
