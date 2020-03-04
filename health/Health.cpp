@@ -24,6 +24,7 @@
 #include <health/utils.h>
 #include <hal_conversion.h>
 
+#include <pixelhealth/BatteryDefender.h>
 #include <pixelhealth/BatteryMetricsLogger.h>
 #include <pixelhealth/DeviceHealth.h>
 #include <pixelhealth/LowBatteryShutdownMetrics.h>
@@ -46,6 +47,7 @@ using android::hardware::health::V2_0::Result;
 using ::android::hardware::health::V2_1::IHealth;
 using android::hardware::health::InitHealthdConfig;
 
+using hardware::google::pixel::health::BatteryDefender;
 using hardware::google::pixel::health::BatteryMetricsLogger;
 using hardware::google::pixel::health::DeviceHealth;
 using hardware::google::pixel::health::LowBatteryShutdownMetrics;
@@ -55,6 +57,7 @@ constexpr char kBatteryResistance[] {FG_DIR "/bms/resistance"};
 constexpr char kBatteryOCV[] {FG_DIR "/bms/voltage_ocv"};
 constexpr char kVoltageAvg[] {FG_DIR "/battery/voltage_now"};
 
+static BatteryDefender battDefender;
 static BatteryMetricsLogger battMetricsLogger(kBatteryResistance, kBatteryOCV);
 static LowBatteryShutdownMetrics shutdownMetrics(kVoltageAvg);
 static DeviceHealth deviceHealth;
@@ -111,12 +114,14 @@ static bool FileExists(const std::string &filename) {
 void private_healthd_board_init(struct healthd_config *hc) {
   hc->ignorePowerSupplyNames.push_back(android::String8(kTCPMPSYName));
   needs_wlc_updates = FileExists(kWlcCapacity);
+  battDefender.update();
 }
 
 int private_healthd_board_battery_update(struct android::BatteryProperties *props) {
   deviceHealth.update(props);
   battMetricsLogger.logBatteryProperties(props);
   shutdownMetrics.logShutdownVoltage(props);
+  battDefender.update();
 
   if (needs_wlc_updates &&
       !android::base::WriteStringToFile(std::to_string(props->batteryLevel), kWlcCapacity))
