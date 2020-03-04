@@ -112,7 +112,8 @@ PRODUCT_PACKAGES += \
     android.hardware.usb@1.2-service.redfin
 
 PRODUCT_PACKAGES += \
-    android.hardware.health@2.0-service.redfin
+    android.hardware.health@2.1-impl-redfin \
+    android.hardware.health@2.1-service
 
 # Vibrator HAL
 PRODUCT_PACKAGES += \
