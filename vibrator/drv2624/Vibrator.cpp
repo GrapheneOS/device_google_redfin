@@ -57,7 +57,7 @@ static constexpr char WAVEFORM_HEAVY_CLICK_EFFECT_SEQ[] = "4 0";
 static constexpr std::array<float, 5> EFFECT_TARGET_G = {0.175, 0.325, 0.37, 0.475, 0.6};
 static constexpr std::array<float, 3> STEADY_TARGET_G = {1.38, 1.145, 0.905};
 
-#define FLOAT_EPS 1e-6
+#define FLOAT_EPS 1e-7
 
 static std::uint32_t freqPeriodFormula(std::uint32_t in) {
     return 1000000000 / (24615 * in);
