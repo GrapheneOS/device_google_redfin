@@ -18,8 +18,6 @@ TARGET_BOOTLOADER_BOARD_NAME := redfin
 TARGET_SCREEN_DENSITY := 440
 TARGET_RECOVERY_UI_MARGIN_HEIGHT := 165
 
-CAMERA_VSYNC_COUNT := 3
-
 include device/google/redbull/BoardConfig-common.mk
 include device/google/redfin-sepolicy/redfin-sepolicy.mk
 
