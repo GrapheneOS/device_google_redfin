@@ -26,6 +26,7 @@
 
 #include <pixelhealth/BatteryDefender.h>
 #include <pixelhealth/BatteryMetricsLogger.h>
+#include <pixelhealth/BatteryThermalControl.h>
 #include <pixelhealth/DeviceHealth.h>
 #include <pixelhealth/LowBatteryShutdownMetrics.h>
 
@@ -49,6 +50,7 @@ using android::hardware::health::InitHealthdConfig;
 
 using hardware::google::pixel::health::BatteryDefender;
 using hardware::google::pixel::health::BatteryMetricsLogger;
+using hardware::google::pixel::health::BatteryThermalControl;
 using hardware::google::pixel::health::DeviceHealth;
 using hardware::google::pixel::health::LowBatteryShutdownMetrics;
 
@@ -58,6 +60,8 @@ constexpr char kBatteryOCV[] {FG_DIR "/bms/voltage_ocv"};
 constexpr char kVoltageAvg[] {FG_DIR "/battery/voltage_now"};
 
 static BatteryDefender battDefender;
+static BatteryThermalControl battThermalControl(
+    "sys/devices/virtual/thermal/tz-by-name/soc/mode");
 static BatteryMetricsLogger battMetricsLogger(kBatteryResistance, kBatteryOCV);
 static LowBatteryShutdownMetrics shutdownMetrics(kVoltageAvg);
 static DeviceHealth deviceHealth;
@@ -119,6 +123,7 @@ void private_healthd_board_init(struct healthd_config *hc) {
 
 int private_healthd_board_battery_update(struct android::BatteryProperties *props) {
   deviceHealth.update(props);
+  battThermalControl.updateThermalState(props);
   battMetricsLogger.logBatteryProperties(props);
   shutdownMetrics.logShutdownVoltage(props);
   battDefender.update();
