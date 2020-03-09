@@ -32,52 +32,55 @@
         <device name="SND_DEVICE_OUT_VOICE_HANDSET" acdb_id="7"/>
         <device name="SND_DEVICE_OUT_VOICE_SPEAKER" acdb_id="14"/>
         <device name="SND_DEVICE_OUT_VOICE_MUSIC_TX" acdb_id="3"/>
-        <device name="SND_DEVICE_OUT_VOICE_HAC_HANDSET" acdb_id="201"/>
         <device name="SND_DEVICE_OUT_VOICE_HANDSET_TMUS" acdb_id="98"/>
         <device name="SND_DEVICE_OUT_VOICE_TTY_HCO_HANDSET" acdb_id="14"/>
-        <device name="SND_DEVICE_OUT_VOICE_USB_HEADSET" acdb_id="10"/>
-        <device name="SND_DEVICE_OUT_VOICE_USB_HEADPHONES" acdb_id="10"/>
-        <device name="SND_DEVICE_OUT_SPEAKER_AND_USB_HEADSET" acdb_id="15"/>
+        <device name="SND_DEVICE_OUT_VOICE_TTY_HCO_SPEAKER" acdb_id="14"/>
+        <device name="SND_DEVICE_OUT_VOICE_HAC_HANDSET" acdb_id="201"/>
         <device name="SND_DEVICE_OUT_SPEAKER_SAFE_AND_USB_HEADSET" acdb_id="514"/>
+        <device name="SND_DEVICE_OUT_VOICE_USB_HEADPHONES" acdb_id="10"/>
+        <device name="SND_DEVICE_OUT_VOICE_USB_HEADSET" acdb_id="10"/>
+        <device name="SND_DEVICE_OUT_USB_HEADSET_SPEC" acdb_id="45"/>
+        <device name="SND_DEVICE_OUT_SPEAKER_AND_USB_HEADSET" acdb_id="15"/>
         <device name="SND_DEVICE_OUT_SPEAKER_PROTECTED" acdb_id="513"/>
         <device name="SND_DEVICE_OUT_VOICE_SPEAKER_PROTECTED" acdb_id="14"/>
         <device name="SND_DEVICE_OUT_VOICE_HEARING_AID" acdb_id="202"/>
         <device name="SND_DEVICE_IN_HANDSET_DMIC_NS" acdb_id="110"/>
+        <device name="SND_DEVICE_IN_HANDSET_DMIC_AEC" acdb_id="109"/>
+        <device name="SND_DEVICE_IN_HANDSET_DMIC_AEC_NS" acdb_id="41"/>
+        <device name="SND_DEVICE_IN_HANDSET_DMIC_STEREO" acdb_id="34"/>
+        <device name="SND_DEVICE_IN_SPEAKER_MIC" acdb_id="19"/>
+        <device name="SND_DEVICE_IN_SPEAKER_DMIC_AEC_NS" acdb_id="19"/>
         <device name="SND_DEVICE_IN_SPEAKER_DMIC" acdb_id="19"/>
         <device name="SND_DEVICE_IN_SPEAKER_DMIC_AEC" acdb_id="115"/>
         <device name="SND_DEVICE_IN_SPEAKER_DMIC_NS" acdb_id="116"/>
         <device name="SND_DEVICE_IN_SPEAKER_DMIC_STEREO" acdb_id="19"/>
         <device name="SND_DEVICE_IN_BT_SCO_MIC_NREC" acdb_id="122"/>
         <device name="SND_DEVICE_IN_BT_SCO_MIC_WB_NREC" acdb_id="123"/>
-        <device name="SND_DEVICE_IN_VOICE_DMIC_TMUS" acdb_id="99"/>
-        <device name="SND_DEVICE_IN_VOICE_SPEAKER_DMIC" acdb_id="19"/>
-        <device name="SND_DEVICE_IN_VOICE_TTY_VCO_HANDSET_MIC" acdb_id="19"/>
-        <device name="SND_DEVICE_IN_VOICE_REC_MIC" acdb_id="143"/>
-        <device name="SND_DEVICE_IN_VOICE_REC_MIC_NS" acdb_id="143"/>
-        <device name="SND_DEVICE_IN_VOICE_REC_MIC_AEC" acdb_id="143"/>
-        <device name="SND_DEVICE_IN_VOICE_REC_MIC_AEC_NS" acdb_id="143"/>
-        <device name="SND_DEVICE_IN_UNPROCESSED_MIC" acdb_id="143"/>
-        <device name="SND_DEVICE_IN_UNPROCESSED_STEREO_MIC" acdb_id="144"/>
-        <device name="SND_DEVICE_IN_UNPROCESSED_THREE_MIC" acdb_id="145"/>
-        <device name="SND_DEVICE_IN_VOICE_USB_HEADSET_MIC" acdb_id="8"/>
-        <device name="SND_DEVICE_IN_UNPROCESSED_USB_HEADSET_MIC" acdb_id="143"/>
-        <device name="SND_DEVICE_IN_USB_HEADSET_MIC_AEC" acdb_id="8"/>
-        <device name="SND_DEVICE_IN_CAPTURE_VI_FEEDBACK" acdb_id="512"/>
-        <device name="SND_DEVICE_IN_HANDSET_DMIC_AEC_NS" acdb_id="41"/>
-        <device name="SND_DEVICE_IN_SPEAKER_DMIC_AEC_NS" acdb_id="19"/>
-        <device name="SND_DEVICE_IN_HANDSET_DMIC_AEC" acdb_id="109"/>
-        <device name="SND_DEVICE_IN_USB_HEADSET_MIC" acdb_id="4"/>
-        <device name="SND_DEVICE_IN_SPEAKER_MIC" acdb_id="19"/>
-        <device name="SND_DEVICE_IN_VOICE_HEARING_AID" acdb_id="19"/>
-        <device name="SND_DEVICE_OUT_VOICE_TTY_HCO_SPEAKER" acdb_id="14"/>
-        <device name="SND_DEVICE_IN_VOICE_TTY_VCO_SPEAKER_MIC" acdb_id="19"/>
-        <device name="SND_DEVICE_OUT_USB_HEADSET_SPEC" acdb_id="45"/>
         <device name="SND_DEVICE_IN_CAMCORDER_LANDSCAPE" acdb_id="61"/>
         <device name="SND_DEVICE_IN_CAMCORDER_INVERT_LANDSCAPE" acdb_id="62"/>
         <device name="SND_DEVICE_IN_CAMCORDER_PORTRAIT" acdb_id="63"/>
         <device name="SND_DEVICE_IN_CAMCORDER_SELFIE_LANDSCAPE" acdb_id="64"/>
         <device name="SND_DEVICE_IN_CAMCORDER_SELFIE_INVERT_LANDSCAPE" acdb_id="65"/>
         <device name="SND_DEVICE_IN_CAMCORDER_SELFIE_PORTRAIT" acdb_id="66"/>
+        <device name="SND_DEVICE_IN_VOICE_DMIC_TMUS" acdb_id="99"/>
+        <device name="SND_DEVICE_IN_VOICE_SPEAKER_DMIC" acdb_id="19"/>
+        <device name="SND_DEVICE_IN_VOICE_TTY_VCO_HANDSET_MIC" acdb_id="19"/>
+        <device name="SND_DEVICE_IN_VOICE_REC_MIC" acdb_id="143"/>
+        <device name="SND_DEVICE_IN_VOICE_REC_MIC_NS" acdb_id="143"/>
+        <device name="SND_DEVICE_IN_VOICE_REC_MIC_AEC" acdb_id="143"/>
+        <device name="SND_DEVICE_IN_VOICE_REC_DMIC_FLUENCE" acdb_id="143"/>
+        <device name="SND_DEVICE_IN_USB_HEADSET_MIC_AEC" acdb_id="8"/>
+        <device name="SND_DEVICE_IN_VOICE_USB_HEADSET_MIC" acdb_id="8"/>
+        <device name="SND_DEVICE_IN_UNPROCESSED_USB_HEADSET_MIC" acdb_id="143"/>
+        <device name="SND_DEVICE_IN_VOICE_REC_MIC_AEC_NS" acdb_id="143"/>
+        <device name="SND_DEVICE_IN_VOICE_HEARING_AID" acdb_id="19"/>
+        <device name="SND_DEVICE_IN_CAPTURE_VI_FEEDBACK" acdb_id="512"/>
+        <device name="SND_DEVICE_IN_UNPROCESSED_MIC" acdb_id="143"/>
+        <device name="SND_DEVICE_IN_UNPROCESSED_STEREO_MIC" acdb_id="144"/>
+        <device name="SND_DEVICE_IN_UNPROCESSED_THREE_MIC" acdb_id="145"/>
+        <device name="SND_DEVICE_IN_UNPROCESSED_HEADSET_MIC" acdb_id="147"/>
+        <device name="SND_DEVICE_IN_USB_HEADSET_MIC" acdb_id="4"/>
+        <device name="SND_DEVICE_IN_VOICE_TTY_VCO_SPEAKER_MIC" acdb_id="19"/>
     </acdb_ids>
     <external_specific_dev>
         <!-- condor -->
@@ -134,8 +137,10 @@
         <usecase name="USECASE_AUDIO_SPKR_CALIB_RX" type="out" id="88"/>
         <!-- The pcm device for QUIN TDM hostless capture is 89 -->
         <usecase name="USECASE_AUDIO_SPKR_CALIB_TX" type="in" id="89"/>
+        <usecase name="USECASE_AUDIO_PLAYBACK_AFE_PROXY" type="in" id="-1"/>
         <usecase name="USECASE_AUDIO_PLAYBACK_AFE_PROXY" type="out" id="5"/>
         <usecase name="USECASE_AUDIO_RECORD_AFE_PROXY" type="in" id="6"/>
+        <usecase name="USECASE_AUDIO_RECORD_AFE_PROXY" type="out" id="-1"/>
         <usecase name="USECASE_AUDIO_RECORD_LOW_LATENCY" type="in" id="13" />
         <usecase name="USECASE_AUDIO_PLAYBACK_ULL" type="out" id="13" />
         <usecase name="USECASE_AUDIO_PLAYBACK_SILENCE" type="out" id="23" />
@@ -146,6 +151,7 @@
         <usecase name="USECASE_AUDIO_A2DP_ABR_FEEDBACK" type="in" id="35" />
         <usecase name="USECASE_AUDIO_A2DP_ABR_FEEDBACK" type="out" id="35" />
         <usecase name="USECASE_INCALL_MUSIC_UPLINK" type="out" id="23" />
+        <usecase name="USECASE_INCALL_MUSIC_UPLINK2" type="out" id="23"/>
     </pcm_ids>
     <config_params>
         <param key="spkr_1_tz_name" value="wsatz.13"/>
