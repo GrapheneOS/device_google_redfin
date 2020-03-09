@@ -108,6 +108,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/audiozoom.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audiozoom.xml
 
+PRODUCT_PROPERTY_OVERRIDES += \
+    vendor.audio.feature.devicestate_listener.enable=true
+
 ifeq ($(wildcard vendor/google_devices/redfin/proprietary/device-vendor-redfin.mk),)
     BUILD_WITHOUT_VENDOR := true
 endif
