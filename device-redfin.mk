@@ -101,6 +101,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     crus_sp_cal
 
+# Audio audiozoom config data
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/audio/audiozoom.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audiozoom.xml
+
 ifeq ($(wildcard vendor/google_devices/redfin/proprietary/device-vendor-redfin.mk),)
     BUILD_WITHOUT_VENDOR := true
 endif
