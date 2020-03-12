@@ -59,6 +59,12 @@ static constexpr std::array<float, 3> STEADY_TARGET_G = {1.38, 1.145, 0.905};
 
 #define FLOAT_EPS 1e-7
 
+// Temperature protection upper bound 10°C and lower bound 5°C
+static constexpr int32_t TEMP_UPPER_BOUND = 10000;
+static constexpr int32_t TEMP_LOWER_BOUND = 5000;
+// Steady vibration's voltage in lower bound guarantee
+static uint32_t STEADY_VOLTAGE_LOWER_BOUND = 90;  // 1.8 Vpeak
+
 static std::uint32_t freqPeriodFormula(std::uint32_t in) {
     return 1000000000 / (24615 * in);
 }
@@ -176,7 +182,6 @@ Vibrator::Vibrator(std::unique_ptr<HwApi> hwapi, std::unique_ptr<HwCal> hwcal)
     : mHwApi(std::move(hwapi)), mHwCal(std::move(hwcal)) {
     std::string autocal;
     uint32_t lraPeriod = 0, lpTrigSupport = 0;
-    bool dynamicConfig = false;
     bool hasEffectCoeffs = false, hasSteadyCoeffs = false;
     std::array<float, 4> effectCoeffs = {0};
     std::array<float, 4> steadyCoeffs = {0};
@@ -191,9 +196,9 @@ Vibrator::Vibrator(std::unique_ptr<HwApi> hwapi, std::unique_ptr<HwCal> hwcal)
     mHwCal->getLraPeriod(&lraPeriod);
 
     mHwCal->getCloseLoopThreshold(&mCloseLoopThreshold);
-    mHwCal->getDynamicConfig(&dynamicConfig);
+    mHwCal->getDynamicConfig(&mDynamicConfig);
 
-    if (dynamicConfig) {
+    if (mDynamicConfig) {
         uint8_t i = 0;
         float tempVolLevel = 0.0f;
         float tempAmpMax = 0.0f;
@@ -256,11 +261,14 @@ Vibrator::Vibrator(std::unique_ptr<HwApi> hwapi, std::unique_ptr<HwCal> hwcal)
         mSteadyConfig.reset(new VibrationConfig({
             .shape = (shape == UINT32_MAX) ? WaveShape::SQUARE : static_cast<WaveShape>(shape),
             .odClamp = &mSteadyTargetOdClamp[0],
-            // 1. Change long lra period to frequency
-            // 2. Get frequency': subtract the frequency shift from the frequency
-            // 3. Get final long lra period after put the frequency' to formula
-            .olLraPeriod = freqPeriodFormula(freqPeriodFormula(lraPeriod) - longFreqencyShift),
+            .olLraPeriod = lraPeriod,
         }));
+        mSteadyOlLraPeriod = lraPeriod;
+        // 1. Change long lra period to frequency
+        // 2. Get frequency': subtract the frequency shift from the frequency
+        // 3. Get final long lra period after put the frequency' to formula
+        mSteadyOlLraPeriodShift =
+            freqPeriodFormula(freqPeriodFormula(lraPeriod) - longFreqencyShift);
     } else {
         mHwApi->setOlLraPeriod(lraPeriod);
     }
@@ -315,6 +323,18 @@ Return<Status> Vibrator::on(uint32_t timeoutMs, const char mode[],
 // Methods from ::android::hardware::vibrator::V1_2::IVibrator follow.
 Return<Status> Vibrator::on(uint32_t timeoutMs) {
     ATRACE_NAME("Vibrator::on");
+    if (mDynamicConfig) {
+        int temperature = 0;
+        mHwApi->getPATemp(&temperature);
+        if (temperature > TEMP_UPPER_BOUND) {
+            mSteadyConfig->odClamp = &mSteadyTargetOdClamp[0];
+            mSteadyConfig->olLraPeriod = mSteadyOlLraPeriod;
+        } else if (temperature < TEMP_LOWER_BOUND) {
+            mSteadyConfig->odClamp = &STEADY_VOLTAGE_LOWER_BOUND;
+            mSteadyConfig->olLraPeriod = mSteadyOlLraPeriodShift;
+        }
+    }
+
     return on(timeoutMs, RTP_MODE, mSteadyConfig, 0);
 }
 
