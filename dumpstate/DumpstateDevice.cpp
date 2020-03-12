@@ -521,6 +521,7 @@ Return<DumpstateStatus> DumpstateDevice::dumpstateBoard_1_1(const hidl_handle& h
     DumpFileToFd(fd, "BMS", "/d/logbuffer/ssoc");
     DumpFileToFd(fd, "smblib", "/d/logbuffer/smblib");
     DumpFileToFd(fd, "WLC logs", "/d/logbuffer/wireless");
+    DumpFileToFd(fd, "RTX logs", "/d/logbuffer/rtx");
     DumpFileToFd(fd, "TTF", "/d/logbuffer/ttf");
     DumpFileToFd(fd, "TTF details", "/sys/class/power_supply/battery/ttf_details");
     DumpFileToFd(fd, "TTF stats", "/sys/class/power_supply/battery/ttf_stats");
