@@ -50,6 +50,11 @@
     <!-- Type of the ambient tap sensor. Empty if ambient tap is not supported. -->
     <string name="config_dozeTapSensorType" translatable="false">com.google.sensor.single_touch</string>
 
+    <!-- MMS user agent string -->
+    <string name="config_mms_user_agent" translatable="false">gd1yq</string>
+    <!-- MMS user agent profile url -->
+    <string name="config_mms_user_agent_profile_url" translatable="false">http://www.gstatic.com/android/sms/GD1YQ.xml</string>
+
     <!-- Minimum screen brightness allowed by the power manager. -->
     <integer name="config_screenBrightnessDim">6</integer>
 
