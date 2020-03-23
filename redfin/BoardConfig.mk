@@ -33,22 +33,22 @@ TARGET_FS_CONFIG_GEN := device/google/redfin/config.fs
 
 # Kernel modules
 ifeq (,$(filter-out redfin_kasan, $(TARGET_PRODUCT)))
-BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
+BOARD_VENDOR_KERNEL_MODULES += \
     $(wildcard device/google/redfin-kernel/kasan/*.ko)
 else ifeq (,$(filter-out redfin_kernel_debug_memory, $(TARGET_PRODUCT)))
-BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
+BOARD_VENDOR_KERNEL_MODULES += \
     $(wildcard device/google/redfin-kernel/debug_memory/*.ko)
 else ifeq (,$(filter-out redfin_kernel_debug_locking, $(TARGET_PRODUCT)))
-BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
+BOARD_VENDOR_KERNEL_MODULES += \
     $(wildcard device/google/redfin-kernel/debug_locking/*.ko)
 else ifeq (,$(filter-out redfin_kernel_debug_hang, $(TARGET_PRODUCT)))
-BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
+BOARD_VENDOR_KERNEL_MODULES += \
     $(wildcard device/google/redfin-kernel/debug_hang/*.ko)
 else ifeq (,$(filter-out redfin_kernel_debug_api, $(TARGET_PRODUCT)))
-BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
+BOARD_VENDOR_KERNEL_MODULES += \
     $(wildcard device/google/redfin-kernel/debug_api/*.ko)
 else
-BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
+BOARD_VENDOR_KERNEL_MODULES += \
     $(wildcard device/google/redfin-kernel/*.ko)
 endif
 
