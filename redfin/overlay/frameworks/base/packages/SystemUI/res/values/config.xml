@@ -64,4 +64,26 @@
         <item>0</item> <!-- 3: HIGH -->
         <item>0</item> <!-- 4: SUN -->
     </integer-array>
+
+    <!-- Default rounded corner curve (a Bezier). Must match (the curved path in) rounded.xml.
+         Note that while rounded.xml includes the entire path (including the horizontal and vertical
+         corner edges), this pulls out just the curve.
+     -->
+
+    <string name="config_rounded_mask" translatable="false">M156,0 C76,4 58,5 31,31 5,58 4,76 0,156</string>
+
+    <bool name="config_roundedCornerMultipleRadius">true</bool>
+
+    <!-- Configure 13px of extra protection around the front-facing camera -->
+    <string translatable="false" name="config_frontBuiltInDisplayCutoutProtection">
+        M 29,77
+        a 52,52 0 1 0 104,0
+        a 52,52 0 1 0 -104,0
+        Z
+    </string>
+
+    <!-- Camera 1 is the front camera on bramble -->
+    <string translatable="false" name="config_protectedCameraId">1</string>
+
+    <bool name="config_enableDisplayCutoutProtection">true</bool>
 </resources>
