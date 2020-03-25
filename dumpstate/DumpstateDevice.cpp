@@ -347,6 +347,12 @@ static void DumpTouch(int fd) {
 
 }
 
+static void DumpDisplay(int fd) {
+    DumpFileToFd(fd, "PANEL VENDOR NAME", "/sys/class/panel_info/panel0/panel_vendor_name");
+    DumpFileToFd(fd, "PANEL SN", "/sys/class/panel_info/panel0/serial_number");
+    DumpFileToFd(fd, "PANEL EXTRA INFO", "/sys/class/panel_info/panel0/panel_extinfo");
+}
+
 static void DumpSensorLog(int fd) {
     const std::string logPath = "/data/vendor/sensors/log/sensor_log.txt";
     const std::string lastlogPath = "/data/vendor/sensors/log/sensor_lastlog.txt";
@@ -484,6 +490,7 @@ Return<DumpstateStatus> DumpstateDevice::dumpstateBoard_1_1(const hidl_handle& h
     DumpFileToFd(fd, "CPU online", "/sys/devices/system/cpu/online");
     DumpFileToFd(fd, "Bootloader Log", "/proc/bldrlog");
     DumpTouch(fd);
+    DumpDisplay(fd);
 
     DumpF2FS(fd);
     DumpUFS(fd);
