@@ -23,6 +23,7 @@ on property:init.svc.vendor.thermal-engine=stopped && property:persist.vendor.di
 on property:persist.vendor.disable.thermal.control=1
   write /sys/devices/virtual/thermal/tz-by-name/skin-therm-adc/mode disabled
   write /sys/devices/virtual/thermal/tz-by-name/skin-therm-monitor/mode disabled
+  write /sys/devices/virtual/thermal/tz-by-name/cellular-emergency/mode disabled
   write /sys/devices/virtual/thermal/tz-by-name/sdm-therm/mode disabled
   write /sys/devices/virtual/thermal/tz-by-name/usbc-therm-adc/mode disabled
   write /sys/devices/virtual/thermal/tz-by-name/usbc-therm-monitor/mode disabled
@@ -31,6 +32,7 @@ on property:persist.vendor.disable.thermal.control=1
 on property:persist.vendor.disable.thermal.control=0
   write /sys/devices/virtual/thermal/tz-by-name/skin-therm-adc/mode enabled
   write /sys/devices/virtual/thermal/tz-by-name/skin-therm-monitor/mode enabled
+  write /sys/devices/virtual/thermal/tz-by-name/cellular-emergency/mode enabled
   write /sys/devices/virtual/thermal/tz-by-name/sdm-therm/mode enabled
   write /sys/devices/virtual/thermal/tz-by-name/usbc-therm-adc/mode enabled
   write /sys/devices/virtual/thermal/tz-by-name/usbc-therm-monitor/mode enabled
