@@ -37,7 +37,7 @@
         <device name="SND_DEVICE_OUT_VOICE_TTY_HCO_SPEAKER" acdb_id="14"/>
         <device name="SND_DEVICE_OUT_VOICE_HAC_HANDSET" acdb_id="201"/>
         <device name="SND_DEVICE_OUT_SPEAKER_SAFE_AND_USB_HEADSET" acdb_id="514"/>
-        <device name="SND_DEVICE_OUT_VOICE_USB_HEADPHONES" acdb_id="10"/>
+        <device name="SND_DEVICE_OUT_VOICE_USB_HEADPHONES" acdb_id="56"/>
         <device name="SND_DEVICE_OUT_VOICE_USB_HEADSET" acdb_id="10"/>
         <device name="SND_DEVICE_OUT_USB_HEADSET_SPEC" acdb_id="45"/>
         <device name="SND_DEVICE_OUT_SPEAKER_AND_USB_HEADSET" acdb_id="15"/>
@@ -92,6 +92,8 @@
         <!-- condor_Spirent-->
         <ext_device name="SND_DEVICE_OUT_VOICE_USB_HEADSET" usbid="18d1:5036" acdb_id="76" />
         <ext_device name="SND_DEVICE_IN_VOICE_USB_HEADSET_MIC" usbid="18d1:5036" acdb_id="75" />
+		<!-- condor_VOIP-->
+		<ext_device name="SND_DEVICE_IN_USB_HEADSET_MIC_AEC" usbid="18d1:5034" acdb_id="55" />
     </external_specific_dev>
     <module_ids>
         <aec>
@@ -133,10 +135,10 @@
         <usecase name="USECASE_VOWLAN_CALL" type="out" id="-1"/>
         <usecase name="USECASE_AUDIO_PLAYBACK_FM" type="out" id="30"/>
         <usecase name="USECASE_AUDIO_PLAYBACK_FM" type="in" id="38"/>
-        <!-- The pcm device for QUIN TDM hostless playback is 64 -->
-        <usecase name="USECASE_AUDIO_SPKR_CALIB_RX" type="out" id="64"/>
-        <!-- The pcm device for QUIN TDM hostless capture is 65 -->
-        <usecase name="USECASE_AUDIO_SPKR_CALIB_TX" type="in" id="65"/>
+        <!-- The pcm device for QUIN TDM hostless playback is 88 -->
+        <usecase name="USECASE_AUDIO_SPKR_CALIB_RX" type="out" id="88"/>
+        <!-- The pcm device for QUIN TDM hostless capture is 89 -->
+        <usecase name="USECASE_AUDIO_SPKR_CALIB_TX" type="in" id="89"/>
         <usecase name="USECASE_AUDIO_PLAYBACK_AFE_PROXY" type="in" id="-1"/>
         <usecase name="USECASE_AUDIO_PLAYBACK_AFE_PROXY" type="out" id="5"/>
         <usecase name="USECASE_AUDIO_RECORD_AFE_PROXY" type="in" id="6"/>
