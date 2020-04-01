@@ -1,4 +1,4 @@
-service vendor.vibrator-1-3 /vendor/bin/hw/android.hardware.vibrator@1.3-service.redfin
+service vendor.vibrator.redfin /vendor/bin/hw/android.hardware.vibrator-service.redfin
     class hal
     user system
     group system
