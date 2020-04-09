@@ -149,8 +149,7 @@ PRODUCT_COPY_FILES += \
 
 # Recovery
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/init.recovery.device.rc:recovery/root/init.recovery.redfin.rc \
-    $(LOCAL_PATH)/thermal-engine-$(PRODUCT_HARDWARE).conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-engine-$(PRODUCT_HARDWARE).conf
+    $(LOCAL_PATH)/init.recovery.device.rc:recovery/root/init.recovery.redfin.rc
 
 PRODUCT_PACKAGES += \
     sensors.$(PRODUCT_HARDWARE) \
