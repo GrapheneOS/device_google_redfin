@@ -15,6 +15,11 @@
 PRODUCT_SOONG_NAMESPACES += \
     vendor/qcom/redfin/proprietary \
 
+# AOSP packages required by the blobs
+PRODUCT_PACKAGES := \
+    ims \
+    QtiTelephonyService
+
 PRODUCT_PACKAGES += \
     libeye_tracking_dsp_sample_stub \
     libhoaeffects_csim \

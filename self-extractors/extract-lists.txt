@@ -52,6 +52,8 @@
             system_ext/lib/libqct_resampler.so \
             system_ext/lib/libvr_amb_engine.so \
             system_ext/lib/libvr_object_engine.so \
+            system_ext/app/QtiTelephonyService/QtiTelephonyService.apk \
+            system_ext/priv-app/ims/ims.apk \
             system/framework/QPerformance.jar \
             system/framework/UxPerformance.jar \
             system/lib64/libOpenCL_system.so \
