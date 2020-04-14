@@ -117,7 +117,7 @@ PRODUCT_PACKAGES += \
 
 # Vibrator HAL
 PRODUCT_PACKAGES += \
-    android.hardware.vibrator@1.3-service.redfin
+    android.hardware.vibrator-service.redfin
 
 # DRV2624 Haptics Waveform
 PRODUCT_COPY_FILES += \

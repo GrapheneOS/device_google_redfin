@@ -1,12 +1,12 @@
 {
   "presubmit": [
     {
-      "name": "VibratorHalDrv2624TestSuite"
+      "name": "VibratorHalDrv2624TestSuiteRedfin"
     }
   ],
   "postsubmit": [
     {
-      "name": "VibratorHalDrv2624Benchmark",
+      "name": "VibratorHalDrv2624BenchmarkRedfin",
       "keywords": [
         "primary-device"
       ]
