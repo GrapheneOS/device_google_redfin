@@ -258,12 +258,12 @@ static bool motionAwareness() {
         sXAxleData.clear();
         sYAxleData.clear();
         PollGSensor();
-        avgX = std::accumulate(sXAxleData.begin(), sXAxleData.end(), 0.0) / sXAxleData.size();
-        avgY = std::accumulate(sYAxleData.begin(), sYAxleData.end(), 0.0) / sYAxleData.size();
         clock_gettime(CLOCK_MONOTONIC, &sGetTime);
-
         sEndTime = ((uint64_t)sGetTime.tv_sec * 1000 * 1000 * 1000) + sGetTime.tv_nsec;
     }
+
+    avgX = std::accumulate(sXAxleData.begin(), sXAxleData.end(), 0.0) / sXAxleData.size();
+    avgY = std::accumulate(sYAxleData.begin(), sYAxleData.end(), 0.0) / sYAxleData.size();
 
     if ((avgX > -1.3) && (avgX < 1.3) && (avgY > -0.8) && (avgY < 0.8)) {
         return false;
