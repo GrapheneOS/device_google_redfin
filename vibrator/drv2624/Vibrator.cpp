@@ -82,7 +82,6 @@ int GSensorCallback(__attribute__((unused)) int fd, __attribute__((unused)) int 
     int event_count = 0;
     SensorContext *context = reinterpret_cast<SensorContext *>(data);
     event_count = ASensorEventQueue_getEvents(context->queue, &event, 1);
-    ALOGI("%s: event data: %f %f\n", __func__, event.data[0], event.data[1]);
     sXAxleData.push_back(event.data[0]);
     sYAxleData.push_back(event.data[1]);
     return 1;
