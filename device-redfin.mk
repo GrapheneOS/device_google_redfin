@@ -115,6 +115,14 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     vendor.audio.feature.devicestate_listener.enable=true
 
+# Audio Thermal Listener configuration
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/audio/audio_thermal_listener.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_thermal_listener.xml
+
+# Audio Features
+PRODUCT_PROPERTY_OVERRIDES += \
+    vendor.audio.feature.thermal_listener.enable=true \
+
 ifeq ($(wildcard vendor/google_devices/redfin/proprietary/device-vendor-redfin.mk),)
     BUILD_WITHOUT_VENDOR := true
 endif
