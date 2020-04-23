@@ -59,8 +59,8 @@ static constexpr char WAVEFORM_DOUBLE_CLICK_EFFECT_SEQ[] = "3 0";
 static constexpr char WAVEFORM_HEAVY_CLICK_EFFECT_SEQ[] = "4 0";
 
 // UT team design those target G values
-static constexpr std::array<float, 5> EFFECT_TARGET_G = {0.22, 0.35, 0.42, 0.57, 0.67};
-static constexpr std::array<float, 3> STEADY_TARGET_G = {1.2, 1.145, 0.4};
+static std::array<float, 5> EFFECT_TARGET_G = {0.22, 0.35, 0.42, 0.57, 0.67};
+static std::array<float, 3> STEADY_TARGET_G = {1.2, 1.145, 0.4};
 
 struct SensorContext {
     ASensorEventQueue *queue;
@@ -277,9 +277,8 @@ Vibrator::Vibrator(std::unique_ptr<HwApi> hwapi, std::unique_ptr<HwCal> hwcal)
     : mHwApi(std::move(hwapi)), mHwCal(std::move(hwcal)) {
     std::string autocal;
     uint32_t lraPeriod = 0, lpTrigSupport = 0;
-    bool hasEffectCoeffs = false, hasSteadyCoeffs = false;
-    std::array<float, 4> effectCoeffs = {0};
-    std::array<float, 4> steadyCoeffs = {0};
+    std::array<float, 4> effectCoeffs = {0.0f};
+    std::array<float, 4> steadyCoeffs = {0.0f};
 
     if (!mHwApi->setState(true)) {
         ALOGE("Failed to set state (%d): %s", errno, strerror(errno));
@@ -295,30 +294,38 @@ Vibrator::Vibrator(std::unique_ptr<HwApi> hwapi, std::unique_ptr<HwCal> hwcal)
 
     if (mDynamicConfig) {
         uint8_t i = 0;
-        float tempVolLevel = 0.0f;
-        float tempAmpMax = 0.0f;
-        uint32_t longFreqencyShift = 0;
-        uint32_t shortVoltageMax = 0, longVoltageMax = 0;
-        uint32_t shape = 0;
+        bool hasEffectCoeffs = false, hasSteadyCoeffs = false,
+             hasExternalEffectG = false, hasExternalSteadyG = false;
+        std::array<float, 5> externalEffectTargetG = {0.0f};
+        std::array<float, 3> externalSteadyTargetG = {0.0f};
+        float tempVolLevel = 0.0f, tempAmpMax = 0.0f;
+        uint32_t longFreqencyShift = 0, shortVoltageMax = 0, longVoltageMax = 0,
+                 shape = 0;
 
         mHwCal->getLongFrequencyShift(&longFreqencyShift);
         mHwCal->getShortVoltageMax(&shortVoltageMax);
         mHwCal->getLongVoltageMax(&longVoltageMax);
 
         hasEffectCoeffs = mHwCal->getEffectCoeffs(&effectCoeffs);
+        hasExternalEffectG = mHwCal->getEffectTargetG(&externalEffectTargetG);
         for (i = 0; i < 5; i++) {
             if (hasEffectCoeffs) {
-                // Use linear approach to get the target voltage levels
-                if ((effectCoeffs[2] == 0) && (effectCoeffs[3] == 0)) {
-                    tempVolLevel =
-                        targetGToVlevelsUnderLinearEquation(effectCoeffs, EFFECT_TARGET_G[i]);
-                    mEffectTargetOdClamp[i] = convertLevelsToOdClamp(tempVolLevel, lraPeriod);
-                } else {
-                    // Use cubic approach to get the target voltage levels
-                    tempVolLevel =
-                        targetGToVlevelsUnderCubicEquation(effectCoeffs, EFFECT_TARGET_G[i]);
-                    mEffectTargetOdClamp[i] = convertLevelsToOdClamp(tempVolLevel, lraPeriod);
-                }
+              if (hasExternalEffectG) {
+                EFFECT_TARGET_G[i] = externalEffectTargetG[i];
+              }
+              // Use linear approach to get the target voltage levels
+              if ((effectCoeffs[2] == 0) && (effectCoeffs[3] == 0)) {
+                tempVolLevel = targetGToVlevelsUnderLinearEquation(
+                    effectCoeffs, EFFECT_TARGET_G[i]);
+                mEffectTargetOdClamp[i] =
+                    convertLevelsToOdClamp(tempVolLevel, lraPeriod);
+              } else {
+                // Use cubic approach to get the target voltage levels
+                tempVolLevel = targetGToVlevelsUnderCubicEquation(
+                    effectCoeffs, EFFECT_TARGET_G[i]);
+                mEffectTargetOdClamp[i] =
+                    convertLevelsToOdClamp(tempVolLevel, lraPeriod);
+              }
             } else {
                 mEffectTargetOdClamp[i] = shortVoltageMax;
             }
@@ -337,20 +344,30 @@ Vibrator::Vibrator(std::unique_ptr<HwApi> hwapi, std::unique_ptr<HwCal> hwcal)
         }));
 
         hasSteadyCoeffs = mHwCal->getSteadyCoeffs(&steadyCoeffs);
+        hasExternalSteadyG = mHwCal->getSteadyTargetG(&externalSteadyTargetG);
         if (hasSteadyCoeffs) {
             for (i = 0; i < 3; i++) {
-                // Use cubic approach to get the target voltage levels
-                tempVolLevel = targetGToVlevelsUnderCubicEquation(steadyCoeffs, STEADY_TARGET_G[i]);
-                mSteadyTargetOdClamp[i] = convertLevelsToOdClamp(tempVolLevel, lraPeriod);
-                if ((mSteadyTargetOdClamp[i] <= 0) || (mSteadyTargetOdClamp[i] > longVoltageMax)) {
-                    mSteadyTargetOdClamp[i] = longVoltageMax;
-                }
+              if (hasExternalSteadyG) {
+                STEADY_TARGET_G[i] = externalSteadyTargetG[i];
+              }
+              // Use cubic approach to get the target voltage levels
+              tempVolLevel = targetGToVlevelsUnderCubicEquation(
+                  steadyCoeffs, STEADY_TARGET_G[i]);
+              mSteadyTargetOdClamp[i] =
+                  convertLevelsToOdClamp(tempVolLevel, lraPeriod);
+              if ((mSteadyTargetOdClamp[i] <= 0) ||
+                  (mSteadyTargetOdClamp[i] > longVoltageMax)) {
+                mSteadyTargetOdClamp[i] = longVoltageMax;
+              }
             }
         } else {
-            mSteadyTargetOdClamp[0] =
-                mHwCal->getSteadyAmpMax(&tempAmpMax)
-                    ? round((STEADY_TARGET_G[0] / tempAmpMax) * longVoltageMax)
-                    : longVoltageMax;
+          if (hasExternalSteadyG) {
+            STEADY_TARGET_G[0] = externalSteadyTargetG[0];
+          }
+          mSteadyTargetOdClamp[0] =
+              mHwCal->getSteadyAmpMax(&tempAmpMax)
+                  ? round((STEADY_TARGET_G[0] / tempAmpMax) * longVoltageMax)
+                  : longVoltageMax;
         }
         mHwCal->getSteadyShape(&shape);
         mSteadyConfig.reset(new VibrationConfig({
@@ -498,6 +515,8 @@ binder_status_t Vibrator::dump(int fd, const char **args, uint32_t numArgs) {
         dprintf(fd, "  Steady Shape: %" PRIu32 "\n", mSteadyConfig->shape);
         dprintf(fd, "  Steady OD Clamp: %" PRIu32 " %" PRIu32 " %" PRIu32 "\n",
                 mSteadyConfig->odClamp[0], mSteadyConfig->odClamp[1], mSteadyConfig->odClamp[2]);
+        dprintf(fd, "  Steady target G: %f %f %f\n", STEADY_TARGET_G[0],
+                STEADY_TARGET_G[1], STEADY_TARGET_G[2]);
         dprintf(fd, "  Steady OL LRA Period: %" PRIu32 "\n", mSteadyConfig->olLraPeriod);
     }
     if (mEffectConfig) {
@@ -506,6 +525,9 @@ binder_status_t Vibrator::dump(int fd, const char **args, uint32_t numArgs) {
                 "  Effect OD Clamp: %" PRIu32 " %" PRIu32 " %" PRIu32 " %" PRIu32 " %" PRIu32 "\n",
                 mEffectConfig->odClamp[0], mEffectConfig->odClamp[1], mEffectConfig->odClamp[2],
                 mEffectConfig->odClamp[3], mEffectConfig->odClamp[4]);
+        dprintf(fd, "  Effect target G: %f %f %f %f %f\n", EFFECT_TARGET_G[0],
+                EFFECT_TARGET_G[1], EFFECT_TARGET_G[2], EFFECT_TARGET_G[3],
+                EFFECT_TARGET_G[4]);
         dprintf(fd, "  Effect OL LRA Period: %" PRIu32 "\n", mEffectConfig->olLraPeriod);
     }
     dprintf(fd, "  Click Duration: %" PRIu32 "\n", mClickDuration);
