@@ -134,6 +134,20 @@
      -->
     <bool name="config_fillMainBuiltInDisplayCutout">true</bool>
 
+    <!-- An array of device capabilities defined by GSMA SGP.22 v2.2.2, and their corresponding major
+     version. -->
+     <string-array translatable="false" name="config_telephonyEuiccDeviceCapabilities">
+          <item>"gsm,9"</item>
+          <item>"utran,9"</item>
+          <item>"cdma1x,1"</item>
+          <item>"hrpd,3"</item>
+          <item>"ehrpd,12"</item>
+          <item>"eutran,15"</item>
+          <item>"nrepc,15"</item>
+          <item>"nr5gc,15"</item>
+          <item>"eutran5gc,15"</item>
+     </string-array>
+
     <!-- Display cutout configuration -->
     <string translatable="false" name="config_mainBuiltInDisplayCutout">
       <!-- The hole punch dimensions are this:
