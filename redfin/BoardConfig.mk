@@ -27,8 +27,11 @@ USES_DEVICE_GOOGLE_REDFIN := true
 TARGET_BOARD_COMMON_PATH := device/google/redfin/sm7250
 
 # DTBO partition definitions
-BOARD_PREBUILT_DTBOIMAGE := device/google/redfin-kernel/dtbo.img
-
+ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
+    BOARD_PREBUILT_DTBOIMAGE := device/google/redfin-kernel/dtbo.img
+else
+    BOARD_PREBUILT_DTBOIMAGE := device/google/redfin-kernel/performance/dtbo.img
+endif
 TARGET_FS_CONFIG_GEN := device/google/redfin/config.fs
 
 # Kernel modules
@@ -48,8 +51,13 @@ else ifeq (,$(filter-out redfin_kernel_debug_api, $(TARGET_PRODUCT)))
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
     $(wildcard device/google/redfin-kernel/debug_api/*.ko)
 else
-BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
-    $(wildcard device/google/redfin-kernel/*.ko)
+    ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
+        BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
+        $(wildcard device/google/redfin-kernel/*.ko)
+    else
+        BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
+        $(wildcard device/google/redfin-kernel/performance/*.ko)
+    endif
 endif
 
 # DTB
