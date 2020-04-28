@@ -107,7 +107,7 @@ class HwCal : public Vibrator::HwCal, private HwCalBase {
 
     static constexpr uint32_t WAVEFORM_CLICK_EFFECT_MS = 6;
     static constexpr uint32_t WAVEFORM_TICK_EFFECT_MS = 2;
-    static constexpr uint32_t WAVEFORM_DOUBLE_CLICK_EFFECT_MS = 160;
+    static constexpr uint32_t WAVEFORM_DOUBLE_CLICK_EFFECT_MS = 159;
     static constexpr uint32_t WAVEFORM_HEAVY_CLICK_EFFECT_MS = 8;
 
     static constexpr uint32_t DEFAULT_LRA_PERIOD = 262;
