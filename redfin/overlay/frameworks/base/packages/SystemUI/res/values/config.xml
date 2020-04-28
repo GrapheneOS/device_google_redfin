@@ -35,8 +35,14 @@
     <string name="proximity_sensor_type" translatable="false">android.sensor.light</string>
 
     <!-- If using proximity_sensor_type, specifies a threshold value to distinguish near and
-         far break points.-->
+         far break points. A sensor value less than this is considered "near". -->
     <item name="proximity_sensor_threshold" translatable="false" format="float" type="dimen">12</item>
+
+    <!-- If using proximity_sensor_type, specifies a threshold value to distinguish near and
+         far break points. A sensor value more than this is considered "far". If not set,
+         proximity_sensor_threshold is used. This allows one to implement a latching mechanism for
+         noisy sensors. -->
+    <item name="proximity_sensor_threshold_latch" translatable="false" format="float" type="dimen">24</item>
 
     <string name="proximity_sensor_secondary_type" translatable="false">com.google.sensor.binned_brightness</string>
     <item name="proximity_sensor_secondary_threshold" translatable="false" format="float"
