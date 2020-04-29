@@ -60,6 +60,12 @@ else
     endif
 endif
 
+ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
+    BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD := $(shell xargs < device/google/redfin-kernel/modules.load)
+else
+    BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD := $(shell xargs < device/google/redfin-kernel/performance/modules.load)
+endif
+
 # DTB
 ifeq (,$(filter-out redfin_kasan, $(TARGET_PRODUCT)))
 BOARD_PREBUILT_DTBIMAGE_DIR := device/google/redfin-kernel/kasan
@@ -72,7 +78,11 @@ BOARD_PREBUILT_DTBIMAGE_DIR := device/google/redfin-kernel/debug_hang
 else ifeq (,$(filter-out redfin_kernel_debug_api, $(TARGET_PRODUCT)))
 BOARD_PREBUILT_DTBIMAGE_DIR := device/google/redfin-kernel/debug_api
 else
-BOARD_PREBUILT_DTBIMAGE_DIR := device/google/redfin-kernel
+    ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
+        BOARD_PREBUILT_DTBIMAGE_DIR := device/google/redfin-kernel
+    else
+        BOARD_PREBUILT_DTBIMAGE_DIR := device/google/redfin-kernel/performance
+    endif
 endif
 
 # Testing related defines
