@@ -60,6 +60,8 @@ else
     endif
 endif
 
+BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD := $(shell xargs < device/google/redfin-kernel/modules.load)
+
 # DTB
 ifeq (,$(filter-out redfin_kasan, $(TARGET_PRODUCT)))
 BOARD_PREBUILT_DTBIMAGE_DIR := device/google/redfin-kernel/kasan
