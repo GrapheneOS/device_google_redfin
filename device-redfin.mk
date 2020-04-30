@@ -175,6 +175,10 @@ endif
 PRODUCT_PACKAGES += \
     libqcomvoiceprocessingdescriptors
 
+# SKU specific RROs
+PRODUCT_PACKAGES += \
+    SettingsOverlayG5NZ6
+
 # Fingerprint HIDL
 include device/google/redfin/fingerprint.mk
 

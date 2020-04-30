@@ -1,0 +1,4 @@
+runtime_resource_overlay {
+    name: "SettingsOverlayG5NZ6",
+    product_specific: true,
+}
