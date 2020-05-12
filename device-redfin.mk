@@ -20,7 +20,7 @@ ifeq ($(TARGET_PREBUILT_KERNEL),)
     ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
         LOCAL_KERNEL := device/google/redfin-kernel/Image.lz4
     else
-        LOCAL_KERNEL := device/google/redfin-kernel/performance/Image.lz4
+        LOCAL_KERNEL := device/google/redfin-kernel/vintf/Image.lz4
     endif
 else
     LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)

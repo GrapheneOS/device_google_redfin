@@ -30,7 +30,7 @@ TARGET_BOARD_COMMON_PATH := device/google/redfin/sm7250
 ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
     BOARD_PREBUILT_DTBOIMAGE := device/google/redfin-kernel/dtbo.img
 else
-    BOARD_PREBUILT_DTBOIMAGE := device/google/redfin-kernel/performance/dtbo.img
+    BOARD_PREBUILT_DTBOIMAGE := device/google/redfin-kernel/vintf/dtbo.img
 endif
 TARGET_FS_CONFIG_GEN := device/google/redfin/config.fs
 
@@ -56,14 +56,14 @@ else
         $(wildcard device/google/redfin-kernel/*.ko)
     else
         BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
-        $(wildcard device/google/redfin-kernel/performance/*.ko)
+        $(wildcard device/google/redfin-kernel/vintf/*.ko)
     endif
 endif
 
 ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
     BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD := $(shell xargs < device/google/redfin-kernel/modules.load)
 else
-    BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD := $(shell xargs < device/google/redfin-kernel/performance/modules.load)
+    BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD := $(shell xargs < device/google/redfin-kernel/vintf/modules.load)
 endif
 
 # DTB
@@ -81,7 +81,7 @@ else
     ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
         BOARD_PREBUILT_DTBIMAGE_DIR := device/google/redfin-kernel
     else
-        BOARD_PREBUILT_DTBIMAGE_DIR := device/google/redfin-kernel/performance
+        BOARD_PREBUILT_DTBIMAGE_DIR := device/google/redfin-kernel/vintf
     endif
 endif
 
