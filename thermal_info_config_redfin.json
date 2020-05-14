@@ -244,6 +244,55 @@
             "VrThreshold":"NAN",
             "Multiplier":0.001,
             "Monitor":true
+        },
+        {
+            "Name":"panel-audio-therm",
+            "Type":"UNKNOWN",
+            "HotThreshold":[
+                "NAN",
+                "41.0",
+                "NAN",
+                "NAN",
+                "NAN",
+                "NAN",
+                "NAN"
+            ],
+            "HotHysteresis":[
+                0.0,
+                1.9,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            "VrThreshold":"NAN",
+            "Multiplier":0.001,
+            "Monitor":true
+        },
+        {
+            "Name":"sdm-therm",
+            "Type":"UNKNOWN",
+            "HotThreshold":[
+                "NAN",
+                "NAN",
+                "NAN",
+                "NAN",
+                "NAN",
+                "NAN",
+                "NAN"
+            ],
+            "HotHysteresis":[
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            "VrThreshold":"NAN",
+            "Multiplier":0.001
         }
     ],
     "CoolingDevices":[
