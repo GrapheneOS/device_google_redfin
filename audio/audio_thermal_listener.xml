@@ -2,5 +2,5 @@
 <audio_thermal_listener>
     <major type="UNKNOWN" name="panel-audio-therm"/>
     <minor type="UNKNOWN" name="sdm-therm"/>
-    <timer ms="200" threshold="NONE"/>
+    <timer ms="2000" threshold="NONE"/>
 </audio_thermal_listener>
