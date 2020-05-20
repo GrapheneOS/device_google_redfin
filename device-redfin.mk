@@ -204,3 +204,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Keyboard height ratio
 PRODUCT_PRODUCT_PROPERTIES += ro.com.google.ime.height_ratio=1.2
+
+# Bluetooth Tx power caps for redfin
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/bluetooth_power_limits_redfin_us.csv:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_power_limits_GD1YQ.csv
