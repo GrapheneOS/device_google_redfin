@@ -50,6 +50,9 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
 else ifeq (,$(filter-out redfin_kernel_debug_api, $(TARGET_PRODUCT)))
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
     $(wildcard device/google/redfin-kernel/debug_api/*.ko)
+else ifeq (,$(filter-out redfin_gki, $(TARGET_PRODUCT)))
+BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
+    $(wildcard device/google/redfin-kernel/gki/*.ko)
 else
     ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
         BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
@@ -60,7 +63,9 @@ else
     endif
 endif
 
-ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
+ifeq (,$(filter-out redfin_gki, $(TARGET_PRODUCT)))
+    BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD := $(shell xargs < device/google/redfin-kernel/gki/modules.load)
+else ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
     BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD := $(shell xargs < device/google/redfin-kernel/modules.load)
 else
     BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD := $(shell xargs < device/google/redfin-kernel/vintf/modules.load)
@@ -77,6 +82,8 @@ else ifeq (,$(filter-out redfin_kernel_debug_hang, $(TARGET_PRODUCT)))
 BOARD_PREBUILT_DTBIMAGE_DIR := device/google/redfin-kernel/debug_hang
 else ifeq (,$(filter-out redfin_kernel_debug_api, $(TARGET_PRODUCT)))
 BOARD_PREBUILT_DTBIMAGE_DIR := device/google/redfin-kernel/debug_api
+else ifeq (,$(filter-out redfin_gki, $(TARGET_PRODUCT)))
+BOARD_PREBUILT_DTBIMAGE_DIR := device/google/redfin-kernel/gki
 else
     ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
         BOARD_PREBUILT_DTBIMAGE_DIR := device/google/redfin-kernel
