@@ -158,7 +158,7 @@
     <integer name="config_defaultRefreshRate">0</integer>
 
     <!-- The default peak refresh rate. -->
-    <integer name="config_defaultPeakRefreshRate">60</integer>
+    <integer name="config_defaultPeakRefreshRate">90</integer>
 
     <!-- Shutdown if the battery temperature exceeds (this value * 0.1) Celsius. -->
     <integer name="config_shutdownBatteryTemperature">600</integer>
