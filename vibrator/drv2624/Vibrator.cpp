@@ -363,11 +363,16 @@ Vibrator::Vibrator(std::unique_ptr<HwApi> hwapi, std::unique_ptr<HwCal> hwcal)
         } else {
           if (hasExternalSteadyG) {
             STEADY_TARGET_G[0] = externalSteadyTargetG[0];
+            STEADY_TARGET_G[2] = externalSteadyTargetG[2];
           }
           mSteadyTargetOdClamp[0] =
               mHwCal->getSteadyAmpMax(&tempAmpMax)
                   ? round((STEADY_TARGET_G[0] / tempAmpMax) * longVoltageMax)
                   : longVoltageMax;
+            mSteadyTargetOdClamp[2] =
+                mHwCal->getSteadyAmpMax(&tempAmpMax)
+                    ? round((STEADY_TARGET_G[2] / tempAmpMax) * longVoltageMax)
+                    : longVoltageMax;
         }
         mHwCal->getSteadyShape(&shape);
         mSteadyConfig.reset(new VibrationConfig({
