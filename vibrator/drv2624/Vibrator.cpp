@@ -70,6 +70,7 @@ static std::vector<float> sYAxleData;
 static uint64_t sEndTime = 0;
 static struct timespec sGetTime;
 
+#define MAX_VOLTAGE 3.2
 #define FLOAT_EPS 1e-7
 #define SENSOR_DATA_NUM 20
 // Set sensing period to 2s
@@ -158,10 +159,10 @@ static float targetGToVlevelsUnderLinearEquation(std::array<float, 4> inputCoeff
     // 0 to 3.2 is our valid output
     float outPutVal = 0.0f;
     outPutVal = (targetG - inputCoeffs[1]) / inputCoeffs[0];
-    if ((outPutVal > FLOAT_EPS) && (outPutVal <= 3.2)) {
-        return outPutVal;
+    if ((outPutVal > FLOAT_EPS) && (outPutVal <= MAX_VOLTAGE)) {
+      return outPutVal;
     } else {
-        return 0.0f;
+      return 0.0f;
     }
 }
 
@@ -185,8 +186,8 @@ static float targetGToVlevelsUnderCubicEquation(std::array<float, 4> inputCoeffs
     if ((fabs(AA) <= FLOAT_EPS) && (fabs(BB) <= FLOAT_EPS)) {
         // Case 1: A = B = 0
         outPutVal = -inputCoeffs[1] / (3 * inputCoeffs[0]);
-        if ((outPutVal > FLOAT_EPS) && (outPutVal <= 3.2)) {
-            return outPutVal;
+        if ((outPutVal > FLOAT_EPS) && (outPutVal <= MAX_VOLTAGE)) {
+          return outPutVal;
         }
         return 0.0f;
     } else if (Delta > FLOAT_EPS) {
@@ -217,34 +218,43 @@ static float targetGToVlevelsUnderCubicEquation(std::array<float, 4> inputCoeffs
         sqrtA = sqrt(AA);
 
         outPutVal = (-inputCoeffs[1] - 2 * sqrtA * cosSita) / (3 * inputCoeffs[0]);
-        if ((outPutVal > FLOAT_EPS) && (outPutVal <= 3.2)) {
-            return outPutVal;
+        if ((outPutVal > FLOAT_EPS) && (outPutVal <= MAX_VOLTAGE)) {
+          return outPutVal;
         }
         outPutVal = (-inputCoeffs[1] + sqrtA * (cosSita + sinSitaSqrt3)) / (3 * inputCoeffs[0]);
-        if ((outPutVal > FLOAT_EPS) && (outPutVal <= 3.2)) {
-            return outPutVal;
+        if ((outPutVal > FLOAT_EPS) && (outPutVal <= MAX_VOLTAGE)) {
+          return outPutVal;
         }
         outPutVal = (-inputCoeffs[1] + sqrtA * (cosSita - sinSitaSqrt3)) / (3 * inputCoeffs[0]);
-        if ((outPutVal > FLOAT_EPS) && (outPutVal <= 3.2)) {
-            return outPutVal;
+        if ((outPutVal > FLOAT_EPS) && (outPutVal <= MAX_VOLTAGE)) {
+          return outPutVal;
         }
         return 0.0f;
     } else if (Delta <= FLOAT_EPS) {
         // Case 4: Delta = 0
         K = BB / AA;
         outPutVal = (-inputCoeffs[1] / inputCoeffs[0] + K);
-        if ((outPutVal > FLOAT_EPS) && (outPutVal <= 3.2)) {
-            return outPutVal;
+        if ((outPutVal > FLOAT_EPS) && (outPutVal <= MAX_VOLTAGE)) {
+          return outPutVal;
         }
         outPutVal = (-K / 2);
-        if ((outPutVal > FLOAT_EPS) && (outPutVal <= 3.2)) {
-            return outPutVal;
+        if ((outPutVal > FLOAT_EPS) && (outPutVal <= MAX_VOLTAGE)) {
+          return outPutVal;
         }
         return 0.0f;
     } else {
         // Exception handling
         return 0.0f;
     }
+}
+
+static float vLevelsToTargetGUnderCubicEquation(
+    std::array<float, 4> inputCoeffs, float vLevel) {
+  float inputVoltage = 0.0f;
+  inputVoltage = vLevel * MAX_VOLTAGE;
+  return inputCoeffs[0] * pow(inputVoltage, 3) +
+         inputCoeffs[1] * pow(inputVoltage, 2) + inputCoeffs[2] * inputVoltage +
+         inputCoeffs[3];
 }
 
 static bool motionAwareness() {
@@ -350,9 +360,24 @@ Vibrator::Vibrator(std::unique_ptr<HwApi> hwapi, std::unique_ptr<HwCal> hwcal)
               if (hasExternalSteadyG) {
                 STEADY_TARGET_G[i] = externalSteadyTargetG[i];
               }
-              // Use cubic approach to get the target voltage levels
-              tempVolLevel = targetGToVlevelsUnderCubicEquation(
-                  steadyCoeffs, STEADY_TARGET_G[i]);
+              // Use cubic approach to get the steady target voltage levels
+              // For steady level 3 voltage which is used for non-motion
+              // voltage, we use interpolation method to calculate the voltage
+              // via 20% of MAX voltage, 60% of MAX voltage and steady level 3
+              // target G
+              if (i == 2) {
+                tempVolLevel =
+                    ((STEADY_TARGET_G[2] -
+                      vLevelsToTargetGUnderCubicEquation(steadyCoeffs, 0.2)) *
+                     0.4 * MAX_VOLTAGE) /
+                        (vLevelsToTargetGUnderCubicEquation(steadyCoeffs, 0.6) -
+                         vLevelsToTargetGUnderCubicEquation(steadyCoeffs,
+                                                            0.2)) +
+                    0.2 * MAX_VOLTAGE;
+              } else {
+                tempVolLevel = targetGToVlevelsUnderCubicEquation(
+                    steadyCoeffs, STEADY_TARGET_G[i]);
+              }
               mSteadyTargetOdClamp[i] =
                   convertLevelsToOdClamp(tempVolLevel, lraPeriod);
               if ((mSteadyTargetOdClamp[i] <= 0) ||
