@@ -24,6 +24,7 @@ endif
 
 PRODUCT_VENDOR_KERNEL_HEADERS := device/google/redfin-kernel/sm7250/kernel-headers
 
+include build/make/target/product/iorap_large_memory_config.mk
 include device/google/redbull/device-common.mk
 
 # LOCAL_PATH is device/google/redbull before this
