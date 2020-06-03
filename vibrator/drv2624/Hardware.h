@@ -194,6 +194,10 @@ class HwCal : public Vibrator::HwCal, private HwCalBase {
     bool getTriggerEffectSupport(uint32_t *value) override {
         return getProperty("lptrigger", value, DEFAULT_LP_TRIGGER_SUPPORT);
     }
+    bool getDevHwVer(std::string *value) override {
+      *value = ::android::base::GetProperty("ro.revision", "DVT");
+      return true;
+    }
     void debug(int fd) override { HwCalBase::debug(fd); }
 };
 

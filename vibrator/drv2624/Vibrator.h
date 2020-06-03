@@ -126,6 +126,8 @@ class Vibrator : public BnVibrator {
         virtual bool getSteadyShape(uint32_t *value) = 0;
         // Obtains the trigger effect support
         virtual bool getTriggerEffectSupport(uint32_t *value) = 0;
+        // Obtains device hardware version
+        virtual bool getDevHwVer(std::string *value) = 0;
         // Emit diagnostic information to the given file.
         virtual void debug(int fd) = 0;
     };

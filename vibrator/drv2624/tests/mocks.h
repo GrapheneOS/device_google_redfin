@@ -61,6 +61,7 @@ class MockCal : public ::aidl::android::hardware::vibrator::Vibrator::HwCal {
     MOCK_METHOD1(getEffectShape, bool(uint32_t *value));
     MOCK_METHOD1(getSteadyShape, bool(uint32_t *value));
     MOCK_METHOD1(getTriggerEffectSupport, bool(uint32_t *value));
+    MOCK_METHOD1(getDevHwVer, bool(std::string &value));
     MOCK_METHOD1(debug, void(int fd));
 
     ~MockCal() override { destructor(); };
