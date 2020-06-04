@@ -196,6 +196,9 @@ static void ProcessPcapDump(FILE *fp, pcap_dumper_t *dumper)
         char* strTmpTime = arrStrTime;
         struct pcap_pkthdr pcap_hdr;
         while ((strTime = strtok_r(strTmpTime, ".", &strTmpTime))) {
+          if(strTmpTime == NULL) {
+            break;
+          }
           time_t time;
           struct tm timeStruct;
           memset(&timeStruct, 0, sizeof(struct tm));
@@ -205,6 +208,9 @@ static void ProcessPcapDump(FILE *fp, pcap_dumper_t *dumper)
             pcap_hdr.ts.tv_sec = time;
           }
           strTimeMsec = strtok_r(strTmpTime, ".", &strTmpTime);
+          if(strTimeMsec == NULL) {
+            break;
+          }
           timeMSec = atoi(strTimeMsec);
           pcap_hdr.ts.tv_usec = timeMSec;
         }
