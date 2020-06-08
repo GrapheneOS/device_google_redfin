@@ -404,6 +404,13 @@ static void DumpTouch(int fd) {
                  touch_spi_path, touch_spi_path);
         RunCommandToFd(fd, "Force Touch Active", {"/vendor/bin/sh", "-c", cmd});
 
+        //Change data format from portrait to landscape
+        snprintf(cmd, sizeof(cmd),
+                 "echo %s > %s/cmd && cat %s/cmd_result",
+                 "set_print_format,1",
+                 touch_spi_path, touch_spi_path);
+        RunCommandToFd(fd, "Print Format", {"/vendor/bin/sh", "-c", cmd});
+
         //Firmware info
         snprintf(cmd, sizeof(cmd), "%s/fw_version", touch_spi_path);
         DumpFileToFd(fd, "LSI firmware version", cmd);
@@ -474,6 +481,14 @@ static void DumpTouch(int fd) {
                  "run_rawdata_read_type,31",
                  touch_spi_path, touch_spi_path);
         RunCommandToFd(fd, "TYPE_NOI_P2P_MAX", {"/vendor/bin/sh", "-c", cmd});
+
+        //Change data format back to default(portrait)
+        snprintf(cmd, sizeof(cmd),
+                 "echo %s > %s/cmd && cat %s/cmd_result",
+                 "set_print_format,0",
+                 touch_spi_path, touch_spi_path);
+        RunCommandToFd(fd, "Print Format", {"/vendor/bin/sh", "-c", cmd});
+
 
         //Disable: force touch active
         snprintf(cmd, sizeof(cmd),
