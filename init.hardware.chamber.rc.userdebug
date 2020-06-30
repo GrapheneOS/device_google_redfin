@@ -16,8 +16,10 @@
 
 on property:persist.vendor.disable.thermal.control=1
   write /sys/devices/virtual/thermal/tz-by-name/skin-therm/mode disabled
+  write /sys/devices/virtual/thermal/tz-by-name/skin-therm-cpu/mode disabled
   write /sys/devices/virtual/thermal/tz-by-name/skin-therm-monitor/mode disabled
   write /sys/devices/virtual/thermal/tz-by-name/panel-audio-therm/mode disabled
+  write /sys/devices/virtual/thermal/tz-by-name/camera-critical/mode disabled
   write /sys/devices/virtual/thermal/tz-by-name/cellular-emergency/mode disabled
   write /sys/devices/virtual/thermal/tz-by-name/sdm-therm/mode disabled
   write /sys/devices/virtual/thermal/tz-by-name/usbc-therm-adc/mode disabled
@@ -26,8 +28,10 @@ on property:persist.vendor.disable.thermal.control=1
 
 on property:persist.vendor.disable.thermal.control=0
   write /sys/devices/virtual/thermal/tz-by-name/skin-therm/mode enabled
+  write /sys/devices/virtual/thermal/tz-by-name/skin-therm-cpu/mode enabled
   write /sys/devices/virtual/thermal/tz-by-name/skin-therm-monitor/mode enabled
   write /sys/devices/virtual/thermal/tz-by-name/panel-audio-therm/mode enabled
+  write /sys/devices/virtual/thermal/tz-by-name/camera-critical/mode enabled
   write /sys/devices/virtual/thermal/tz-by-name/cellular-emergency/mode enabled
   write /sys/devices/virtual/thermal/tz-by-name/sdm-therm/mode enabled
   write /sys/devices/virtual/thermal/tz-by-name/usbc-therm-adc/mode enabled
