@@ -165,7 +165,7 @@
                 <route type="mix" sink="Earpiece"
                        sources="primary output,raw,deep_buffer,mmap_no_irq_out,voip_rx"/>
                 <route type="mix" sink="Speaker"
-                       sources="primary output,deep_buffer,compressed_offload,mmap_no_irq_out,voip_rx"/>
+                       sources="primary output,raw,deep_buffer,compressed_offload,mmap_no_irq_out,voip_rx"/>
                 <route type="mix" sink="Speaker Safe"
                        sources="primary output,raw,deep_buffer,compressed_offload,mmap_no_irq_out,voip_rx"/>
                 <route type="mix" sink="Wired Headset"
