@@ -59,8 +59,8 @@ static constexpr char WAVEFORM_DOUBLE_CLICK_EFFECT_SEQ[] = "3 0";
 static constexpr char WAVEFORM_HEAVY_CLICK_EFFECT_SEQ[] = "4 0";
 
 // UT team design those target G values
-static std::array<float, 5> EFFECT_TARGET_G = {0.275, 0.63, 0.68, 0.97, 1.12};
-static std::array<float, 3> STEADY_TARGET_G = {1.9, 1.145, 0.73};
+static std::array<float, 5> EFFECT_TARGET_G = {0.275, 0.55, 0.6, 0.9, 1.12};
+static std::array<float, 3> STEADY_TARGET_G = {2.1, 1.145, 0.82};
 
 struct SensorContext {
     ASensorEventQueue *queue;
@@ -319,7 +319,8 @@ Vibrator::Vibrator(std::unique_ptr<HwApi> hwapi, std::unique_ptr<HwCal> hwcal)
 
         // TODO: This is a workaround for b/157610908
         mHwCal->getDevHwVer(&devHwVersion);
-        if (devHwVersion.compare("EVT")) {
+        if ((devHwVersion.find("EVT") != std::string::npos) ||
+            (devHwVersion.find("PROTO") != std::string::npos)) {
           EFFECT_TARGET_G = {0.15, 0.27, 0.35, 0.54, 0.65};
           STEADY_TARGET_G = {1.2, 1.145, 0.4};
           ALOGW("Device HW version: %s, this is an EVT device",
