@@ -550,6 +550,22 @@
     <ctl name="DSP RX2 Source" value="ASPRX1" />
     <ctl name="R DSP RX2 Source" value="ASPRX1" />
     <!-- CS35L41 dsp(firmware) source end-->
+    <!-- CS35L41 VP brownout start-->
+    <ctl name="VPBR Enable" value="Enabled" />
+    <ctl name="R VPBR Enable" value="Enabled" />
+    <ctl name="VPBR Release Rate" value="250ms" />
+    <ctl name="R VPBR Release Rate" value="250ms" />
+    <ctl name="VPBR Wait" value="100ms" />
+    <ctl name="R VPBR Wait" value="100ms" />
+    <ctl name="VPBR Attack Rate" value="10us" />
+    <ctl name="R VPBR Attack Rate" value="10us" />
+    <ctl name="VPBR Attack Volume" value="0.125dB" />
+    <ctl name="R VPBR Attack Volume" value="0.125dB" />
+    <ctl name="VPBR Max Attenuation" value="9" />
+    <ctl name="R VPBR Max Attenuation" value="9" />
+    <ctl name="VPBR Threshold 1" value="3.542" />
+    <ctl name="R VPBR Threshold 1" value="3.542" />
+    <!-- CS35L41 VP brownout end-->
     <!-- CS35L41 config end-->
 
     <ctl name="HAC AMP EN" value="0" />
