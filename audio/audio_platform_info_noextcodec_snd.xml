@@ -84,6 +84,17 @@
         <device name="SND_DEVICE_IN_VOICE_TTY_VCO_SPEAKER_MIC" acdb_id="19"/>
         <device name="SND_DEVICE_IN_VOICE_REC_DMIC_STEREO" acdb_id="144"/>
     </acdb_ids>
+
+    <audio_input_source_delay>
+        <audio_source_delay name="AUDIO_SOURCE_CAMCORDER" delay="130"/>
+        <audio_source_delay name="AUDIO_SOURCE_MIC" delay="10"/>
+    </audio_input_source_delay>
+
+    <audio_output_usecase_delay>
+        <audio_usecase_delay name="USECASE_AUDIO_PLAYBACK_DEEP_BUFFER" delay="20"/>
+    </audio_output_usecase_delay>
+
+
     <external_specific_dev>
         <!-- condor -->
         <ext_device name="SND_DEVICE_OUT_VOICE_USB_HEADSET" usbid="18d1:5034" acdb_id="56" />
