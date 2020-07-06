@@ -724,6 +724,9 @@ Return<DumpstateStatus> DumpstateDevice::dumpstateBoard_1_1(const hidl_handle& h
     // Keep this at the end as very long on not for humans
     DumpFileToFd(fd, "WLAN FW Log Symbol Table", "/vendor/firmware/Data.msc");
 
+    // Dump camera profiler log
+    RunCommandToFd(fd, "Camera Profiler Logs", {"/vendor/bin/sh", "-c", "for f in /data/vendor/camera/profiler/camx_*; do echo [$f]; cat \"$f\";done"});
+
     if (modemThreadHandle) {
         pthread_join(modemThreadHandle, NULL);
     }
