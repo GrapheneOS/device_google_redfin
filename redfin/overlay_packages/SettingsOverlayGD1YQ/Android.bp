@@ -1,0 +1,4 @@
+runtime_resource_overlay {
+    name: "SettingsOverlayGD1YQ",
+    product_specific: true,
+}
