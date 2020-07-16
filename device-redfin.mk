@@ -193,7 +193,8 @@ PRODUCT_PACKAGES += \
 
 # SKU specific RROs
 PRODUCT_PACKAGES += \
-    SettingsOverlayG5NZ6
+    SettingsOverlayG5NZ6 \
+    SettingsOverlayGTT9Q
 
 # Fingerprint HIDL
 include device/google/redfin/fingerprint.mk
