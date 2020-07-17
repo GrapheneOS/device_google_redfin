@@ -246,7 +246,7 @@
             "Monitor":true
         },
         {
-            "Name":"usbc-therm-monitor",
+            "Name":"usbc-virt-monitor",
             "Type":"USB_PORT",
             "HotThreshold":[
                 "NAN",
@@ -254,7 +254,7 @@
                 "NAN",
                 "NAN",
                 "NAN",
-                "70.0",
+                "15.0",
                 "NAN"
             ],
             "HotHysteresis":[
