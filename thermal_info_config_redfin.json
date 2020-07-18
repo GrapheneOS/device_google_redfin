@@ -246,7 +246,7 @@
             "Monitor":true
         },
         {
-            "Name":"usbc-therm-monitor",
+            "Name":"usbc-virt-monitor",
             "Type":"USB_PORT",
             "HotThreshold":[
                 "NAN",
@@ -254,7 +254,7 @@
                 "NAN",
                 "NAN",
                 "NAN",
-                "70.0",
+                "15.0",
                 "NAN"
             ],
             "HotHysteresis":[
@@ -290,31 +290,6 @@
                 0.0,
                 0.0,
                 0.0
-            ],
-            "VrThreshold":"NAN",
-            "Multiplier":0.001,
-            "Monitor":true
-        },
-        {
-            "Name":"camera-critical",
-            "Type":"UNKNOWN",
-            "HotThreshold":[
-                "NAN",
-                "37.0",
-                "41.0",
-                "43.0",
-                "46.5",
-                "51.0",
-                "55.0"
-            ],
-            "HotHysteresis":[
-                0.0,
-                1.9,
-                1.9,
-                1.9,
-                1.9,
-                1.9,
-                1.9
             ],
             "VrThreshold":"NAN",
             "Multiplier":0.001,
