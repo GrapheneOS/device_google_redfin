@@ -43,3 +43,5 @@ on property:sys.retaildemo.enabled=0
 on late-init
     chown system system /sys/devices/virtual/thermal/tz-by-name/panel-audio-therm/trip_point_0_temp
     chown system system /sys/devices/virtual/thermal/tz-by-name/panel-audio-therm/trip_point_0_hyst
+    chown system system /sys/devices/virtual/thermal/tz-by-name/usbc-virt-monitor/trip_point_0_temp
+    chown system system /sys/devices/virtual/thermal/tz-by-name/usbc-virt-monitor/trip_point_0_hyst
