@@ -40,6 +40,20 @@ on property:sys.retaildemo.enabled=1
 on property:sys.retaildemo.enabled=0
     write /sys/class/thermal/cdev-by-name/dc_icl/cur_state 0
 
+# Toggle glove_mode according to touch_sensitivity_mode
+on property:persist.vendor.touch_sensitivity_mode=0 && property:sys.boot_completed=1
+    write /sys/devices/virtual/sec/tsp/cmd "glove_mode,0"
+
+on property:persist.vendor.touch_sensitivity_mode=1 && property:sys.boot_completed=1
+    write /sys/devices/virtual/sec/tsp/cmd "glove_mode,1"
+
+# Route touch_sensitivity_mode to persist
+on property:debug.touch_sensitivity_mode=0
+    setprop persist.vendor.touch_sensitivity_mode 0
+
+on property:debug.touch_sensitivity_mode=1
+    setprop persist.vendor.touch_sensitivity_mode 1
+
 on late-init
     chown system system /sys/devices/virtual/thermal/tz-by-name/panel-audio-therm/trip_point_0_temp
     chown system system /sys/devices/virtual/thermal/tz-by-name/panel-audio-therm/trip_point_0_hyst
