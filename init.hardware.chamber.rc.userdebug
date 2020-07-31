@@ -15,24 +15,40 @@
 #
 
 on property:persist.vendor.disable.thermal.control=1
+  write /sys/devices/virtual/thermal/tz-by-name/skin-therm/emul_temp 25000
   write /sys/devices/virtual/thermal/tz-by-name/skin-therm/mode disabled
+  write /sys/devices/virtual/thermal/tz-by-name/skin-therm-cpu/emul_temp 25000
   write /sys/devices/virtual/thermal/tz-by-name/skin-therm-cpu/mode disabled
+  write /sys/devices/virtual/thermal/tz-by-name/skin-therm-monitor/emul_temp 25000
   write /sys/devices/virtual/thermal/tz-by-name/skin-therm-monitor/mode disabled
+  write /sys/devices/virtual/thermal/tz-by-name/panel-audio-therm/emul_temp 25000
   write /sys/devices/virtual/thermal/tz-by-name/panel-audio-therm/mode disabled
+  write /sys/devices/virtual/thermal/tz-by-name/cellular-emergency/emul_temp 25000
   write /sys/devices/virtual/thermal/tz-by-name/cellular-emergency/mode disabled
+  write /sys/devices/virtual/thermal/tz-by-name/sdm-therm/emul_temp 25000
   write /sys/devices/virtual/thermal/tz-by-name/sdm-therm/mode disabled
+  write /sys/devices/virtual/thermal/tz-by-name/usbc-therm-adc/emul_temp 25000
   write /sys/devices/virtual/thermal/tz-by-name/usbc-therm-adc/mode disabled
+  write /sys/devices/virtual/thermal/tz-by-name/usbc-therm-monitor/emul_temp 25000
   write /sys/devices/virtual/thermal/tz-by-name/usbc-therm-monitor/mode disabled
   write /sys/module/overheat_mitigation/parameters/enable 0
 
 on property:persist.vendor.disable.thermal.control=0
+  write /sys/devices/virtual/thermal/tz-by-name/skin-therm/emul_temp 0
   write /sys/devices/virtual/thermal/tz-by-name/skin-therm/mode enabled
+  write /sys/devices/virtual/thermal/tz-by-name/skin-therm-cpu/emul_temp 0
   write /sys/devices/virtual/thermal/tz-by-name/skin-therm-cpu/mode enabled
+  write /sys/devices/virtual/thermal/tz-by-name/skin-therm-monitor/emul_temp 0
   write /sys/devices/virtual/thermal/tz-by-name/skin-therm-monitor/mode enabled
+  write /sys/devices/virtual/thermal/tz-by-name/panel-audio-therm/emul_temp 0
   write /sys/devices/virtual/thermal/tz-by-name/panel-audio-therm/mode enabled
+  write /sys/devices/virtual/thermal/tz-by-name/cellular-emergency/emul_temp 0
   write /sys/devices/virtual/thermal/tz-by-name/cellular-emergency/mode enabled
+  write /sys/devices/virtual/thermal/tz-by-name/sdm-therm/emul_temp 0
   write /sys/devices/virtual/thermal/tz-by-name/sdm-therm/mode enabled
+  write /sys/devices/virtual/thermal/tz-by-name/usbc-therm-adc/emul_temp 0
   write /sys/devices/virtual/thermal/tz-by-name/usbc-therm-adc/mode enabled
+  write /sys/devices/virtual/thermal/tz-by-name/usbc-therm-monitor/emul_temp 0
   write /sys/devices/virtual/thermal/tz-by-name/usbc-therm-monitor/mode enabled
   write /sys/module/overheat_mitigation/parameters/enable 1
 
