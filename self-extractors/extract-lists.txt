@@ -7,13 +7,9 @@
     ;;
   qcom)
     TO_EXTRACT="\
-            system/etc/init/qvrd.rc \
-            system/etc/qvr/6dof_config.xml \
-            system/etc/qvr/qvrservice_config.txt \
             system_ext/etc/permissions/org_codeaurora_ims.xml \
             system_ext/etc/permissions/qcrilhook.xml \
             system_ext/etc/permissions/telephonyservice.xml \
-            system_ext/framework/com.qti.snapdragon.sdk.display.jar \
             system_ext/framework/com.qualcomm.qti.imscmservice-V2.0-java.jar \
             system_ext/framework/com.qualcomm.qti.imscmservice-V2.1-java.jar \
             system_ext/framework/com.qualcomm.qti.imscmservice-V2.2-java.jar \
@@ -25,7 +21,6 @@
             system_ext/framework/qti-telephony-utils.jar \
             system_ext/framework/remotesimlockmanagerlibrary.jar \
             system_ext/framework/uimremotesimlocklibrary.jar \
-            system_ext/framework/vendor.qti.hardware.alarm-V1.0-java.jar \
             system_ext/framework/vendor.qti.hardware.data.connection-V1.0-java.jar \
             system_ext/framework/vendor.qti.hardware.data.dynamicdds-V1.0-java.jar \
             system_ext/framework/vendor.qti.hardware.data.iwlan-V1.0-java.jar \
@@ -54,22 +49,5 @@
             system_ext/lib/libvr_object_engine.so \
             system_ext/app/QtiTelephonyService/QtiTelephonyService.apk \
             system_ext/priv-app/ims/ims.apk \
-            system/framework/QPerformance.jar \
-            system/framework/UxPerformance.jar \
-            system/lib64/libOpenCL_system.so \
-            system/lib64/libqvrcamera_client.qti.so \
-            system/lib64/libqvrservice_client.qti.so \
-            system/lib64/libqvrservice_ov7251_hvx_tuning.so \
-            system/lib64/libqvrservice_ov9282_hvx_tuning.so \
-            system/lib/libeye_tracking_dsp_sample_stub.so \
-            system/lib/libOpenCL_system.so \
-            system/lib/libqvr_cam_cdsp_driver_stub.so \
-            system/lib/libqvrcamera_client.qti.so \
-            system/lib/libqvr_cdsp_driver_stub.so \
-            system/lib/libqvr_eyetracking_plugin.so \
-            system/lib/libqvrservice_client.qti.so \
-            system/lib/libqvrservice_ov7251_hvx_tuning.so \
-            system/lib/libqvrservice_ov9282_hvx_tuning.so \
-            system/lib/libqvrservice.so \
             "
     ;;
