@@ -75,6 +75,7 @@ static struct timespec sGetTime;
 #define SENSOR_DATA_NUM 20
 // Set sensing period to 2s
 #define SENSING_PERIOD 2000000000
+#define VIBRATION_MOTION_TIME_THRESHOLD 100
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof((a)[0]))
 
 int GSensorCallback(__attribute__((unused)) int fd, __attribute__((unused)) int events,
@@ -500,7 +501,9 @@ ndk::ScopedAStatus Vibrator::on(int32_t timeoutMs,
         if (temperature > TEMP_UPPER_BOUND) {
             mSteadyConfig->odClamp = &mSteadyTargetOdClamp[0];
             mSteadyConfig->olLraPeriod = mSteadyOlLraPeriod;
-            if (!motionAwareness()) {
+            // TODO: b/162346934 This a compromise way to bypass the motion
+            // awareness delay
+            if ((timeoutMs > VIBRATION_MOTION_TIME_THRESHOLD) && (!motionAwareness())) {
                 return on(timeoutMs, RTP_MODE, mSteadyConfig, 2);
             }
         } else if (temperature < TEMP_LOWER_BOUND) {
