@@ -49,6 +49,12 @@ $(call inherit-product-if-exists, vendor/google_devices/redfin/prebuilts/device-
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/aosp_excluded_hardware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/aosp_excluded_hardware.xml
 
+# Keep the VNDK APEX in /system partition for REL branches as these branches are
+# expected to have stable API/ABI surfaces.
+ifneq (REL,$(PLATFORM_VERSION_CODENAME))
+  PRODUCT_PACKAGES += com.android.vndk.current.on_vendor
+endif
+
 # Don't build super.img.
 PRODUCT_BUILD_SUPER_PARTITION := false
 
