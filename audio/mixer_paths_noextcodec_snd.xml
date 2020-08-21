@@ -563,8 +563,8 @@
     <ctl name="R VPBR Attack Volume" value="0.125dB" />
     <ctl name="VPBR Max Attenuation" value="9" />
     <ctl name="R VPBR Max Attenuation" value="9" />
-    <ctl name="VPBR Threshold 1" value="3.542" />
-    <ctl name="R VPBR Threshold 1" value="3.542" />
+    <ctl name="VPBR Threshold 1" value="2.639" />
+    <ctl name="R VPBR Threshold 1" value="2.639" />
     <!-- CS35L41 VP brownout end-->
     <!-- CS35L41 config end-->
 
