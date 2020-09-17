@@ -579,7 +579,7 @@ static void DumpUFS(int fd) {
 // Methods from ::android::hardware::dumpstate::V1_0::IDumpstateDevice follow.
 Return<void> DumpstateDevice::dumpstateBoard(const hidl_handle& handle) {
     // Ignore return value, just return an empty status.
-    dumpstateBoard_1_1(handle, DumpstateMode::DEFAULT, 30 * 1000 /* timeoutMillis */);
+    dumpstateBoard_1_1(handle, DumpstateMode::DEFAULT, 60 * 1000 /* timeoutMillis */);
     return Void();
 }
 
@@ -727,6 +727,8 @@ Return<DumpstateStatus> DumpstateDevice::dumpstateBoard_1_1(const hidl_handle& h
     // Dump camera profiler log
     RunCommandToFd(fd, "Camera Profiler Logs", {"/vendor/bin/sh", "-c", "for f in /data/vendor/camera/profiler/camx_*; do echo [$f]; cat \"$f\";done"});
 
+    // Dump page owner
+    DumpFileToFd(fd, "Page Owner", "/sys/kernel/debug/page_owner");
     if (modemThreadHandle) {
         pthread_join(modemThreadHandle, NULL);
     }
