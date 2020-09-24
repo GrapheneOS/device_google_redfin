@@ -732,6 +732,9 @@ Return<DumpstateStatus> DumpstateDevice::dumpstateBoard_1_1(const hidl_handle& h
     // Dump camera profiler log
     RunCommandToFd(fd, "Camera Profiler Logs", {"/vendor/bin/sh", "-c", "for f in /data/vendor/camera/profiler/camx_*; do echo [$f]; cat \"$f\";done"});
 
+    // Dump fastrpc dma buffer size
+    DumpFileToFd(fd, "Fastrpc dma buffer", "/sys/kernel/fastrpc/total_dma_kb");
+
     if (modemThreadHandle) {
         pthread_join(modemThreadHandle, NULL);
     }
