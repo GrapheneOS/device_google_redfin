@@ -18,6 +18,7 @@ PRODUCT_SOONG_NAMESPACES += \
 # AOSP packages required by the blobs
 PRODUCT_PACKAGES := \
     ims \
+    qcrilmsgtunnel \
     QtiTelephonyService
 
 PRODUCT_PACKAGES += \
@@ -33,6 +34,7 @@ PRODUCT_PACKAGES += \
 
 #  blob(s) necessary for redfin hardware
 PRODUCT_COPY_FILES := \
+     vendor/qcom/redfin/proprietary/com.qualcomm.qcrilmsgtunnel.xml:system_ext/etc/permissions/com.qualcomm.qcrilmsgtunnel.xml \
      vendor/qcom/redfin/proprietary/org_codeaurora_ims.xml:system_ext/etc/permissions/org_codeaurora_ims.xml \
      vendor/qcom/redfin/proprietary/qcrilhook.xml:system_ext/etc/permissions/qcrilhook.xml \
      vendor/qcom/redfin/proprietary/telephonyservice.xml:system_ext/etc/permissions/telephonyservice.xml \
