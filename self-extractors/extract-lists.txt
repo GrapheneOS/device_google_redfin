@@ -7,6 +7,7 @@
     ;;
   qcom)
     TO_EXTRACT="\
+            system_ext/etc/permissions/com.qualcomm.qcrilmsgtunnel.xml \
             system_ext/etc/permissions/org_codeaurora_ims.xml \
             system_ext/etc/permissions/qcrilhook.xml \
             system_ext/etc/permissions/telephonyservice.xml \
@@ -49,5 +50,6 @@
             system_ext/lib/libvr_object_engine.so \
             system_ext/app/QtiTelephonyService/QtiTelephonyService.apk \
             system_ext/priv-app/ims/ims.apk \
+            system_ext/priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk \
             "
     ;;
