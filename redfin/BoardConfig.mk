@@ -14,16 +14,20 @@
 # limitations under the License.
 #
 
-TARGET_BOOTLOADER_BOARD_NAME := redfin
-TARGET_SCREEN_DENSITY := 440
-TARGET_RECOVERY_UI_MARGIN_HEIGHT := 165
-USES_DEVICE_GOOGLE_REDFIN := true
+ifdef PHONE_CAR_BOARD_CONFIG
+  include $(PHONE_CAR_BOARD_CONFIG)
+else
+  TARGET_BOOTLOADER_BOARD_NAME := redfin
+  TARGET_SCREEN_DENSITY := 440
+  TARGET_RECOVERY_UI_MARGIN_HEIGHT := 165
+  USES_DEVICE_GOOGLE_REDFIN := true
 
-include device/google/redbull/BoardConfig-common.mk
-DEVICE_MANIFEST_FILE += device/google/redfin/manifest.xml
-DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += device/google/redfin/device_framework_matrix.xml
+  include device/google/redbull/BoardConfig-common.mk
+  DEVICE_MANIFEST_FILE += device/google/redfin/manifest.xml
+  DEVICE_PRODUCT_COMPATIBILITY_MATRIX_FILE += device/google/redfin/device_framework_matrix_product.xml
 
-# Testing related defines
-#BOARD_PERFSETUP_SCRIPT := platform_testing/scripts/perf-setup/r3-setup.sh
+  # Testing related defines
+  #BOARD_PERFSETUP_SCRIPT := platform_testing/scripts/perf-setup/r3-setup.sh
 
--include vendor/google_devices/$(TARGET_BOOTLOADER_BOARD_NAME)/proprietary/BoardConfigVendor.mk
+  -include vendor/google_devices/$(TARGET_BOOTLOADER_BOARD_NAME)/proprietary/BoardConfigVendor.mk
+endif
