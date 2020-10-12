@@ -580,6 +580,13 @@ static void DumpTouch(int fd) {
                  touch_spi_path, touch_spi_path);
         RunCommandToFd(fd, "Self Raw Cap", {"/vendor/bin/sh", "-c", cmd});
 
+        //TYPE_OFFSET_DATA_SEC
+        snprintf(cmd, sizeof(cmd),
+                 "echo %s > %s/cmd && cat %s/cmd_result",
+                 "run_rawdata_read_type,19",
+                 touch_spi_path, touch_spi_path);
+        RunCommandToFd(fd, "TYPE_OFFSET_DATA_SEC", {"/vendor/bin/sh", "-c", cmd});
+
         //TYPE_AMBIENT_DATA
         snprintf(cmd, sizeof(cmd),
                  "echo %s > %s/cmd && cat %s/cmd_result",
