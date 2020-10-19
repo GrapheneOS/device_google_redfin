@@ -24,6 +24,7 @@ PRODUCT_EXTRA_VNDK_VERSIONS = 30
 
 # Disable building certain non-system partitions in this build.
 PRODUCT_BUILD_BOOT_IMAGE := false
+PRODUCT_BUILD_RAMDISK_IMAGE := false
 PRODUCT_BUILD_RECOVERY_IMAGE := false
 PRODUCT_BUILD_VBMETA_IMAGE := false
 PRODUCT_BUILD_VENDOR_IMAGE := false
