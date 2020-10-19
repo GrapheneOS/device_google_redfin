@@ -16,7 +16,7 @@
 
 PRODUCT_MAKEFILES := \
     $(LOCAL_DIR)/aosp_redfin.mk \
-    $(LOCAL_DIR)/aosp_redfin_vf.mk \
+    $(LOCAL_DIR)/vf/aosp_redfin_vf.mk \
 
 COMMON_LUNCH_CHOICES := \
     aosp_redfin-userdebug \
