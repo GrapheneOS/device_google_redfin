@@ -107,7 +107,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/cs35l41/B2/R-cs35l41-revB2-dsp1-spk-prot.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/R-cs35l41-revB2-dsp1-spk-prot.bin
 
 # Audio CS35L41 speaker calibration tool
-PRODUCT_PACKAGES += \
+PRODUCT_PACKAGES_DEBUG += \
     crus_sp_cal
 
 # Audio audiozoom config data
