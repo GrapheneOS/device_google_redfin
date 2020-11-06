@@ -18,15 +18,15 @@ PRODUCT_HARDWARE := redfin
 
 ifeq ($(TARGET_PREBUILT_KERNEL),)
     ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
-        LOCAL_KERNEL := device/google/redfin-kernel/Image.lz4
+        LOCAL_KERNEL := device/google/redbull-kernel/Image.lz4
     else
-        LOCAL_KERNEL := device/google/redfin-kernel/vintf/Image.lz4
+        LOCAL_KERNEL := device/google/redbull-kernel/vintf/Image.lz4
     endif
 else
     LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
 endif
 
-PRODUCT_VENDOR_KERNEL_HEADERS := device/google/redfin-kernel/sm7250/kernel-headers
+PRODUCT_VENDOR_KERNEL_HEADERS := device/google/redbull-kernel/sm7250/kernel-headers
 
 include build/make/target/product/iorap_large_memory_config.mk
 include device/google/redbull/device-common.mk
@@ -107,7 +107,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/cs35l41/B2/R-cs35l41-revB2-dsp1-spk-prot.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/R-cs35l41-revB2-dsp1-spk-prot.bin
 
 # Audio CS35L41 speaker calibration tool
-PRODUCT_PACKAGES += \
+PRODUCT_PACKAGES_DEBUG += \
     crus_sp_cal
 
 # Audio audiozoom config data
