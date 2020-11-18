@@ -51,8 +51,16 @@ volume index from 0 to 100.
         <point>66,-2200</point>
         <point>100,-1800</point>
     </volume>
-    <volume stream="AUDIO_STREAM_SYSTEM" deviceCategory="DEVICE_CATEGORY_SPEAKER"
-                                         ref="DEFAULT_SYSTEM_VOLUME_CURVE"/>
+    <volume stream="AUDIO_STREAM_SYSTEM" deviceCategory="DEVICE_CATEGORY_SPEAKER">
+        <point>1,-7000</point>
+        <point>14,-5000</point>
+        <point>29,-4300</point>
+        <point>43,-3700</point>
+        <point>57,-3500</point>
+        <point>71,-3300</point>
+        <point>86,-3100</point>
+        <point>100,-2200</point>
+    </volume>
     <volume stream="AUDIO_STREAM_SYSTEM" deviceCategory="DEVICE_CATEGORY_EARPIECE"
                                          ref="DEFAULT_SYSTEM_VOLUME_CURVE"/>
     <volume stream="AUDIO_STREAM_SYSTEM" deviceCategory="DEVICE_CATEGORY_EXT_MEDIA"
@@ -161,8 +169,16 @@ volume index from 0 to 100.
         <point>66,-2200</point>
         <point>100,-1800</point>
     </volume>
-    <volume stream="AUDIO_STREAM_DTMF" deviceCategory="DEVICE_CATEGORY_SPEAKER"
-                                       ref="DEFAULT_SYSTEM_VOLUME_CURVE"/>
+    <volume stream="AUDIO_STREAM_DTMF" deviceCategory="DEVICE_CATEGORY_SPEAKER">
+        <point>1,-7000</point>
+        <point>14,-3700</point>
+        <point>29,-3240</point>
+        <point>43,-3150</point>
+        <point>57,-2920</point>
+        <point>71,-2700</point>
+        <point>86,-2540</point>
+        <point>100,-1850</point>
+    </volume>
     <volume stream="AUDIO_STREAM_DTMF" deviceCategory="DEVICE_CATEGORY_EARPIECE"
                                        ref="DEFAULT_SYSTEM_VOLUME_CURVE"/>
     <volume stream="AUDIO_STREAM_DTMF" deviceCategory="DEVICE_CATEGORY_EXT_MEDIA"
