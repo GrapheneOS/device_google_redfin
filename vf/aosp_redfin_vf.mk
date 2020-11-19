@@ -22,6 +22,12 @@ PRODUCT_VENDOR_FREEZE_SYSTEM_BUILD := true
 # Include VNDK v30, needed by the Android 11 vendor half.
 PRODUCT_EXTRA_VNDK_VERSIONS = 30
 
+# Include a product compatibility matrix file that includes older HALs provided
+# by the Android 11 vendor half. This is needed because check_vintf fails for
+# any "unused" HALs in the device manifest that aren't found in the framework
+# compatibility matrix.
+DEVICE_PRODUCT_COMPATIBILITY_MATRIX_FILE += device/google/redfin/vf/device_framework_matrix_product.xml
+
 # Disable building certain non-system partitions in this build.
 PRODUCT_BUILD_BOOT_IMAGE := false
 PRODUCT_BUILD_RAMDISK_IMAGE := false

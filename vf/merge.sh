@@ -25,3 +25,7 @@ out/host/linux-x86/bin/merge_target_files \
   --output-target-files ${DIST_DIR}/aosp_redfin_vf_merged-target_files.zip \
   --output-img  ${DIST_DIR}/aosp_redfin_vf_merged-img.zip \
   --output-ota  ${DIST_DIR}/aosp_redfin_vf_merged-ota.zip
+
+# Copy bootloader.img and radio.img, needed for flashing.
+cp ${VENDOR_DIR}/bootloader.img ${DIST_DIR}/bootloader.img
+cp ${VENDOR_DIR}/radio.img ${DIST_DIR}/radio.img

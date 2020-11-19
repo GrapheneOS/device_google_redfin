@@ -1,0 +1,18 @@
+<compatibility-matrix version="1.0" type="framework">
+    <hal format="hidl" optional="true">
+        <name>vendor.google.radioext</name>
+        <version>1.2</version>
+        <interface>
+            <name>IRadioExt</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl" optional="true">
+        <name>vendor.qti.hardware.bt_channel_avoidance</name>
+        <version>1.0</version>
+        <interface>
+            <name>IBTChannelAvoidance</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+</compatibility-matrix>
