@@ -3,6 +3,8 @@
 # Thin wrapper around merge_target_files to allow flag changes to be made in a
 # presubmit-guarded change.
 
+set -e
+
 readonly DIST_DIR=$1
 readonly VENDOR_DIR=$2
 
