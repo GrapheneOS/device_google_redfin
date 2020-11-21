@@ -15,6 +15,9 @@ if [[ -z "${VENDOR_DIR}" ]]; then
   exit 1
 fi
 
+source build/envsetup.sh
+lunch aosp_redfin_vf-userdebug
+
 out/host/linux-x86/bin/merge_target_files \
   --framework-target-files ${DIST_DIR}/aosp_redfin_vf-target_files*.zip \
   --vendor-target-files ${VENDOR_DIR}/aosp_redfin-target_files-*.zip \
