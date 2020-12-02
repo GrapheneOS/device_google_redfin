@@ -21,13 +21,11 @@
   <array name="config_compensation_thresholds">
     <item>15000.0</item>
     <item>30000.0</item>
-    <item>50000.0</item>
   </array>
 
   <array name="config_compensation_images">
     <item>@drawable/r3_compensation_image_15k</item>
     <item>@drawable/r3_compensation_image_30k</item>
-    <item>@drawable/r3_compensation_image_50k</item>
   </array>
 
   <integer name="config_compensation_filter_horizon">3500</integer>

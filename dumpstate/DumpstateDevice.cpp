@@ -686,6 +686,7 @@ Return<DumpstateStatus> DumpstateDevice::dumpstateBoard_1_1(const hidl_handle& h
     RunCommandToFd(fd, "CPU cpuidle", {"/vendor/bin/sh", "-c", "for cpu in /sys/devices/system/cpu/cpu*; do for d in $cpu/cpuidle/state*; do if [ ! -d $d ]; then continue; fi; echo \"$d: `cat $d/name` `cat $d/desc` `cat $d/time` `cat $d/usage`\"; done; done"});
     RunCommandToFd(fd, "Airbrush debug info", {"/vendor/bin/sh", "-c", "for f in `ls /sys/devices/platform/soc/c84000.i2c/i2c-4/4-0066/@(*curr|temperature|vbat|total_power)`; do echo \"$f: `cat $f`\" ; done; file=/d/airbrush/airbrush_sm/chip_state; echo \"$file: `cat $file`\""});
     DumpFileToFd(fd, "TCPM logs", "/d/usb/tcpm-usbpd0");
+    DumpFileToFd(fd, "TCPM logs", "/dev/logbuffer_tcpm");
     DumpFileToFd(fd, "PD Engine", "/dev/logbuffer_usbpd");
     DumpFileToFd(fd, "PPS", "/dev/logbuffer_pps");
     DumpFileToFd(fd, "BMS", "/dev/logbuffer_ssoc");
@@ -730,6 +731,9 @@ Return<DumpstateStatus> DumpstateDevice::dumpstateBoard_1_1(const hidl_handle& h
 
     // Dump camera profiler log
     RunCommandToFd(fd, "Camera Profiler Logs", {"/vendor/bin/sh", "-c", "for f in /data/vendor/camera/profiler/camx_*; do echo [$f]; cat \"$f\";done"});
+
+    // Dump fastrpc dma buffer size
+    DumpFileToFd(fd, "Fastrpc dma buffer", "/sys/kernel/fastrpc/total_dma_kb");
 
     if (modemThreadHandle) {
         pthread_join(modemThreadHandle, NULL);
