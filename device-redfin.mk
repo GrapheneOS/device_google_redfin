@@ -210,8 +210,10 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.use_content_detection_f
 PRODUCT_PROPERTY_OVERRIDES += \
     vendor.display.defer_fps_frame_count=2
 
-# Keyboard height ratio
-PRODUCT_PRODUCT_PROPERTIES += ro.com.google.ime.height_ratio=1.2
+# Keyboard height ratio and bottom padding in dp for portrait mode
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.com.google.ime.height_ratio=1.2 \
+    ro.com.google.ime.kb_pad_port_b=10
 
 # Bluetooth Tx power caps for redfin
 PRODUCT_COPY_FILES += \
