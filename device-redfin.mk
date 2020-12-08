@@ -226,8 +226,3 @@ PRODUCT_PRODUCT_PROPERTIES += \
 
 PRODUCT_PACKAGES += \
     NoCutoutOverlay
-
-# Display config
-PRODUCT_COPY_FILES += \
-    device/google/redfin/displayconfig/display_id_4630946523002478721.xml:$(TARGET_COPY_OUT_VENDOR)/etc/displayconfig/display_id_4630946523002478721.xml
-
