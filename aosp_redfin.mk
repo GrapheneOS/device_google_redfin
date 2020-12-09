@@ -21,8 +21,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/mainline_system.mk)
 
 # Enable mainline checking
-# TODO(b/138706293): Enable mainline checking later
-# PRODUCT_ENFORCE_ARTIFACT_PATH_REQUIREMENTS := relaxed
+PRODUCT_ENFORCE_ARTIFACT_PATH_REQUIREMENTS := strict
 
 #
 # All components inherited here go to system_ext image
@@ -49,6 +48,12 @@ $(call inherit-product-if-exists, vendor/google_devices/redfin/prebuilts/device-
 # Exclude features that are not available on AOSP devices.
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/aosp_excluded_hardware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/aosp_excluded_hardware.xml
+
+# Keep the VNDK APEX in /system partition for REL branches as these branches are
+# expected to have stable API/ABI surfaces.
+ifneq (REL,$(PLATFORM_VERSION_CODENAME))
+  PRODUCT_PACKAGES += com.android.vndk.current.on_vendor
+endif
 
 # Don't build super.img.
 PRODUCT_BUILD_SUPER_PARTITION := false
