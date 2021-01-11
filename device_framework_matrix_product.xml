@@ -1,5 +1,5 @@
 <compatibility-matrix version="1.0" type="framework">
-    <hal format="hidl" optional="true">
+    <hal format="hidl" optional="false">
         <name>vendor.google.wireless_charger</name>
         <version>1.2</version>
         <interface>

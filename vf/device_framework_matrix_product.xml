@@ -1,5 +1,5 @@
 <compatibility-matrix version="1.0" type="framework">
-    <hal format="hidl" optional="true">
+    <hal format="hidl" optional="false">
         <name>vendor.google.radioext</name>
         <version>1.2</version>
         <interface>
@@ -7,7 +7,7 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="true">
+    <hal format="hidl" optional="false">
         <name>vendor.qti.hardware.bt_channel_avoidance</name>
         <version>1.0</version>
         <interface>
@@ -15,7 +15,7 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="true">
+    <hal format="hidl" optional="false">
         <name>vendor.qti.hardware.bluetooth_sar</name>
         <version>1.1</version>
         <interface>
