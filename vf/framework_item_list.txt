@@ -6,6 +6,7 @@ IMAGES/system.img
 IMAGES/system.map
 IMAGES/system_other.img
 IMAGES/userdata.img
+IMAGES/vbmeta_system.img
 META/apexkeys.txt
 META/apkcerts.txt
 META/filesystem_config.txt
