@@ -1,5 +1,5 @@
 #
-# Copyright 2018 The Android Open Source Project
+# Copyright 2021 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,12 +14,7 @@
 # limitations under the License.
 #
 
-PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/aosp_redfin.mk \
-    $(LOCAL_DIR)/aosp_redfin_64.mk \
-    $(LOCAL_DIR)/vf/aosp_redfin_vf.mk \
-    $(LOCAL_DIR)/aosp_redfin_hwasan.mk \
+$(call inherit-product, device/google/redfin/aosp_redfin.mk)
 
-COMMON_LUNCH_CHOICES := \
-    aosp_redfin-userdebug \
-    aosp_redfin_vf-userdebug \
+PRODUCT_NAME := aosp_redfin_64
+PRODUCT_MODEL := AOSP on Redfin (64-bit only)
