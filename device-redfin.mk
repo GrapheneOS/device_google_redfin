@@ -31,6 +31,8 @@ PRODUCT_VENDOR_KERNEL_HEADERS := device/google/redbull-kernel/sm7250/kernel-head
 include build/make/target/product/iorap_large_memory_config.mk
 include device/google/redbull/device-common.mk
 
+$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/compression.mk)
+
 # LOCAL_PATH is device/google/redbull before this
 LOCAL_PATH := device/google/redfin
 
