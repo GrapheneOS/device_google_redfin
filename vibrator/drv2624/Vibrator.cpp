@@ -451,6 +451,7 @@ ndk::ScopedAStatus Vibrator::getCapabilities(int32_t *_aidl_return) {
     if (mHwApi->hasRtpInput()) {
         ret |= IVibrator::CAP_AMPLITUDE_CONTROL;
     }
+    ret |= IVibrator::CAP_GET_RESONANT_FREQUENCY;
     *_aidl_return = ret;
     return ndk::ScopedAStatus::ok();
 }
@@ -706,6 +707,24 @@ ndk::ScopedAStatus Vibrator::getPrimitiveDuration(CompositePrimitive /*primitive
 
 ndk::ScopedAStatus Vibrator::compose(const std::vector<CompositeEffect> & /*composite*/,
                                      const std::shared_ptr<IVibratorCallback> & /*callback*/) {
+    return ndk::ScopedAStatus::fromExceptionCode(EX_UNSUPPORTED_OPERATION);
+}
+
+static float freqPeriodFormulaFloat(std::uint32_t in) {
+    return static_cast<float>(1000000000) / static_cast<float>(24615 * in);
+}
+
+ndk::ScopedAStatus Vibrator::getResonantFrequency(float *resonantFreqHz) {
+    uint32_t lraPeriod;
+    if(!mHwCal->getLraPeriod(&lraPeriod)) {
+        ALOGE("Failed to get resonant frequency (%d): %s", errno, strerror(errno));
+        return ndk::ScopedAStatus::fromExceptionCode(EX_ILLEGAL_STATE);
+    }
+    *resonantFreqHz = freqPeriodFormulaFloat(lraPeriod);
+    return ndk::ScopedAStatus::ok();
+}
+
+ndk::ScopedAStatus Vibrator::getQFactor(float * /*qFactor*/) {
     return ndk::ScopedAStatus::fromExceptionCode(EX_UNSUPPORTED_OPERATION);
 }
 
