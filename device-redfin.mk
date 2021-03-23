@@ -132,7 +132,7 @@ ifeq ($(wildcard vendor/google_devices/redfin/proprietary/device-vendor-redfin.m
 endif
 
 PRODUCT_PACKAGES += \
-    android.hardware.usb@1.2-service.redfin
+    android.hardware.usb@1.3-service.redfin
 
 # Vibrator HAL
 PRODUCT_PACKAGES += \
