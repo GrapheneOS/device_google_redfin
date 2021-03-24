@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 The Android Open Source Project
+ * Copyright (C) 2020 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,8 +27,8 @@ using android::hardware::configureRpcThreadpool;
 using android::hardware::joinRpcThreadpool;
 
 // Generated HIDL files
-using android::hardware::usb::gadget::V1_1::IUsbGadget;
-using android::hardware::usb::gadget::V1_1::implementation::UsbGadget;
+using android::hardware::usb::gadget::V1_2::IUsbGadget;
+using android::hardware::usb::gadget::V1_2::implementation::UsbGadget;
 using android::hardware::usb::V1_2::IUsb;
 using android::hardware::usb::V1_2::implementation::Usb;
 
