@@ -233,3 +233,7 @@ PRODUCT_PRODUCT_PROPERTIES += \
 
 PRODUCT_PACKAGES += \
     NoCutoutOverlay
+
+# (b/183612348): Enable skia reduceOpsTaskSplitting
+PRODUCT_PROPERTY_OVERRIDES += \
+    renderthread.skia.reduceopstasksplitting=true
