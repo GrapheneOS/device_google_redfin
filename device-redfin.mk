@@ -237,3 +237,6 @@ PRODUCT_PACKAGES += \
 # (b/183612348): Enable skia reduceOpsTaskSplitting
 PRODUCT_PROPERTY_OVERRIDES += \
     renderthread.skia.reduceopstasksplitting=true
+
+# Include the redfin product FCM
+PRODUCT_PACKAGES += redfin_product_compatibility_matrix.xml
