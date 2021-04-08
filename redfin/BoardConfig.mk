@@ -23,7 +23,6 @@ else
   USES_DEVICE_GOOGLE_REDFIN := true
 
   include device/google/redbull/BoardConfig-common.mk
-  DEVICE_PRODUCT_COMPATIBILITY_MATRIX_FILE += device/google/redfin/device_framework_matrix_product.xml
 
   # Testing related defines
   #BOARD_PERFSETUP_SCRIPT := platform_testing/scripts/perf-setup/r3-setup.sh
