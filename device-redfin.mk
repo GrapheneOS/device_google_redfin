@@ -232,7 +232,8 @@ PRODUCT_PRODUCT_PROPERTIES += \
     ro.support_hide_display_cutout=true
 
 PRODUCT_PACKAGES += \
-    NoCutoutOverlay
+    NoCutoutOverlay \
+    AvoidAppsInCutoutOverlay
 
 # (b/183612348): Enable skia reduceOpsTaskSplitting
 PRODUCT_PROPERTY_OVERRIDES += \
