@@ -239,5 +239,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     renderthread.skia.reduceopstasksplitting=true
 
-# Include the redfin product FCM
+# Include the redfin product FCM.
+# Vendor Freeze system-only builds use a different FCM.
+ifneq ($(PRODUCT_VENDOR_FREEZE_SYSTEM_BUILD),true)
 PRODUCT_PACKAGES += redfin_product_compatibility_matrix.xml
+endif
