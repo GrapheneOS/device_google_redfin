@@ -3,10 +3,19 @@ package {
 }
 
 vintf_compatibility_matrix {
-    name: "redfin_product_compatibility_matrix.5.xml",
-    stem: "compatibility_matrix.redfin.5.xml",
+    name: "redfin_product_compatibility_matrix.R.5.xml",
+    stem: "compatibility_matrix.redfin.R.5.xml",
     product_specific: true,
     srcs: [
-        "device_framework_matrix_product.5.xml",
+        "device_framework_matrix_product.R.5.xml",
+    ],
+}
+
+vintf_compatibility_matrix {
+    name: "redfin_product_compatibility_matrix.S.5.xml",
+    stem: "compatibility_matrix.redfin.S.5.xml",
+    product_specific: true,
+    srcs: [
+        "device_framework_matrix_product.S.5.xml",
     ],
 }
