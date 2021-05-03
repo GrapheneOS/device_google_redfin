@@ -69,7 +69,7 @@
         <int name="smsToMmsTextThreshold" value="-1" />
         <boolean name="support_swap_after_merge_bool" value="false" />
     </carrier_config>
-    <carrier_config mcc="204" mnc="04" spn="C Spire&#13;">
+    <carrier_config mcc="204" mnc="04" spn="C Spire&#10;">
         <int name="cdma_3waycall_flash_delay_int" value="300" />
         <boolean name="config_telephony_use_own_number_for_voicemail_bool" value="true" />
         <string name="emailGatewayNumber">6245</string>
@@ -191,7 +191,7 @@
         <boolean name="carrier_supports_ss_over_ut_bool" value="true" />
         <int name="carrier_ussd_method_int" value="2" />
         <boolean name="carrier_volte_available_bool" value="true" />
-        <boolean name="carrier_wfc_ims_available_bool" value="true" />
+        <boolean name="carrier_wfc_ims_available_bool" value="false" />
         <boolean name="editable_enhanced_4g_lte_bool" value="false" />
         <boolean name="editable_wfc_mode_bool" value="false" />
         <boolean name="hide_enhanced_4g_lte_bool" value="true" />
@@ -239,7 +239,7 @@
         <boolean name="carrier_supports_ss_over_ut_bool" value="true" />
         <int name="carrier_ussd_method_int" value="2" />
         <boolean name="carrier_volte_available_bool" value="true" />
-        <boolean name="carrier_wfc_ims_available_bool" value="true" />
+        <boolean name="carrier_wfc_ims_available_bool" value="false" />
         <boolean name="editable_enhanced_4g_lte_bool" value="false" />
         <boolean name="editable_wfc_mode_bool" value="false" />
         <boolean name="hide_enhanced_4g_lte_bool" value="true" />
@@ -2031,7 +2031,7 @@
         <boolean name="carrier_supports_ss_over_ut_bool" value="true" />
         <int name="carrier_ussd_method_int" value="2" />
         <boolean name="carrier_volte_available_bool" value="true" />
-        <boolean name="carrier_wfc_ims_available_bool" value="true" />
+        <boolean name="carrier_wfc_ims_available_bool" value="false" />
         <boolean name="editable_enhanced_4g_lte_bool" value="false" />
         <boolean name="editable_wfc_mode_bool" value="false" />
         <boolean name="hide_enhanced_4g_lte_bool" value="true" />
@@ -2237,7 +2237,7 @@
         <boolean name="carrier_supports_ss_over_ut_bool" value="true" />
         <int name="carrier_ussd_method_int" value="2" />
         <boolean name="carrier_volte_available_bool" value="true" />
-        <boolean name="carrier_wfc_ims_available_bool" value="true" />
+        <boolean name="carrier_wfc_ims_available_bool" value="false" />
         <boolean name="editable_enhanced_4g_lte_bool" value="false" />
         <boolean name="editable_wfc_mode_bool" value="false" />
         <boolean name="hide_enhanced_4g_lte_bool" value="true" />
