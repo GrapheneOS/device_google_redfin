@@ -34,8 +34,7 @@ LOCAL_SHARED_LIBRARIES := \
     libdumpstateutil \
     libhidlbase \
     liblog \
-    libutils \
-    libpcap
+    libutils
 
 LOCAL_CFLAGS := -Werror -Wall
 
