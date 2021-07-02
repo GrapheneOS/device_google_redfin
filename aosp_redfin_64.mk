@@ -17,4 +17,4 @@
 $(call inherit-product, device/google/redfin/aosp_redfin.mk)
 
 PRODUCT_NAME := aosp_redfin_64
-PRODUCT_MODEL := AOSP on Redfin (64-bit only)
+PRODUCT_MODEL := AOSP on Redfin 64-bit only
