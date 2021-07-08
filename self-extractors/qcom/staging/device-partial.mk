@@ -47,8 +47,6 @@ PRODUCT_COPY_FILES := \
      vendor/qcom/redfin/proprietary/qcrilhook.jar:system_ext/framework/qcrilhook.jar \
      vendor/qcom/redfin/proprietary/qti-telephony-hidl-wrapper.jar:system_ext/framework/qti-telephony-hidl-wrapper.jar \
      vendor/qcom/redfin/proprietary/qti-telephony-utils.jar:system_ext/framework/qti-telephony-utils.jar \
-     vendor/qcom/redfin/proprietary/remotesimlockmanagerlibrary.jar:system_ext/framework/remotesimlockmanagerlibrary.jar \
-     vendor/qcom/redfin/proprietary/uimremotesimlocklibrary.jar:system_ext/framework/uimremotesimlocklibrary.jar \
      vendor/qcom/redfin/proprietary/vendor.qti.hardware.data.connection-V1.0-java.jar:system_ext/framework/vendor.qti.hardware.data.connection-V1.0-java.jar \
      vendor/qcom/redfin/proprietary/vendor.qti.hardware.data.dynamicdds-V1.0-java.jar:system_ext/framework/vendor.qti.hardware.data.dynamicdds-V1.0-java.jar \
      vendor/qcom/redfin/proprietary/vendor.qti.hardware.data.iwlan-V1.0-java.jar:system_ext/framework/vendor.qti.hardware.data.iwlan-V1.0-java.jar \
