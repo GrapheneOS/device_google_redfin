@@ -20,8 +20,6 @@
             system_ext/framework/qcrilhook.jar \
             system_ext/framework/qti-telephony-hidl-wrapper.jar \
             system_ext/framework/qti-telephony-utils.jar \
-            system_ext/framework/remotesimlockmanagerlibrary.jar \
-            system_ext/framework/uimremotesimlocklibrary.jar \
             system_ext/framework/vendor.qti.hardware.data.connection-V1.0-java.jar \
             system_ext/framework/vendor.qti.hardware.data.dynamicdds-V1.0-java.jar \
             system_ext/framework/vendor.qti.hardware.data.iwlan-V1.0-java.jar \
