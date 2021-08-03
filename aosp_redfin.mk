@@ -17,7 +17,7 @@
 # PRODUCT_COPY_FILES retains the first dest match, so this must appear
 # before mainline.mk to override device/sample/etc/apns-full-conf.xml.
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/apns-full-conf.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/apns-conf.xml
+    device/google/redbull/apns-full-conf.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/apns-conf.xml
 
 #
 # All components inherited here go to system image
