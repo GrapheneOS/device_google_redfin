@@ -17,8 +17,12 @@
 #
 # All components inherited here go to system image
 #
+ifeq (,$(filter %_64,$(TARGET_PRODUCT)))
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/mainline_system.mk)
+else
+$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit_only.mk)
+endif
+$(call inherit-product, $(SRC_TARGET_DIR)/product/generic_system.mk)
 
 # Enable mainline checking
 PRODUCT_ENFORCE_ARTIFACT_PATH_REQUIREMENTS := strict
@@ -49,10 +53,12 @@ $(call inherit-product-if-exists, vendor/google_devices/redfin/prebuilts/device-
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/aosp_excluded_hardware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/aosp_excluded_hardware.xml
 
-# Keep the VNDK APEX in /system partition for REL branches as these branches are
-# expected to have stable API/ABI surfaces.
+# Keep the VNDK APEX in /system partition for REL branches and Vendor Freeze targets
+# as these are expected to have stable API/ABI surfaces.
 ifneq (REL,$(PLATFORM_VERSION_CODENAME))
+ifneq ($(PRODUCT_VENDOR_FREEZE_SYSTEM_BUILD),true)
   PRODUCT_PACKAGES += com.android.vndk.current.on_vendor
+endif
 endif
 
 # Don't build super.img.
