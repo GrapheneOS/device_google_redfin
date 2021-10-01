@@ -226,3 +226,7 @@ PRODUCT_COPY_FILES += \
 # Set of *_EXPERIENCE features for redfin
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/google_experience.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/google_experience.xml
+
+# Boot animation for redfin
+PRODUCT_COPY_FILES += \
+    device/google/redfin/bootanimation.zip:system/media/bootanimation.zip
