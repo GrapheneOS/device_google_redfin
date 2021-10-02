@@ -20,3 +20,4 @@ default_system_dev_certificate
 product_fs_type
 root_dir
 system_ext_fs_type
+system_other_disable_sparse
