@@ -234,7 +234,6 @@ PRODUCT_PRODUCT_PROPERTIES += \
 
 PRODUCT_PACKAGES += \
     NoCutoutOverlay \
-    AvoidAppsInCutoutOverlay
 
 # Include the redfin product FCM.
 # Vendor Freeze system-only builds use a different FCM.
