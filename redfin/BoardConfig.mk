@@ -27,5 +27,5 @@ else
   # Testing related defines
   #BOARD_PERFSETUP_SCRIPT := platform_testing/scripts/perf-setup/r3-setup.sh
 
-  -include vendor/google_devices/$(TARGET_BOOTLOADER_BOARD_NAME)/proprietary/BoardConfigVendor.mk
+  -include vendor/google_devices/redfin/proprietary/BoardConfigVendor.mk
 endif
