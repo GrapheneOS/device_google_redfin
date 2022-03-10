@@ -1,5 +1,9 @@
 LOCAL_PATH := $(call my-dir)
 
+$(eval $(call declare-copy-files-license-metadata,vendor/qcom/redfin,:qcom,legacy_proprietary,proprietary,vendor/qcom/redfin/LICENSE,))
+$(eval $(call declare-copy-files-license-metadata,vendor/qcom/redfin,.jar,legacy_proprietary,proprietary,vendor/qcom/redfin/LICENSE,))
+$(eval $(call declare-copy-files-license-metadata,vendor/qcom/redfin,.xml,legacy_proprietary,proprietary,vendor/qcom/redfin/LICENSE,))
+
 ifneq ($(filter redfin, $(TARGET_DEVICE)),)
 include $(CLEAR_VARS)
 LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
