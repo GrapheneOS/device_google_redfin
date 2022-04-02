@@ -240,7 +240,3 @@ PRODUCT_PACKAGES += \
 ifneq ($(PRODUCT_VENDOR_FREEZE_SYSTEM_BUILD),true)
 PRODUCT_PACKAGES += redfin_product_compatibility_matrix.xml
 endif
-
-# Set of *_EXPERIENCE features for redfin
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/google_experience.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/google_experience.xml
