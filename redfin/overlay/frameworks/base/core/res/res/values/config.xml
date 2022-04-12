@@ -238,7 +238,7 @@
          Do not read this dimen directly. Use {@link SystemBarUtils#getStatusBarHeight} instead.
          -->
     <dimen name="status_bar_height_default">28dp</dimen>
-    <dimen name="status_bar_height_portrait">145px</dimen>
+    <dimen name="status_bar_height_portrait">136px</dimen>
     <dimen name="status_bar_height_landscape">28dp</dimen>
 
     <!-- Not allow to switch to higher refresh rate when display brightness setting is
