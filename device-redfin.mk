@@ -240,3 +240,7 @@ PRODUCT_PACKAGES += \
 ifneq ($(PRODUCT_VENDOR_FREEZE_SYSTEM_BUILD),true)
 PRODUCT_PACKAGES += redfin_product_compatibility_matrix.xml
 endif
+
+# sysconfig XML from stock
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/product-sysconfig-stock.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/product-sysconfig-stock.xml
