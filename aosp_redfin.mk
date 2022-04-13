@@ -14,8 +14,6 @@
 # limitations under the License.
 #
 
-PRODUCT_SOONG_NAMESPACES += vendor/google_devices/redfin
-
 #
 # All components inherited here go to system image
 #
