@@ -247,3 +247,7 @@ endif
 # Workaround for prebuilt Qualcomm neural network HAL
 PRODUCT_PACKAGES += \
     libprotobuf-cpp-full-3.9.1-vendorcompat
+
+# sysconfig XML from stock
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/product-sysconfig-stock.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/product-sysconfig-stock.xml
