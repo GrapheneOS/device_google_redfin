@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<config>
+    <component-override package="com.android.settings" >
+        <!-- Display regulatory info in settings. -->
+        <component class=".RegulatoryInfoDisplayActivity" enabled="true" />
+    </component-override>
+    <!-- redfin/proprietary/product/etc/sysconfig/google_build.xml -->
+    <feature name="com.google.android.feature.GOOGLE_EXPERIENCE" />
+    <!-- redfin/proprietary/product/etc/sysconfig/nexus.xml -->
+    <feature name="com.google.android.feature.PIXEL_EXPERIENCE" />
+    <allow-in-power-save package="com.qualcomm.atfwd" />
+    <allow-in-power-save package="com.qualcomm.embms" />
+    <allow-in-power-save package="com.qualcomm.qti.telephonyservice" />
+    <allow-in-power-save package="com.qulacomm.qcrilmsgtunnel" />
+    <allow-in-power-save package="com.qualcomm.qti.ims" />
+    <allow-in-power-save package="com.qualcomm.qti.radioconfiginterface" />
+    <allow-in-power-save package="com.qualcomm.ltebc_vzw" />
+    <allow-in-power-save package="com.qualcomm.ltebc" />
+    <!-- redfin/proprietary/product/etc/sysconfig/nga.xml -->
+    <feature name="com.google.android.feature.NEXT_GENERATION_ASSISTANT" />
+    <!-- redfin/proprietary/product/etc/sysconfig/pixel_experience_2017.xml -->
+    <feature name="com.google.android.feature.PIXEL_2017_EXPERIENCE" />
+    <feature name="com.google.android.feature.AER_OPTIMIZED" />
+    <!-- redfin/proprietary/product/etc/sysconfig/pixel_experience_2018.xml -->
+    <feature name="com.google.android.feature.PIXEL_2018_EXPERIENCE" />
+    <!-- redfin/proprietary/product/etc/sysconfig/pixel_experience_2019_midyear.xml -->
+    <feature name="com.google.android.feature.PIXEL_2019_MIDYEAR_EXPERIENCE" />
+    <!-- redfin/proprietary/product/etc/sysconfig/pixel_experience_2019.xml -->
+    <feature name="com.google.android.feature.PIXEL_2019_EXPERIENCE" />
+    <!-- redfin/proprietary/product/etc/sysconfig/pixel_experience_2020_midyear.xml -->
+    <feature name="com.google.android.feature.PIXEL_2020_MIDYEAR_EXPERIENCE" />
+    <!-- redfin/proprietary/product/etc/sysconfig/pixel_experience_2020.xml -->
+    <feature name="com.google.android.feature.PIXEL_2020_EXPERIENCE" />
+</config>

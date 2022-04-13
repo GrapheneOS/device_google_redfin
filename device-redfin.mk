@@ -250,3 +250,7 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     NfcOverlayRedfin
+
+# sysconfig XML from stock
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/product-sysconfig-stock.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/product-sysconfig-stock.xml
