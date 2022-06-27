@@ -28,10 +28,9 @@ endif
 
 PRODUCT_VENDOR_KERNEL_HEADERS := device/google/redbull-kernel/sm7250/kernel-headers
 
-include build/make/target/product/iorap_large_memory_config.mk
 include device/google/redbull/device-common.mk
 
-$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/compression.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/compression_with_xor.mk)
 
 # LOCAL_PATH is device/google/redbull before this
 LOCAL_PATH := device/google/redfin
@@ -131,8 +130,11 @@ ifeq ($(wildcard vendor/google_devices/redfin/proprietary/device-vendor-redfin.m
     BUILD_WITHOUT_VENDOR := true
 endif
 
+# USB HAL
 PRODUCT_PACKAGES += \
-    android.hardware.usb@1.3-service.redfin
+    android.hardware.usb-service.redfin
+PRODUCT_PACKAGES += \
+    android.hardware.usb.gadget-service.redfin
 
 # Vibrator HAL
 PRODUCT_PACKAGES += \
