@@ -14,13 +14,10 @@
 # limitations under the License.
 #
 
-PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/aosp_redfin.mk \
-    $(LOCAL_DIR)/aosp_redfin_64.mk \
-    $(LOCAL_DIR)/aosp_redfin_64_with_32.mk \
-    $(LOCAL_DIR)/vf/aosp_redfin_vf.mk \
-    $(LOCAL_DIR)/aosp_redfin_hwasan.mk \
+# Build all of the 32 bit code, but only the vendor partition enables 64 bit.
+ZYGOTE_FORCE_64 := true
 
-COMMON_LUNCH_CHOICES := \
-    aosp_redfin-userdebug \
-    aosp_redfin_vf-userdebug \
+$(call inherit-product, device/google/redfin/aosp_redfin.mk)
+
+PRODUCT_NAME := aosp_redfin_64_with_32
+PRODUCT_MODEL := AOSP on Redfin 64-bit only zygote with 32 bit support
