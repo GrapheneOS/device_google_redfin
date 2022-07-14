@@ -17,6 +17,9 @@
 # Build all of the 32 bit code, but only the vendor partition enables 64 bit.
 ZYGOTE_FORCE_64 := true
 
+# Force any prefer32 targets to be compiled as 64 bit.
+IGNORE_PREFER32_ON_DEVICE := true
+
 $(call inherit-product, device/google/redfin/aosp_redfin.mk)
 
 PRODUCT_NAME := aosp_redfin_64_with_32
