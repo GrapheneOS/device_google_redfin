@@ -24,9 +24,6 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit_only.mk)
 endif
 $(call inherit-product, $(SRC_TARGET_DIR)/product/generic_system.mk)
 
-# Enable mainline checking
-PRODUCT_ENFORCE_ARTIFACT_PATH_REQUIREMENTS := strict
-
 #
 # All components inherited here go to system_ext image
 #
