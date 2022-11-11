@@ -242,3 +242,7 @@ PRODUCT_PACKAGES += \
 ifneq ($(PRODUCT_VENDOR_FREEZE_SYSTEM_BUILD),true)
 PRODUCT_PACKAGES += redfin_product_compatibility_matrix.xml
 endif
+
+# Workaround for prebuilt Qualcomm neural network HAL
+PRODUCT_PACKAGES += \
+    libprotobuf-cpp-full-3.9.1-vendorcompat
