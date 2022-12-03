@@ -245,9 +245,9 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="aidl" optional="true">
+    <hal format="hidl" optional="false">
         <name>vendor.google.wifi_ext</name>
-        <version>1</version>
+        <version>1.2</version>
         <interface>
             <name>IWifiExt</name>
             <instance>default</instance>
