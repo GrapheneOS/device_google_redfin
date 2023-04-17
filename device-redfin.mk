@@ -36,7 +36,8 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/compression_wit
 LOCAL_PATH := device/google/redfin
 
 PRODUCT_SOONG_NAMESPACES += \
-    device/google/redfin
+    device/google/redfin \
+    hardware/qcom/wlan/legacy
 
 DEVICE_PACKAGE_OVERLAYS += device/google/redfin/redfin/overlay
 
