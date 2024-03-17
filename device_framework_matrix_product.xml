@@ -1,3 +1,225 @@
+<!-- The following HALs in device manifest are not declared in FCM <= level 5:
+  android.hardware.audio.effect@7.0::IEffectsFactory/default
+  android.hardware.audio@7.0::IDevicesFactory/default
+  android.hardware.authsecret.IAuthSecret/default (@1)
+  android.hardware.boot@1.2::IBootControl/default
+  android.hardware.camera.provider.ICameraProvider/internal/0 (@2)
+  android.hardware.cas.IMediaCasService/default (@1)
+  android.hardware.contexthub.IContextHub/default (@2)
+  android.hardware.drm.IDrmFactory/clearkey (@1)
+  android.hardware.drm.IDrmFactory/widevine (@1)
+  android.hardware.identity.IIdentityCredentialStore/default (@5)
+  android.hardware.input.processor.IInputProcessor/default (@1)
+  android.hardware.nfc.INfc/default (@1)
+  android.hardware.oemlock.IOemLock/default (@1)
+  android.hardware.power.IPower/default (@4)
+  android.hardware.thermal.IThermal/default (@1)
+  android.hardware.usb.IUsb/default (@1)
+  android.hardware.vibrator.IVibrator/default (@2)
+  android.hardware.weaver.IWeaver/default (@2)
+  android.hardware.wifi.IWifi/default (@1)
+  android.hardware.wifi.hostapd.IHostapd/default (@1)
+  android.hardware.wifi.supplicant.ISupplicant/default (@2)
+  vendor.google.wireless_charger.IWirelessCharger/default (@1) 
+-->
+
 <compatibility-matrix version="1.0" type="framework" level="5">
+
+    <hal format="hidl" optional="true">
+        <name>android.hardware.audio.effect</name>
+        <version>7.0</version>
+        <interface>
+            <name>IEffectsFactory</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+
+    <hal format="hidl" optional="true">
+        <name>android.hardware.audio</name>
+        <version>7.0</version>
+        <interface>
+            <name>IDevicesFactory</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+
+    <hal format="aidl" optional="true">
+        <name>android.hardware.authsecret</name>
+        <version>1</version>
+        <interface>
+            <name>IAuthSecret</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+
+    <hal format="hidl" optional="true">
+        <name>android.hardware.boot</name>
+        <version>1.2</version>
+        <interface>
+            <name>IBootControl</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+
+    <hal format="hidl" optional="true">
+        <name>android.hardware.camera.provider</name>
+        <version>2.0</version>
+        <interface>
+            <name>ICameraProvider</name>
+            <regex-instance>.*</regex-instance>
+        </interface>
+    </hal>
+
+    <hal format="aidl" optional="true">
+        <name>android.hardware.camera.provider</name>
+        <interface>
+            <name>ICameraProvider</name>
+            <regex-instance>.*</regex-instance>
+        </interface>
+    </hal>
+
+    <hal format="hidl">
+        <name>android.hardware.cas</name>
+        <version>1.2</version>
+        <interface>
+            <name>IMediaCasService</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+
+    <hal format="aidl" optional="true">
+        <name>android.hardware.contexthub</name>
+        <version>2</version>
+        <interface>
+            <name>IContextHub</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+
+    <hal format="aidl" optional="true">
+        <name>android.hardware.drm</name>
+        <version>1</version>
+        <interface>
+            <name>IDrmFactory</name>
+            <regex-instance>.*</regex-instance>
+        </interface>
+    </hal>
+
+    <hal format="aidl" optional="true">
+        <name>android.hardware.identity</name>
+        <version>5</version>
+        <interface>
+            <name>IIdentityCredentialStore</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+
+    <hal format="aidl" optional="true">
+        <name>android.hardware.input.processor</name>
+        <version>1</version>
+        <interface>
+            <name>IInputProcessor</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+
+    <hal format="aidl" optional="true">
+        <name>android.hardware.nfc</name>
+        <version>1</version>
+        <interface>
+            <name>INfc</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+
+    <hal format="aidl" optional="true">
+        <name>android.hardware.oemlock</name>
+        <version>1</version>
+        <interface>
+            <name>IOemLock</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+
+    <hal format="aidl" optional="true">
+        <name>android.hardware.power</name>
+        <version>4</version>
+        <interface>
+            <name>IPower</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+
+    <hal format="aidl" optional="true">
+        <name>android.hardware.thermal</name>
+        <version>1</version>
+        <interface>
+            <name>IThermal</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+
+    <hal format="aidl" optional="true">
+        <name>android.hardware.usb</name>
+        <version>1</version>
+        <interface>
+            <name>IUsb</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+
+    <hal format="aidl" optional="true">
+        <name>android.hardware.vibrator</name>
+        <version>2</version>
+        <interface>
+            <name>IVibrator</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+
+    <hal format="aidl" optional="true">
+        <name>android.hardware.weaver</name>
+        <version>2</version>
+        <interface>
+            <name>IWeaver</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+
+    <hal format="aidl" optional="true">
+        <name>android.hardware.wifi</name>
+        <version>1</version>
+        <interface>
+            <name>IWifi</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+
+    <hal format="aidl" optional="true">
+        <name>android.hardware.wifi.hostapd</name>
+        <version>1</version>
+        <interface>
+            <name>IHostapd</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+
+    <hal format="aidl" optional="true">
+        <name>android.hardware.wifi.supplicant</name>
+        <version>2</version>
+        <interface>
+            <name>ISupplicant</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+
+    <hal format="aidl" optional="true">
+        <name>vendor.google.wireless_charger</name>
+        <version>1</version>
+        <interface>
+            <name>IWirelessCharger</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
 
 </compatibility-matrix>
